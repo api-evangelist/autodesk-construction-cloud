@@ -1,0 +1,19 @@
+aid: autodesk-construction-cloud
+url: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/apis.yml
+apis:
+- aid: autodesk-construction-cloud:autodesk-construction-cloud-api
+  name: Autodesk Construction Cloud / BIM 360 API
+  tags:
+  - Construction
+  - BIM
+  - IFC
+  - Project Management
+  - CAD
+  image: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/image.png
+  humanURL: https://aps.autodesk.com/
+  baseURL: https://developer.api.autodesk.com
+  properties:
+  - url: https://aps.autodesk.com/
+    type: Documentation
+  description: >-
+    Autodesk Construction Cloud (ACC) and BIM 360 provide APIs for building information modeling, project management, and design collaboration. The REST APIs enable access to BIM model metadata, clash detection results, RFIs, submittals, and project document management across the hub-project-folder-item hierarchy.
