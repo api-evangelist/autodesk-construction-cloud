@@ -1,0 +1,228 @@
+asyncapi: 2.6.0
+info:
+  title: Autodesk Construction Cloud Webhooks
+  description: >-
+    Autodesk Construction Cloud (ACC) and APS Webhooks deliver event notifications
+    for project activities including issue creation, document updates, RFI changes,
+    submittal status changes, and model coordination events. Webhooks are registered
+    via the APS Webhooks API and delivered via HTTPS POST.
+  version: 1.0.0
+  contact:
+    name: Autodesk Platform Services
+    url: https://aps.autodesk.com/
+
+servers:
+  webhookEndpoint:
+    url: https://your-server.example.com/webhooks/acc
+    protocol: https
+    description: >-
+      Your registered HTTPS webhook endpoint. Register this URL via the
+      APS Webhooks API at https://developer.api.autodesk.com/webhooks/v1/systems/
+
+channels:
+  issues:
+    description: Events for construction issue lifecycle changes
+    subscribe:
+      operationId: onIssueEvent
+      summary: Issue lifecycle event
+      description: Received when an issue is created, updated, or closed.
+      tags:
+        - name: Issues
+      message:
+        $ref: '#/components/messages/IssueEvent'
+
+  data.management:
+    description: Events for document management in BIM 360 Docs / ACC Docs
+    subscribe:
+      operationId: onDocumentEvent
+      summary: Document management event
+      description: Received when a document is uploaded, updated, or approved in ACC Docs.
+      tags:
+        - name: Documents
+      message:
+        $ref: '#/components/messages/DocumentEvent'
+
+  rfis:
+    description: Events for RFI lifecycle
+    subscribe:
+      operationId: onRfiEvent
+      summary: RFI event
+      description: Received when an RFI is created, responded to, or closed.
+      tags:
+        - name: RFIs
+      message:
+        $ref: '#/components/messages/RfiEvent'
+
+  submittals:
+    description: Events for submittal workflow changes
+    subscribe:
+      operationId: onSubmittalEvent
+      summary: Submittal event
+      description: Received when a submittal item changes status or is reviewed.
+      tags:
+        - name: Submittals
+      message:
+        $ref: '#/components/messages/SubmittalEvent'
+
+components:
+  messages:
+    IssueEvent:
+      name: IssueEvent
+      title: Issue Event
+      summary: ACC issue lifecycle event notification
+      contentType: application/json
+      headers:
+        type: object
+        properties:
+          x-adsk-signature:
+            type: string
+            description: HMAC-SHA256 signature for webhook authenticity verification
+      payload:
+        $ref: '#/components/schemas/IssueEventPayload'
+
+    DocumentEvent:
+      name: DocumentEvent
+      title: Document Event
+      summary: ACC document lifecycle event notification
+      contentType: application/json
+      headers:
+        type: object
+        properties:
+          x-adsk-signature:
+            type: string
+      payload:
+        $ref: '#/components/schemas/DocumentEventPayload'
+
+    RfiEvent:
+      name: RfiEvent
+      title: RFI Event
+      summary: ACC RFI lifecycle event notification
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/RfiEventPayload'
+
+    SubmittalEvent:
+      name: SubmittalEvent
+      title: Submittal Event
+      summary: ACC submittal lifecycle event notification
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/SubmittalEventPayload'
+
+  schemas:
+    WebhookEnvelope:
+      type: object
+      required: [id, type, timestamp, projectId, accountId]
+      properties:
+        id:
+          type: string
+          description: Unique webhook event ID
+        type:
+          type: string
+          description: Event type identifier
+        timestamp:
+          type: string
+          format: date-time
+        projectId:
+          type: string
+        accountId:
+          type: string
+        hookId:
+          type: string
+          description: Webhook registration ID that triggered this event
+
+    IssueEventPayload:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEnvelope'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - "autodesk.construction.quality:issue.create-1.0"
+                - "autodesk.construction.quality:issue.update-1.0"
+                - "autodesk.construction.quality:issue.close-1.0"
+            payload:
+              type: object
+              properties:
+                issueId:
+                  type: string
+                containerId:
+                  type: string
+                title:
+                  type: string
+                status:
+                  type: string
+                  enum: [draft, open, pending, in_review, closed]
+                previousStatus:
+                  type: string
+                updatedBy:
+                  type: string
+
+    DocumentEventPayload:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEnvelope'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - "autodesk.data:dm.version.added-1.0"
+                - "autodesk.data:dm.version.modified-1.0"
+                - "autodesk.data:dm.version.deleted-1.0"
+            payload:
+              type: object
+              properties:
+                urn:
+                  type: string
+                  description: APS URN of the document version
+                versionId:
+                  type: string
+                name:
+                  type: string
+                folderId:
+                  type: string
+                createdBy:
+                  type: string
+
+    RfiEventPayload:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEnvelope'
+        - type: object
+          properties:
+            payload:
+              type: object
+              properties:
+                rfiId:
+                  type: string
+                displayId:
+                  type: integer
+                title:
+                  type: string
+                status:
+                  type: string
+                  enum: [draft, open, answered, closed, void]
+                previousStatus:
+                  type: string
+                updatedBy:
+                  type: string
+
+    SubmittalEventPayload:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEnvelope'
+        - type: object
+          properties:
+            payload:
+              type: object
+              properties:
+                submittalId:
+                  type: string
+                displayId:
+                  type: string
+                title:
+                  type: string
+                status:
+                  type: string
+                  enum: [draft, submitted, under_review, approved, rejected, revise_resubmit]
+                previousStatus:
+                  type: string

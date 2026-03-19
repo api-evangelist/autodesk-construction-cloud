@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/json-schema/acc-project-schema.json",
+  "title": "Autodesk Construction Cloud Project",
+  "description": "JSON Schema for an Autodesk Construction Cloud (ACC) project.",
+  "type": "object",
+  "required": ["id", "name", "status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique ACC project identifier"
+    },
+    "accountId": {
+      "type": "string",
+      "description": "Parent account identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Project name"
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "endDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "projectValue": {
+      "type": "object",
+      "properties": {
+        "value": {"type": "number", "minimum": 0},
+        "currency": {"type": "string", "pattern": "^[A-Z]{3}$"}
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "inactive", "suspended"]
+    },
+    "jobNumber": {
+      "type": "string"
+    },
+    "addressLine1": {"type": "string"},
+    "addressLine2": {"type": "string"},
+    "city": {"type": "string"},
+    "stateOrProvince": {"type": "string"},
+    "postalCode": {"type": "string"},
+    "country": {"type": "string"},
+    "timezone": {"type": "string"},
+    "language": {"type": "string"},
+    "constructionType": {
+      "type": "string",
+      "description": "Type of construction (e.g., New Construction, Renovation, Infrastructure)"
+    },
+    "deliveryMethod": {
+      "type": "string",
+      "description": "Project delivery method (e.g., Design-Build, Design-Bid-Build, CM at Risk)"
+    },
+    "contractType": {
+      "type": "string",
+      "description": "Contract type (e.g., Fixed Price, Cost Plus, Unit Price)"
+    },
+    "currentPhase": {
+      "type": "string",
+      "description": "Current project phase"
+    },
+    "businessUnitsId": {
+      "type": "string"
+    },
+    "imageUrl": {
+      "type": "string",
+      "format": "uri"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

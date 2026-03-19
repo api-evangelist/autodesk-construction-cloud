@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/json-schema/acc-issue-schema.json",
+  "title": "Autodesk Construction Cloud Issue",
+  "description": "JSON Schema for an ACC construction issue, observation, or punch list item.",
+  "type": "object",
+  "required": ["id", "title", "status", "issueTypeId"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique issue identifier (UUID)"
+    },
+    "containerId": {
+      "type": "string",
+      "description": "ACC project container identifier"
+    },
+    "displayId": {
+      "type": "integer",
+      "description": "Human-readable sequential issue number",
+      "minimum": 1
+    },
+    "title": {
+      "type": "string",
+      "description": "Issue title/summary"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed issue description"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "open", "pending", "in_review", "closed"],
+      "description": "Current issue status"
+    },
+    "issueTypeId": {
+      "type": "string",
+      "description": "Issue type identifier"
+    },
+    "issueSubtypeId": {
+      "type": "string",
+      "description": "Issue subtype identifier"
+    },
+    "dueDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "locationId": {
+      "type": "string",
+      "description": "Location identifier within the project"
+    },
+    "locationDescription": {
+      "type": "string",
+      "description": "Free-text location description"
+    },
+    "assignedToId": {
+      "type": "string",
+      "description": "User or company assigned to resolve the issue"
+    },
+    "assignedToType": {
+      "type": "string",
+      "enum": ["user", "company"]
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "User ID who created the issue"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "closedBy": {
+      "type": "string"
+    },
+    "closedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "rootCauseId": {
+      "type": "string"
+    },
+    "commentCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "attachmentCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "linkedDocuments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "urn": {
+            "type": "string",
+            "description": "APS document URN"
+          }
+        }
+      }
+    }
+  }
+}

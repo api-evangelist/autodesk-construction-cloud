@@ -19,6 +19,8 @@ apis:
     type: Reference
   - url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
     type: GettingStarted
+  - url: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/openapi/acc-admin-openapi.yml
+    type: OpenAPI
   description: >-
     The Autodesk Construction Cloud Admin API provides programmatic management of ACC accounts, projects, users, and company settings. REST APIs enable automation of project provisioning, user access control, and account-level administration across ACC and BIM 360 deployments.
 
@@ -38,6 +40,8 @@ apis:
     type: Reference
   - url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
     type: GettingStarted
+  - url: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/openapi/acc-issues-openapi.yml
+    type: OpenAPI
   description: >-
     The ACC Issues API enables creation, retrieval, and management of construction issues, observations, and punch list items. REST APIs integrate with field management workflows for quality control, safety reporting, and project closeout in Autodesk Construction Cloud.
 
@@ -160,6 +164,18 @@ common:
     type: ChangeLog
   - url: https://github.com/autodesk-platform-services
     type: GitHubOrganization
+  - url: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/openapi/acc-admin-openapi.yml
+    type: OpenAPI
+  - url: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/openapi/acc-issues-openapi.yml
+    type: OpenAPI
+  - url: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/asyncapi/acc-webhooks-asyncapi.yml
+    type: AsyncAPI
+  - url: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/json-schema/acc-project-schema.json
+    type: JSONSchema
+  - url: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/json-schema/acc-issue-schema.json
+    type: JSONSchema
+  - url: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/json-ld/acc-context.jsonld
+    type: JSONLDContext
 
 maintainers:
 - name: Kin Lane

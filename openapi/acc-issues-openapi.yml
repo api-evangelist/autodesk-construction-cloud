@@ -1,0 +1,389 @@
+openapi: 3.1.0
+info:
+  title: Autodesk Construction Cloud Issues API
+  description: >-
+    The ACC Issues API enables creation, retrieval, and management of construction
+    issues, observations, and punch list items. REST APIs integrate with field
+    management workflows for quality control, safety reporting, and project closeout
+    in Autodesk Construction Cloud.
+  version: 2.0.0
+  contact:
+    name: Autodesk Platform Services
+    url: https://aps.autodesk.com/en/docs/acc/v1/overview/
+
+servers:
+  - url: https://developer.api.autodesk.com
+    description: Autodesk Platform Services API
+
+security:
+  - oauth2ThreeLegged: []
+
+tags:
+  - name: Issues
+    description: Construction issue management
+  - name: IssueTypes
+    description: Issue type configuration
+  - name: Attachments
+    description: Issue attachment management
+
+paths:
+  /issues/v2/containers/{containerId}/issues:
+    get:
+      operationId: listIssues
+      summary: List issues
+      description: Retrieve all issues in the project with optional filtering by status, type, and assignee.
+      tags: [Issues]
+      parameters:
+        - name: containerId
+          in: path
+          required: true
+          description: The ACC project container ID
+          schema:
+            type: string
+        - name: filter[status]
+          in: query
+          description: Filter by issue status
+          schema:
+            type: string
+            enum: [draft, open, pending, in_review, closed]
+        - name: filter[issueTypeId]
+          in: query
+          schema:
+            type: string
+        - name: filter[assignedToId]
+          in: query
+          schema:
+            type: string
+        - name: filter[dueDate]
+          in: query
+          description: Filter by due date (ISO 8601)
+          schema:
+            type: string
+            format: date
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+            maximum: 200
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: List of issues
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssuesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+    post:
+      operationId: createIssue
+      summary: Create a new issue
+      description: Create a new construction issue, observation, or punch list item.
+      tags: [Issues]
+      parameters:
+        - name: containerId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IssueRequest'
+      responses:
+        '201':
+          description: Issue created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Issue'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /issues/v2/containers/{containerId}/issues/{issueId}:
+    get:
+      operationId: getIssue
+      summary: Get issue by ID
+      description: Retrieve full details for a specific issue including comments and attachments.
+      tags: [Issues]
+      parameters:
+        - name: containerId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: issueId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Issue details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Issue'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    patch:
+      operationId: updateIssue
+      summary: Update issue
+      description: Update issue status, assignment, due date, or other fields.
+      tags: [Issues]
+      parameters:
+        - name: containerId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: issueId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IssueUpdateRequest'
+      responses:
+        '200':
+          description: Issue updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Issue'
+
+  /issues/v2/containers/{containerId}/issue-types:
+    get:
+      operationId: listIssueTypes
+      summary: List issue types
+      description: Retrieve all configured issue types and subtypes for the project.
+      tags: [IssueTypes]
+      parameters:
+        - name: containerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Issue types
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/IssueType'
+
+components:
+  securitySchemes:
+    oauth2ThreeLegged:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://developer.api.autodesk.com/authentication/v2/authorize
+          tokenUrl: https://developer.api.autodesk.com/authentication/v2/token
+          scopes:
+            data:read: Read project data
+            data:write: Write project data
+
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+  schemas:
+    IssuesResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Issue'
+        pagination:
+          type: object
+          properties:
+            limit:
+              type: integer
+            offset:
+              type: integer
+            totalResults:
+              type: integer
+
+    Issue:
+      type: object
+      properties:
+        id:
+          type: string
+        containerId:
+          type: string
+        displayId:
+          type: integer
+          description: Human-readable sequential issue number
+        title:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum: [draft, open, pending, in_review, closed]
+        issueTypeId:
+          type: string
+        issueSubtypeId:
+          type: string
+        dueDate:
+          type: string
+          format: date
+        startDate:
+          type: string
+          format: date
+        locationId:
+          type: string
+        locationDescription:
+          type: string
+        assignedToId:
+          type: string
+        assignedToType:
+          type: string
+          enum: [user, company]
+        createdBy:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        closedBy:
+          type: string
+        closedAt:
+          type: string
+          format: date-time
+        linkedDocuments:
+          type: array
+          items:
+            type: object
+            properties:
+              urn:
+                type: string
+              details:
+                type: object
+        rootCauseId:
+          type: string
+        commentCount:
+          type: integer
+        attachmentCount:
+          type: integer
+
+    IssueRequest:
+      type: object
+      required: [title, issueTypeId, issueSubtypeId]
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        issueTypeId:
+          type: string
+        issueSubtypeId:
+          type: string
+        status:
+          type: string
+          enum: [draft, open]
+          default: open
+        dueDate:
+          type: string
+          format: date
+        assignedToId:
+          type: string
+        locationId:
+          type: string
+        locationDescription:
+          type: string
+
+    IssueUpdateRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum: [draft, open, pending, in_review, closed]
+        dueDate:
+          type: string
+          format: date
+        assignedToId:
+          type: string
+        rootCauseId:
+          type: string
+
+    IssueType:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        isActive:
+          type: boolean
+        subtypes:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              title:
+                type: string
+              isActive:
+                type: boolean
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string

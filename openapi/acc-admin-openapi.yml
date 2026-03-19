@@ -1,0 +1,578 @@
+openapi: 3.1.0
+info:
+  title: Autodesk Construction Cloud Admin API
+  description: >-
+    The Autodesk Construction Cloud (ACC) Admin API provides programmatic management
+    of ACC accounts, projects, users, and company settings. REST APIs enable automation
+    of project provisioning, user access control, and account-level administration
+    across ACC and BIM 360 deployments.
+  version: 1.0.0
+  contact:
+    name: Autodesk Platform Services
+    url: https://aps.autodesk.com/en/docs/acc/v1/overview/
+
+servers:
+  - url: https://developer.api.autodesk.com
+    description: Autodesk Platform Services API
+
+security:
+  - oauth2ThreeLegged: []
+  - oauth2TwoLegged: []
+
+tags:
+  - name: Projects
+    description: ACC project management
+  - name: Users
+    description: Project and account user management
+  - name: Companies
+    description: Company/business unit management
+  - name: Industries
+    description: Industry and business data
+
+paths:
+  /construction/admin/v1/accounts/{accountId}/projects:
+    get:
+      operationId: getAccountProjects
+      summary: Get account projects
+      description: >-
+        Retrieve all projects associated with the specified ACC account.
+        Supports filtering by project status, project type, and name search.
+      tags: [Projects]
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          description: The unique identifier of the ACC account
+          schema:
+            type: string
+        - name: filter[status]
+          in: query
+          description: Filter by project status
+          schema:
+            type: string
+            enum: [active, inactive, suspended]
+        - name: filter[name]
+          in: query
+          description: Filter projects by name (partial match)
+          schema:
+            type: string
+        - name: include
+          in: query
+          description: Include related resources
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+            maximum: 200
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: List of projects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+    post:
+      operationId: createProject
+      summary: Create a new project
+      description: Create a new construction project in the specified ACC account.
+      tags: [Projects]
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectRequest'
+      responses:
+        '201':
+          description: Project created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /construction/admin/v1/accounts/{accountId}/projects/{projectId}:
+    get:
+      operationId: getProject
+      summary: Get project by ID
+      description: Retrieve detailed information about a specific ACC project.
+      tags: [Projects]
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Project details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    patch:
+      operationId: updateProject
+      summary: Update project
+      description: Update project settings, status, or metadata.
+      tags: [Projects]
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectUpdateRequest'
+      responses:
+        '200':
+          description: Project updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectResponse'
+
+  /construction/admin/v1/accounts/{accountId}/projects/{projectId}/users:
+    get:
+      operationId: getProjectUsers
+      summary: Get project users
+      description: Retrieve all users assigned to a specific ACC project with their roles.
+      tags: [Users]
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: List of project users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectUsersResponse'
+
+    post:
+      operationId: addProjectUser
+      summary: Add user to project
+      description: Add a user to an ACC project with a specified role.
+      tags: [Users]
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectUserRequest'
+      responses:
+        '201':
+          description: User added to project
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectUser'
+
+  /construction/admin/v1/accounts/{accountId}/users:
+    get:
+      operationId: getAccountUsers
+      summary: Get account users
+      description: Retrieve all users in the ACC account.
+      tags: [Users]
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: filter[status]
+          in: query
+          schema:
+            type: string
+            enum: [active, inactive, pending]
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: Account users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountUsersResponse'
+
+  /construction/admin/v1/accounts/{accountId}/companies:
+    get:
+      operationId: getAccountCompanies
+      summary: Get account companies
+      description: Retrieve all companies (business units) in the ACC account.
+      tags: [Companies]
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Account companies
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompaniesResponse'
+
+components:
+  securitySchemes:
+    oauth2ThreeLegged:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://developer.api.autodesk.com/authentication/v2/authorize
+          tokenUrl: https://developer.api.autodesk.com/authentication/v2/token
+          scopes:
+            account:read: Read account data
+            account:write: Modify account data
+            data:read: Read project data
+            data:write: Write project data
+    oauth2TwoLegged:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://developer.api.autodesk.com/authentication/v2/token
+          scopes:
+            account:read: Read account data
+            data:read: Read project data
+
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+  schemas:
+    ProjectsResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+
+    ProjectResponse:
+      type: object
+      properties:
+        project:
+          $ref: '#/components/schemas/Project'
+
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique project identifier
+        accountId:
+          type: string
+        name:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        projectValue:
+          type: object
+          properties:
+            value:
+              type: number
+            currency:
+              type: string
+        status:
+          type: string
+          enum: [active, inactive, suspended]
+        jobNumber:
+          type: string
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        city:
+          type: string
+        stateOrProvince:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        timezone:
+          type: string
+        language:
+          type: string
+        constructionType:
+          type: string
+        deliveryMethod:
+          type: string
+        contractType:
+          type: string
+        currentPhase:
+          type: string
+        businessUnitsId:
+          type: string
+        imageUrl:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    ProjectRequest:
+      type: object
+      required: [name, startDate, projectType]
+      properties:
+        name:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        projectValue:
+          type: object
+          properties:
+            value:
+              type: number
+            currency:
+              type: string
+        status:
+          type: string
+          enum: [active, inactive]
+        jobNumber:
+          type: string
+        timezone:
+          type: string
+        language:
+          type: string
+        constructionType:
+          type: string
+        deliveryMethod:
+          type: string
+        contractType:
+          type: string
+
+    ProjectUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        status:
+          type: string
+          enum: [active, inactive, suspended]
+        endDate:
+          type: string
+          format: date
+        currentPhase:
+          type: string
+
+    ProjectUser:
+      type: object
+      properties:
+        id:
+          type: string
+        userId:
+          type: string
+        email:
+          type: string
+        name:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        status:
+          type: string
+          enum: [active, inactive, pending]
+        roleIds:
+          type: array
+          items:
+            type: string
+        companyId:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+
+    ProjectUserRequest:
+      type: object
+      required: [email, roleIds]
+      properties:
+        email:
+          type: string
+          format: email
+        roleIds:
+          type: array
+          items:
+            type: string
+        companyId:
+          type: string
+
+    ProjectUsersResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectUser'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+
+    AccountUsersResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              email:
+                type: string
+              name:
+                type: string
+              status:
+                type: string
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+
+    CompaniesResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              status:
+                type: string
+              tradeType:
+                type: string
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+
+    Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        totalResults:
+          type: integer
+        nextUrl:
+          type: string
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        detail:
+          type: string
