@@ -23,9 +23,6 @@ tags:
     description: Construction issue management
   - name: IssueTypes
     description: Issue type configuration
-  - name: Attachments
-    description: Issue attachment management
-
 paths:
   /issues/v2/containers/{containerId}/issues:
     get:

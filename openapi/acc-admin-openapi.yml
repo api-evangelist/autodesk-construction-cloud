@@ -20,15 +20,12 @@ security:
   - oauth2TwoLegged: []
 
 tags:
+  - name: Companies
+    description: Company/business unit management
   - name: Projects
     description: ACC project management
   - name: Users
     description: Project and account user management
-  - name: Companies
-    description: Company/business unit management
-  - name: Industries
-    description: Industry and business data
-
 paths:
   /construction/admin/v1/accounts/{accountId}/projects:
     get:

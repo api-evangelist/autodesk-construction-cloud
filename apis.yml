@@ -1,29 +1,25 @@
 aid: autodesk-construction-cloud
-url: 
-  https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/apis.yml
 apis:
   - aid: autodesk-construction-cloud:acc-admin-api
     name: Autodesk Construction Cloud Admin API
     tags:
-      - Construction
-      - BIM
-      - Project Management
-      - Administration
       - ACC
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/image.png
+      - Administration
+      - BIM
+      - Construction
+      - Project Management
+    image: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/image.png
     humanURL: https://aps.autodesk.com/en/docs/acc/v1/overview/
     baseURL: https://developer.api.autodesk.com
     properties:
       - url: https://aps.autodesk.com/en/docs/acc/v1/overview/
         type: Documentation
-      - url: 
-          https://aps.autodesk.com/en/docs/acc/v1/reference/http/admin-accounts-accountidprojects-GET/
+      - url: https://aps.autodesk.com/en/docs/acc/v1/reference/http/admin-accounts-accountidprojects-GET/
         type: Reference
       - url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
         type: GettingStarted
-      - url: 
-          https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/openapi/acc-admin-openapi.yml
+      - url: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/openapi/acc-admin-openapi.yml
         type: OpenAPI
     description: >-
       The Autodesk Construction Cloud Admin API provides programmatic management of
@@ -34,23 +30,20 @@ apis:
   - aid: autodesk-construction-cloud:acc-issues-api
     name: Autodesk Construction Cloud Issues API
     tags:
-      - Construction
       - BIM
+      - Construction
+      - Field Management
       - Issues
       - Quality
-      - Field Management
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/image.png
+    image: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/image.png
     humanURL: https://aps.autodesk.com/en/docs/acc/v1/overview/
     baseURL: https://developer.api.autodesk.com
     properties:
-      - url: 
-          https://aps.autodesk.com/en/docs/acc/v1/reference/http/issues-issues-POST/
+      - url: https://aps.autodesk.com/en/docs/acc/v1/reference/http/issues-issues-POST/
         type: Reference
       - url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
         type: GettingStarted
-      - url: 
-          https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/openapi/acc-issues-openapi.yml
+      - url: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/openapi/acc-issues-openapi.yml
         type: OpenAPI
     description: >-
       The ACC Issues API enables creation, retrieval, and management of construction
@@ -61,18 +54,16 @@ apis:
   - aid: autodesk-construction-cloud:acc-cost-management-api
     name: Autodesk Construction Cloud Cost Management API
     tags:
-      - Construction
-      - Cost Management
-      - Budget
-      - Contracts
       - ACC
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/image.png
+      - Budget
+      - Construction
+      - Contracts
+      - Cost Management
+    image: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/image.png
     humanURL: https://aps.autodesk.com/en/docs/acc/v1/overview/
     baseURL: https://developer.api.autodesk.com
     properties:
-      - url: 
-          https://aps.autodesk.com/en/docs/acc/v1/reference/http/cost-actions-POST/
+      - url: https://aps.autodesk.com/en/docs/acc/v1/reference/http/cost-actions-POST/
         type: Reference
       - url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
         type: GettingStarted
@@ -85,18 +76,16 @@ apis:
   - aid: autodesk-construction-cloud:acc-model-coordination-api
     name: Autodesk Construction Cloud Model Coordination API
     tags:
-      - Construction
       - BIM
-      - Model Coordination
       - Clash Detection
+      - Construction
       - IFC
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/image.png
+      - Model Coordination
+    image: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/image.png
     humanURL: https://aps.autodesk.com/en/docs/acc/v1/overview/
     baseURL: https://developer.api.autodesk.com
     properties:
-      - url: 
-          https://aps.autodesk.com/en/docs/acc/v1/reference/http/mc-modelset-service-v3-create-model-set-POST/
+      - url: https://aps.autodesk.com/en/docs/acc/v1/reference/http/mc-modelset-service-v3-create-model-set-POST/
         type: Reference
       - url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
         type: GettingStarted
@@ -109,17 +98,15 @@ apis:
   - aid: autodesk-construction-cloud:acc-rfis-api
     name: Autodesk Construction Cloud RFIs API
     tags:
-      - Construction
-      - RFI
-      - Document Management
       - ACC
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/image.png
+      - Construction
+      - Document Management
+      - RFI
+    image: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/image.png
     humanURL: https://aps.autodesk.com/en/docs/acc/v1/overview/
     baseURL: https://developer.api.autodesk.com
     properties:
-      - url: 
-          https://aps.autodesk.com/en/docs/acc/v1/reference/http/rfis-rfi-search-POST/
+      - url: https://aps.autodesk.com/en/docs/acc/v1/reference/http/rfis-rfi-search-POST/
         type: Reference
       - url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
         type: GettingStarted
@@ -131,17 +118,15 @@ apis:
   - aid: autodesk-construction-cloud:acc-submittals-api
     name: Autodesk Construction Cloud Submittals API
     tags:
-      - Construction
-      - Submittals
-      - Document Management
       - ACC
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/image.png
+      - Construction
+      - Document Management
+      - Submittals
+    image: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/image.png
     humanURL: https://aps.autodesk.com/en/docs/acc/v1/overview/
     baseURL: https://developer.api.autodesk.com
     properties:
-      - url: 
-          https://aps.autodesk.com/en/docs/acc/v1/reference/http/submittals-items-GET/
+      - url: https://aps.autodesk.com/en/docs/acc/v1/reference/http/submittals-items-GET/
         type: Reference
       - url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
         type: GettingStarted
@@ -154,17 +139,15 @@ apis:
   - aid: autodesk-construction-cloud:acc-data-connector-api
     name: Autodesk Construction Cloud Data Connector API
     tags:
+      - ACC
+      - Analytics
       - Construction
       - Data Export
-      - Analytics
-      - ACC
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/image.png
+    image: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/image.png
     humanURL: https://aps.autodesk.com/en/docs/acc/v1/overview/
     baseURL: https://developer.api.autodesk.com
     properties:
-      - url: 
-          https://aps.autodesk.com/en/docs/acc/v1/reference/http/data-connector-requests-POST/
+      - url: https://aps.autodesk.com/en/docs/acc/v1/reference/http/data-connector-requests-POST/
         type: Reference
       - url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
         type: GettingStarted
@@ -189,11 +172,9 @@ common:
     type: Reference
   - url: https://get-started.aps.autodesk.com/
     type: GettingStarted
-  - url: 
-      https://www.autodesk.com/company/legal-notices-trademarks/terms-of-service-autodesk360-web-services/forge-platform-web-services-api-terms-of-service
+  - url: https://www.autodesk.com/company/legal-notices-trademarks/terms-of-service-autodesk360-web-services/forge-platform-web-services-api-terms-of-service
     type: TermsOfService
-  - url: 
-      https://www.autodesk.com/company/legal-notices-trademarks/privacy-statement
+  - url: https://www.autodesk.com/company/legal-notices-trademarks/privacy-statement
     type: PrivacyPolicy
   - url: https://health.autodesk.com/
     type: Status
@@ -203,23 +184,17 @@ common:
     type: ChangeLog
   - url: https://github.com/autodesk-platform-services
     type: GitHubOrganization
-  - url: 
-      https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/openapi/acc-admin-openapi.yml
+  - url: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/openapi/acc-admin-openapi.yml
     type: OpenAPI
-  - url: 
-      https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/openapi/acc-issues-openapi.yml
+  - url: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/openapi/acc-issues-openapi.yml
     type: OpenAPI
-  - url: 
-      https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/asyncapi/acc-webhooks-asyncapi.yml
+  - url: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/asyncapi/acc-webhooks-asyncapi.yml
     type: AsyncAPI
-  - url: 
-      https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/json-schema/acc-project-schema.json
+  - url: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/json-schema/acc-project-schema.json
     type: JSONSchema
-  - url: 
-      https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/json-schema/acc-issue-schema.json
+  - url: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/json-schema/acc-issue-schema.json
     type: JSONSchema
-  - url: 
-      https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/json-ld/acc-context.jsonld
+  - url: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/json-ld/acc-context.jsonld
     type: JSONLDContext
 
 maintainers:
