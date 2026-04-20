@@ -1,0 +1,28 @@
+{
+  "id": "b5623fe1-4e59-4d33-a928-f1234abc5678",
+  "accountId": "a1234567-89ab-cdef-0123-456789abcdef",
+  "name": "Highway 101 Bridge Renovation",
+  "startDate": "2025-03-01",
+  "endDate": "2026-09-30",
+  "projectValue": {
+    "value": 4750000.00,
+    "currency": "USD"
+  },
+  "status": "active",
+  "jobNumber": "JN-2025-0042",
+  "addressLine1": "101 Bridge Ave",
+  "addressLine2": "",
+  "city": "San Francisco",
+  "stateOrProvince": "CA",
+  "postalCode": "94102",
+  "country": "US",
+  "timezone": "America/Los_Angeles",
+  "language": "en",
+  "constructionType": "Renovation",
+  "deliveryMethod": "Design-Build",
+  "contractType": "Fixed Price",
+  "currentPhase": "Construction Documents",
+  "imageUrl": "https://acc.autodesk.com/projects/b5623fe1/image.png",
+  "createdAt": "2025-02-15T10:30:00Z",
+  "updatedAt": "2026-04-01T09:00:00Z"
+}

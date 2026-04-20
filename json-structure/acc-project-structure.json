@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/json-structure/acc-project-structure.json",
+  "name": "Autodesk Construction Cloud Project",
+  "description": "JSON Structure for an Autodesk Construction Cloud (ACC) project.",
+  "type": "object",
+  "required": ["id", "name", "status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique ACC project identifier"
+    },
+    "accountId": {
+      "type": "string",
+      "description": "Parent account identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Project name"
+    },
+    "startDate": {
+      "type": "date",
+      "description": "Project start date"
+    },
+    "endDate": {
+      "type": "date",
+      "description": "Project end date"
+    },
+    "projectValue": {
+      "type": "object",
+      "description": "Monetary value of the project",
+      "properties": {
+        "value": {"type": "double", "minimum": 0},
+        "currency": {"type": "string"}
+      }
+    },
+    "status": {
+      "type": "string",
+      "description": "Project status",
+      "enum": ["active", "inactive", "suspended"]
+    },
+    "jobNumber": {
+      "type": "string",
+      "description": "Job number assigned to the project"
+    },
+    "addressLine1": {"type": "string", "description": "Primary address line"},
+    "addressLine2": {"type": "string", "description": "Secondary address line"},
+    "city": {"type": "string", "description": "City"},
+    "stateOrProvince": {"type": "string", "description": "State or province"},
+    "postalCode": {"type": "string", "description": "Postal code"},
+    "country": {"type": "string", "description": "Country"},
+    "timezone": {"type": "string", "description": "Timezone identifier"},
+    "language": {"type": "string", "description": "Default language"},
+    "constructionType": {
+      "type": "string",
+      "description": "Type of construction (e.g., New Construction, Renovation, Infrastructure)"
+    },
+    "deliveryMethod": {
+      "type": "string",
+      "description": "Project delivery method (e.g., Design-Build, Design-Bid-Build, CM at Risk)"
+    },
+    "contractType": {
+      "type": "string",
+      "description": "Contract type (e.g., Fixed Price, Cost Plus, Unit Price)"
+    },
+    "currentPhase": {
+      "type": "string",
+      "description": "Current project phase"
+    },
+    "imageUrl": {
+      "type": "uri",
+      "description": "URL to the project image"
+    },
+    "createdAt": {
+      "type": "datetime",
+      "description": "Timestamp when the project was created"
+    },
+    "updatedAt": {
+      "type": "datetime",
+      "description": "Timestamp when the project was last updated"
+    }
+  }
+}

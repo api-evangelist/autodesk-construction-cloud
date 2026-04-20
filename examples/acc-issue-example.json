@@ -1,0 +1,28 @@
+{
+  "id": "c7890def-1234-5678-abcd-ef0123456789",
+  "containerId": "b5623fe1-4e59-4d33-a928-f1234abc5678",
+  "displayId": 142,
+  "title": "Rebar spacing does not match structural drawings",
+  "description": "Rebar spacing in the east abutment footing is 18 inches OC, but structural drawings specify 12 inches OC. Requires corrective action before concrete pour scheduled for next week.",
+  "status": "open",
+  "issueTypeId": "type-quality-001",
+  "issueSubtypeId": "subtype-structural-001",
+  "dueDate": "2026-04-25",
+  "startDate": "2026-04-19",
+  "locationId": "loc-east-abutment-001",
+  "locationDescription": "East Abutment Footing - Grid Line E5",
+  "assignedToId": "user-engineer-jsmith-001",
+  "assignedToType": "user",
+  "createdBy": "user-inspector-bdoe-002",
+  "createdAt": "2026-04-19T08:15:00Z",
+  "updatedAt": "2026-04-19T08:15:00Z",
+  "closedBy": null,
+  "closedAt": null,
+  "commentCount": 2,
+  "attachmentCount": 3,
+  "linkedDocuments": [
+    {
+      "urn": "urn:adsk.wipprod:fs.file:vf.abc123def456"
+    }
+  ]
+}

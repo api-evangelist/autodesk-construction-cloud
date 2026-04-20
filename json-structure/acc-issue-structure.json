@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/json-structure/acc-issue-structure.json",
+  "name": "Autodesk Construction Cloud Issue",
+  "description": "JSON Structure for an ACC construction issue, observation, or punch list item.",
+  "type": "object",
+  "required": ["id", "title", "status", "issueTypeId"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique issue identifier (UUID)"
+    },
+    "containerId": {
+      "type": "string",
+      "description": "ACC project container identifier"
+    },
+    "displayId": {
+      "type": "int32",
+      "description": "Human-readable sequential issue number",
+      "minimum": 1
+    },
+    "title": {
+      "type": "string",
+      "description": "Issue title/summary"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed issue description"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current issue status",
+      "enum": ["draft", "open", "pending", "in_review", "closed"]
+    },
+    "issueTypeId": {
+      "type": "string",
+      "description": "Issue type identifier"
+    },
+    "issueSubtypeId": {
+      "type": "string",
+      "description": "Issue subtype identifier"
+    },
+    "dueDate": {
+      "type": "date",
+      "description": "Due date for resolving the issue"
+    },
+    "startDate": {
+      "type": "date",
+      "description": "Start date for the issue"
+    },
+    "locationId": {
+      "type": "string",
+      "description": "Location identifier within the project"
+    },
+    "locationDescription": {
+      "type": "string",
+      "description": "Free-text location description"
+    },
+    "assignedToId": {
+      "type": "string",
+      "description": "User or company assigned to resolve the issue"
+    },
+    "assignedToType": {
+      "type": "string",
+      "description": "Type of assignee",
+      "enum": ["user", "company"]
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "User ID who created the issue"
+    },
+    "createdAt": {
+      "type": "datetime",
+      "description": "Timestamp when the issue was created"
+    },
+    "updatedAt": {
+      "type": "datetime",
+      "description": "Timestamp when the issue was last updated"
+    },
+    "closedBy": {
+      "type": "string",
+      "description": "User ID who closed the issue"
+    },
+    "closedAt": {
+      "type": "datetime",
+      "description": "Timestamp when the issue was closed"
+    },
+    "commentCount": {
+      "type": "int32",
+      "description": "Number of comments on the issue",
+      "minimum": 0
+    },
+    "attachmentCount": {
+      "type": "int32",
+      "description": "Number of attachments on the issue",
+      "minimum": 0
+    }
+  }
+}
