@@ -4,119 +4,56 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Autodesk Construction Cloud
 providerId: autodesk-construction-cloud
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Construction
   - BIM
   - Project Management
   - AEC
-  - CAD
-  - Architecture
-  - Engineering
-  - Field Management
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Autodesk Construction Cloud API surface.
-  Captures per-tier quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold
-  values to be replaced with published provider limits.
+description: Autodesk Construction Cloud (ACC) APIs are served via Autodesk Platform Services and
+  inherit APS rate-limit semantics (per-app, per-token, 429 with Retry-After). ACC-specific APIs
+  (Issues, RFIs, Submittals, Data Connector) document per-API limits in their respective reference
+  pages rather than at a single canonical URL.
+sources:
+  - https://aps.autodesk.com/en/docs/acc/v1/overview/
+  - https://aps.autodesk.com/developer/overview
+notes: No single canonical rate-limit table exists for ACC; verify limits per API in the ACC reference
+  docs. Data Connector exports are particularly throttled — large exports queue.
 headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
   retryAfter: Retry-After
-  policy: RateLimit-Policy
+  requestId: x-ads-trace-id
 responseCodes:
   throttled: 429
   quotaExceeded: 429
   serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Autodesk Construction Cloud Admin API
-      - Autodesk Construction Cloud Issues API
-      - Autodesk Construction Cloud Cost Management API
-      - Autodesk Construction Cloud Model Coordination API
-      - Autodesk Construction Cloud RFIs API
-      - Autodesk Construction Cloud Submittals API
-      - Autodesk Construction Cloud Data Connector API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Autodesk Construction Cloud Admin API
-      - Autodesk Construction Cloud Issues API
-      - Autodesk Construction Cloud Cost Management API
-      - Autodesk Construction Cloud Model Coordination API
-      - Autodesk Construction Cloud RFIs API
-      - Autodesk Construction Cloud Submittals API
-      - Autodesk Construction Cloud Data Connector API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Autodesk Construction Cloud Admin API
-      - Autodesk Construction Cloud Issues API
-      - Autodesk Construction Cloud Cost Management API
-      - Autodesk Construction Cloud Model Coordination API
-      - Autodesk Construction Cloud RFIs API
-      - Autodesk Construction Cloud Submittals API
-      - Autodesk Construction Cloud Data Connector API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Autodesk Construction Cloud Admin API
-      - Autodesk Construction Cloud Issues API
-      - Autodesk Construction Cloud Cost Management API
-      - Autodesk Construction Cloud Model Coordination API
-      - Autodesk Construction Cloud RFIs API
-      - Autodesk Construction Cloud Submittals API
-      - Autodesk Construction Cloud Data Connector API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Autodesk Construction Cloud Admin API
-      - Autodesk Construction Cloud Issues API
-      - Autodesk Construction Cloud Cost Management API
-      - Autodesk Construction Cloud Model Coordination API
-      - Autodesk Construction Cloud RFIs API
-      - Autodesk Construction Cloud Submittals API
-      - Autodesk Construction Cloud Data Connector API
+  - name: ACC API Throttling (per-app, per-token)
+    scope: account/app
+    metric: varies
+    limit: per-API limits documented in each ACC API reference page
+    notes: Treat as variable per API; instrument 429 handling at the integration level.
+  - name: Data Connector export concurrency
+    scope: account
+    metric: concurrent_requests
+    limit: see ACC Data Connector reference
+    notes: Bulk export jobs are queued; large exports may take minutes to hours depending on project
+      size.
+  - name: Webhook delivery
+    scope: account
+    metric: varies
+    limit: APS webhook delivery retries on transient failures with exponential backoff
+    notes: Consumers must respond 2xx within the documented timeout to avoid retries / disablement.
 policies:
   - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+    description: Honor Retry-After when present; use exponential backoff with jitter on 429 / 503.
+  - name: Per-App Token Scoping
+    description: Rate limits are scoped to the calling app's client_id; multi-integration callers should
+      split credentials.
+  - name: Data Connector Queuing
+    description: Treat Data Connector bulk-export requests as long-running async jobs — poll status
+      rather than spinning on the request endpoint.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

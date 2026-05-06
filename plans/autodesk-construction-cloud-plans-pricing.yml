@@ -4,167 +4,132 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Autodesk Construction Cloud
 providerId: autodesk-construction-cloud
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Construction
   - BIM
   - Project Management
   - AEC
-  - CAD
-  - Architecture
-  - Engineering
   - Field Management
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+description: Autodesk Construction Cloud (ACC) is sold as a suite of per-user / per-project subscriptions
+  packaged into bundles — Model Management Bundle, Preconstruction Bundle, Construction Operations
+  Bundle — plus standalone products like Build, Docs, BIM Collaborate Pro, Takeoff, Cost Management,
+  Assemble, BuildingConnected, ProEst, and Pype. Public per-product pricing is gated on the Autodesk
+  Construction Cloud pricing page; Autodesk publishes "flexible user, project, and account-based pricing"
+  but does not list rates without a quote. ACC APIs (ACC Admin, Issues, RFIs, Submittals, Cost, Data
+  Connector, Model Coordination) are accessed via Autodesk Platform Services and require an APS app
+  associated with an entitled ACC project.
+sources:
+  - https://construction.autodesk.com/pricing/
+  - https://aps.autodesk.com/en/docs/acc/v1/overview/
+notes: ACC public pricing page does not display per-user rates; pricing is quote-based. APS APIs for
+  ACC are not separately metered — access depends on the underlying ACC product entitlement.
 plans:
-  - id: autodesk-construction-cloud-free
-    name: Free
-    type: freemium
-    description: Free entry tier for the Autodesk Construction Cloud API surface. Intended for evaluation,
-      prototyping, and low-volume integrations. Real limits and pricing must be reconciled with the provider's
-      published plan documentation.
+  - id: autodesk-construction-cloud-bundles
+    name: Autodesk Construction Cloud Bundles
+    type: subscription
+    description: Pre-packaged ACC bundles aligned to project lifecycle phases. Pricing is quote-based.
     entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
+      - label: Model Management Bundle
+        name: model_management_bundle
+        type: subscription
+        metric: seat
+        limit: -1
         timeFrame: month
         geo: global
-        domains:
-          - https://developer.api.autodesk.com
         unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
+        price: contact sales (quote-based)
+        userMultiplied: true
+      - label: Preconstruction Bundle
+        name: preconstruction_bundle
+        type: subscription
+        metric: seat
+        limit: -1
+        timeFrame: month
         geo: global
-        domains:
-          - https://developer.api.autodesk.com
         unit: 1
-        price: '0.00'
-        userMultiplied: false
+        price: contact sales (quote-based)
+        userMultiplied: true
+      - label: Construction Operations Bundle
+        name: construction_ops_bundle
+        type: subscription
+        metric: seat
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: contact sales (quote-based)
+        userMultiplied: true
     elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: Autodesk Construction Cloud Admin API
-      - name: Autodesk Construction Cloud Issues API
-      - name: Autodesk Construction Cloud Cost Management API
-      - name: Autodesk Construction Cloud Model Coordination API
-      - name: Autodesk Construction Cloud RFIs API
-      - name: Autodesk Construction Cloud Submittals API
-      - name: Autodesk Construction Cloud Data Connector API
-  - id: autodesk-construction-cloud-pro
-    name: Professional
-    type: paid
-    description: Production tier for Autodesk Construction Cloud. Provides higher quotas, priority support,
-      and access to the broader API portfolio. Pricing placeholder; align with the provider's pricing
-      page.
+      - name: Model Coordination
+      - name: Design Collaboration
+      - name: Forma Data Management
+      - name: Insight
+      - name: Assemble
+      - name: Autodesk Tandem for AEC
+      - name: Navisworks Manage
+      - name: Recap Pro
+      - name: ProEst
+      - name: BuildingConnected Pro
+      - name: Bid Board Pro
+      - name: TradeTapp
+      - name: Forma Takeoff
+      - name: Forma Estimate
+      - name: Forma Build
+      - name: Pype AutoSpecs
+      - name: Pype Closeout
+  - id: autodesk-construction-cloud-standalone
+    name: ACC Standalone Products
+    type: subscription
+    description: Standalone ACC products available outside the bundles, sold per-user with quote-based
+      pricing.
     entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
+      - label: Per-user product subscription
+        name: standalone_seat
+        type: subscription
+        metric: seat
+        limit: -1
         timeFrame: month
         geo: global
-        domains:
-          - https://developer.api.autodesk.com
         unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://developer.api.autodesk.com
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
+        price: contact sales (quote-based)
+        userMultiplied: true
+    elements:
+      - name: Autodesk Build
+      - name: Autodesk Docs
+      - name: BIM Collaborate Pro
+      - name: Takeoff
+      - name: Cost Management
+      - name: BuildingConnected
+  - id: autodesk-construction-cloud-apis
+    name: ACC APIs (via APS)
+    type: usage-based
+    description: ACC APIs (Admin, Issues, RFIs, Submittals, Cost, Data Connector, Model Coordination,
+      Sheets, Photos, Reviews, Assets, Forms) accessed through Autodesk Platform Services. Standard
+      data APIs do not consume Cloud Credits; chargeable operations follow the APS Cloud Credits model.
+    entries:
+      - label: ACC API calls
+        name: acc_api_calls
         type: metered
-        metric: requests
+        metric: request
         limit: -1
-        timeFrame: month
+        timeFrame: usage
         geo: global
-        domains:
-          - https://developer.api.autodesk.com
-        unit: 1000
-        price: TBD
+        unit: 1
+        price: included with ACC product entitlement
         userMultiplied: false
     elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Autodesk Construction Cloud Admin API
-      - name: Autodesk Construction Cloud Issues API
-      - name: Autodesk Construction Cloud Cost Management API
-      - name: Autodesk Construction Cloud Model Coordination API
-      - name: Autodesk Construction Cloud RFIs API
-      - name: Autodesk Construction Cloud Submittals API
-      - name: Autodesk Construction Cloud Data Connector API
-  - id: autodesk-construction-cloud-enterprise
-    name: Enterprise
-    type: enterprise
-    description: Custom-negotiated tier for Autodesk Construction Cloud. Includes dedicated capacity,
-      contractual SLAs, security review, data residency options, and named technical account management.
-    entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: configurable
-        domains:
-          - https://developer.api.autodesk.com
-        unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains:
-          - https://developer.api.autodesk.com
-        unit: 1
-        price: custom
-        userMultiplied: false
-    elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Autodesk Construction Cloud Admin API
-      - name: Autodesk Construction Cloud Issues API
-      - name: Autodesk Construction Cloud Cost Management API
-      - name: Autodesk Construction Cloud Model Coordination API
-      - name: Autodesk Construction Cloud RFIs API
-      - name: Autodesk Construction Cloud Submittals API
-      - name: Autodesk Construction Cloud Data Connector API
+      - name: ACC Admin API
+      - name: ACC Issues API
+      - name: ACC RFIs API
+      - name: ACC Submittals API
+      - name: ACC Cost Management API
+      - name: ACC Data Connector API
+      - name: ACC Model Coordination API
+      - name: ACC Photos API
+      - name: ACC Sheets API
+      - name: ACC Reviews API
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
