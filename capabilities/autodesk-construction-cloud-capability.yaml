@@ -1,0 +1,504 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Autodesk Construction Cloud Admin API
+  description: The Autodesk Construction Cloud (ACC) Admin API provides programmatic management of ACC accounts, projects,
+    users, and company settings. REST APIs enable automation of project provisioning, user access control, and account-level
+    administration across ACC and BIM 360 deployments.
+  tags:
+  - Autodesk
+  - Construction
+  - Cloud
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: autodesk-construction-cloud
+    baseUri: https://developer.api.autodesk.com
+    description: Autodesk Construction Cloud Admin API HTTP API.
+    authentication:
+      type: bearer
+      token: '{{AUTODESK_CONSTRUCTION_CLOUD_TOKEN}}'
+    resources:
+    - name: construction-admin-v1-accounts-accountid-project
+      path: /construction/admin/v1/accounts/{accountId}/projects
+      operations:
+      - name: getaccountprojects
+        method: GET
+        description: Get account projects
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the ACC account
+        - name: filter[status]
+          in: query
+          type: string
+          description: Filter by project status
+        - name: filter[name]
+          in: query
+          type: string
+          description: Filter projects by name (partial match)
+        - name: include
+          in: query
+          type: string
+          description: Include related resources
+        - name: limit
+          in: query
+          type: integer
+        - name: offset
+          in: query
+          type: integer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createproject
+        method: POST
+        description: Create a new project
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: construction-admin-v1-accounts-accountid-project
+      path: /construction/admin/v1/accounts/{accountId}/projects/{projectId}
+      operations:
+      - name: getproject
+        method: GET
+        description: Get project by ID
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+        - name: projectId
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateproject
+        method: PATCH
+        description: Update project
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+        - name: projectId
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: construction-admin-v1-accounts-accountid-project
+      path: /construction/admin/v1/accounts/{accountId}/projects/{projectId}/users
+      operations:
+      - name: getprojectusers
+        method: GET
+        description: Get project users
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+        - name: projectId
+          in: path
+          type: string
+          required: true
+        - name: limit
+          in: query
+          type: integer
+        - name: offset
+          in: query
+          type: integer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: addprojectuser
+        method: POST
+        description: Add user to project
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+        - name: projectId
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: construction-admin-v1-accounts-accountid-users
+      path: /construction/admin/v1/accounts/{accountId}/users
+      operations:
+      - name: getaccountusers
+        method: GET
+        description: Get account users
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+        - name: filter[status]
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+        - name: offset
+          in: query
+          type: integer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: construction-admin-v1-accounts-accountid-compani
+      path: /construction/admin/v1/accounts/{accountId}/companies
+      operations:
+      - name: getaccountcompanies
+        method: GET
+        description: Get account companies
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: autodesk-construction-cloud-rest
+    description: REST adapter for Autodesk Construction Cloud Admin API.
+    resources:
+    - path: /construction/admin/v1/accounts/{accountId}/projects
+      name: getaccountprojects
+      operations:
+      - method: GET
+        name: getaccountprojects
+        description: Get account projects
+        call: autodesk-construction-cloud.getaccountprojects
+        with:
+          accountId: rest.accountId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /construction/admin/v1/accounts/{accountId}/projects
+      name: createproject
+      operations:
+      - method: POST
+        name: createproject
+        description: Create a new project
+        call: autodesk-construction-cloud.createproject
+        with:
+          accountId: rest.accountId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /construction/admin/v1/accounts/{accountId}/projects/{projectId}
+      name: getproject
+      operations:
+      - method: GET
+        name: getproject
+        description: Get project by ID
+        call: autodesk-construction-cloud.getproject
+        with:
+          accountId: rest.accountId
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /construction/admin/v1/accounts/{accountId}/projects/{projectId}
+      name: updateproject
+      operations:
+      - method: PATCH
+        name: updateproject
+        description: Update project
+        call: autodesk-construction-cloud.updateproject
+        with:
+          accountId: rest.accountId
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /construction/admin/v1/accounts/{accountId}/projects/{projectId}/users
+      name: getprojectusers
+      operations:
+      - method: GET
+        name: getprojectusers
+        description: Get project users
+        call: autodesk-construction-cloud.getprojectusers
+        with:
+          accountId: rest.accountId
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /construction/admin/v1/accounts/{accountId}/projects/{projectId}/users
+      name: addprojectuser
+      operations:
+      - method: POST
+        name: addprojectuser
+        description: Add user to project
+        call: autodesk-construction-cloud.addprojectuser
+        with:
+          accountId: rest.accountId
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /construction/admin/v1/accounts/{accountId}/users
+      name: getaccountusers
+      operations:
+      - method: GET
+        name: getaccountusers
+        description: Get account users
+        call: autodesk-construction-cloud.getaccountusers
+        with:
+          accountId: rest.accountId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /construction/admin/v1/accounts/{accountId}/companies
+      name: getaccountcompanies
+      operations:
+      - method: GET
+        name: getaccountcompanies
+        description: Get account companies
+        call: autodesk-construction-cloud.getaccountcompanies
+        with:
+          accountId: rest.accountId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: autodesk-construction-cloud-mcp
+    transport: http
+    description: MCP adapter for Autodesk Construction Cloud Admin API for AI agent use.
+    tools:
+    - name: getaccountprojects
+      description: Get account projects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: autodesk-construction-cloud.getaccountprojects
+      with:
+        accountId: tools.accountId
+        filter[status]: tools.filter[status]
+        filter[name]: tools.filter[name]
+        include: tools.include
+        limit: tools.limit
+        offset: tools.offset
+      inputParameters:
+      - name: accountId
+        type: string
+        description: The unique identifier of the ACC account
+        required: true
+      - name: filter[status]
+        type: string
+        description: Filter by project status
+      - name: filter[name]
+        type: string
+        description: Filter projects by name (partial match)
+      - name: include
+        type: string
+        description: Include related resources
+      - name: limit
+        type: integer
+        description: limit
+      - name: offset
+        type: integer
+        description: offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createproject
+      description: Create a new project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: autodesk-construction-cloud.createproject
+      with:
+        accountId: tools.accountId
+      inputParameters:
+      - name: accountId
+        type: string
+        description: accountId
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getproject
+      description: Get project by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: autodesk-construction-cloud.getproject
+      with:
+        accountId: tools.accountId
+        projectId: tools.projectId
+      inputParameters:
+      - name: accountId
+        type: string
+        description: accountId
+        required: true
+      - name: projectId
+        type: string
+        description: projectId
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateproject
+      description: Update project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: autodesk-construction-cloud.updateproject
+      with:
+        accountId: tools.accountId
+        projectId: tools.projectId
+      inputParameters:
+      - name: accountId
+        type: string
+        description: accountId
+        required: true
+      - name: projectId
+        type: string
+        description: projectId
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getprojectusers
+      description: Get project users
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: autodesk-construction-cloud.getprojectusers
+      with:
+        accountId: tools.accountId
+        projectId: tools.projectId
+        limit: tools.limit
+        offset: tools.offset
+      inputParameters:
+      - name: accountId
+        type: string
+        description: accountId
+        required: true
+      - name: projectId
+        type: string
+        description: projectId
+        required: true
+      - name: limit
+        type: integer
+        description: limit
+      - name: offset
+        type: integer
+        description: offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: addprojectuser
+      description: Add user to project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: autodesk-construction-cloud.addprojectuser
+      with:
+        accountId: tools.accountId
+        projectId: tools.projectId
+      inputParameters:
+      - name: accountId
+        type: string
+        description: accountId
+        required: true
+      - name: projectId
+        type: string
+        description: projectId
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getaccountusers
+      description: Get account users
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: autodesk-construction-cloud.getaccountusers
+      with:
+        accountId: tools.accountId
+        filter[status]: tools.filter[status]
+        limit: tools.limit
+        offset: tools.offset
+      inputParameters:
+      - name: accountId
+        type: string
+        description: accountId
+        required: true
+      - name: filter[status]
+        type: string
+        description: filter[status]
+      - name: limit
+        type: integer
+        description: limit
+      - name: offset
+        type: integer
+        description: offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getaccountcompanies
+      description: Get account companies
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: autodesk-construction-cloud.getaccountcompanies
+      with:
+        accountId: tools.accountId
+      inputParameters:
+      - name: accountId
+        type: string
+        description: accountId
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    AUTODESK_CONSTRUCTION_CLOUD_TOKEN: AUTODESK_CONSTRUCTION_CLOUD_TOKEN
