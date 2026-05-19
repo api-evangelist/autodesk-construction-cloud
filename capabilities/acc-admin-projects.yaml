@@ -1,0 +1,243 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Autodesk Construction Cloud Admin API — Projects
+  description: 'Autodesk Construction Cloud Admin API — Projects. 4 operations. Lead operation: Get account projects. Self-contained
+    Naftiko capability covering one Autodesk Construction Cloud business surface.'
+  tags:
+  - Autodesk Construction Cloud
+  - Projects
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AUTODESK_CONSTRUCTION_CLOUD_API_KEY: AUTODESK_CONSTRUCTION_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: acc-admin-projects
+    baseUri: https://developer.api.autodesk.com
+    description: Autodesk Construction Cloud Admin API — Projects business capability. Self-contained, no shared references.
+    resources:
+    - name: construction-admin-v1-accounts-accountId-projects
+      path: /construction/admin/v1/accounts/{accountId}/projects
+      operations:
+      - name: getaccountprojects
+        method: GET
+        description: Get account projects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          description: The unique identifier of the ACC account
+          required: true
+        - name: filter[status]
+          in: query
+          type: string
+          description: Filter by project status
+        - name: filter[name]
+          in: query
+          type: string
+          description: Filter projects by name (partial match)
+        - name: include
+          in: query
+          type: string
+          description: Include related resources
+        - name: limit
+          in: query
+          type: integer
+        - name: offset
+          in: query
+          type: integer
+      - name: createproject
+        method: POST
+        description: Create a new project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: construction-admin-v1-accounts-accountId-projects-projectId
+      path: /construction/admin/v1/accounts/{accountId}/projects/{projectId}
+      operations:
+      - name: getproject
+        method: GET
+        description: Get project by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+        - name: projectId
+          in: path
+          type: string
+          required: true
+      - name: updateproject
+        method: PATCH
+        description: Update project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+        - name: projectId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.AUTODESK_CONSTRUCTION_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: acc-admin-projects-rest
+    port: 8080
+    description: REST adapter for Autodesk Construction Cloud Admin API — Projects. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/construction/admin/v1/accounts/{accountid}/projects
+      name: construction-admin-v1-accounts-accountid-projects
+      description: REST surface for construction-admin-v1-accounts-accountId-projects.
+      operations:
+      - method: GET
+        name: getaccountprojects
+        description: Get account projects
+        call: acc-admin-projects.getaccountprojects
+        with:
+          accountId: rest.accountId
+          filter[status]: rest.filter[status]
+          filter[name]: rest.filter[name]
+          include: rest.include
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createproject
+        description: Create a new project
+        call: acc-admin-projects.createproject
+        with:
+          accountId: rest.accountId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/construction/admin/v1/accounts/{accountid}/projects/{projectid}
+      name: construction-admin-v1-accounts-accountid-projects-projectid
+      description: REST surface for construction-admin-v1-accounts-accountId-projects-projectId.
+      operations:
+      - method: GET
+        name: getproject
+        description: Get project by ID
+        call: acc-admin-projects.getproject
+        with:
+          accountId: rest.accountId
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateproject
+        description: Update project
+        call: acc-admin-projects.updateproject
+        with:
+          accountId: rest.accountId
+          projectId: rest.projectId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: acc-admin-projects-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Autodesk Construction Cloud Admin API — Projects. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: get-account-projects
+      description: Get account projects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: acc-admin-projects.getaccountprojects
+      with:
+        accountId: tools.accountId
+        filter[status]: tools.filter[status]
+        filter[name]: tools.filter[name]
+        include: tools.include
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-project
+      description: Create a new project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: acc-admin-projects.createproject
+      with:
+        accountId: tools.accountId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-project-id
+      description: Get project by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: acc-admin-projects.getproject
+      with:
+        accountId: tools.accountId
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-project
+      description: Update project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: acc-admin-projects.updateproject
+      with:
+        accountId: tools.accountId
+        projectId: tools.projectId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

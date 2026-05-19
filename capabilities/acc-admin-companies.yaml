@@ -1,0 +1,79 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Autodesk Construction Cloud Admin API — Companies
+  description: 'Autodesk Construction Cloud Admin API — Companies. 1 operations. Lead operation: Get account companies. Self-contained
+    Naftiko capability covering one Autodesk Construction Cloud business surface.'
+  tags:
+  - Autodesk Construction Cloud
+  - Companies
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AUTODESK_CONSTRUCTION_CLOUD_API_KEY: AUTODESK_CONSTRUCTION_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: acc-admin-companies
+    baseUri: https://developer.api.autodesk.com
+    description: Autodesk Construction Cloud Admin API — Companies business capability. Self-contained, no shared references.
+    resources:
+    - name: construction-admin-v1-accounts-accountId-companies
+      path: /construction/admin/v1/accounts/{accountId}/companies
+      operations:
+      - name: getaccountcompanies
+        method: GET
+        description: Get account companies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.AUTODESK_CONSTRUCTION_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: acc-admin-companies-rest
+    port: 8080
+    description: REST adapter for Autodesk Construction Cloud Admin API — Companies. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/construction/admin/v1/accounts/{accountid}/companies
+      name: construction-admin-v1-accounts-accountid-companies
+      description: REST surface for construction-admin-v1-accounts-accountId-companies.
+      operations:
+      - method: GET
+        name: getaccountcompanies
+        description: Get account companies
+        call: acc-admin-companies.getaccountcompanies
+        with:
+          accountId: rest.accountId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: acc-admin-companies-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Autodesk Construction Cloud Admin API — Companies. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: get-account-companies
+      description: Get account companies
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: acc-admin-companies.getaccountcompanies
+      with:
+        accountId: tools.accountId
+      outputParameters:
+      - type: object
+        mapping: $.

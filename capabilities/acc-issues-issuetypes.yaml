@@ -1,0 +1,79 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Autodesk Construction Cloud Issues API — IssueTypes
+  description: 'Autodesk Construction Cloud Issues API — IssueTypes. 1 operations. Lead operation: List issue types. Self-contained
+    Naftiko capability covering one Autodesk Construction Cloud business surface.'
+  tags:
+  - Autodesk Construction Cloud
+  - IssueTypes
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AUTODESK_CONSTRUCTION_CLOUD_API_KEY: AUTODESK_CONSTRUCTION_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: acc-issues-issuetypes
+    baseUri: https://developer.api.autodesk.com
+    description: Autodesk Construction Cloud Issues API — IssueTypes business capability. Self-contained, no shared references.
+    resources:
+    - name: issues-v2-containers-containerId-issue-types
+      path: /issues/v2/containers/{containerId}/issue-types
+      operations:
+      - name: listissuetypes
+        method: GET
+        description: List issue types
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: containerId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.AUTODESK_CONSTRUCTION_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: acc-issues-issuetypes-rest
+    port: 8080
+    description: REST adapter for Autodesk Construction Cloud Issues API — IssueTypes. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/issues/v2/containers/{containerid}/issue-types
+      name: issues-v2-containers-containerid-issue-types
+      description: REST surface for issues-v2-containers-containerId-issue-types.
+      operations:
+      - method: GET
+        name: listissuetypes
+        description: List issue types
+        call: acc-issues-issuetypes.listissuetypes
+        with:
+          containerId: rest.containerId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: acc-issues-issuetypes-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Autodesk Construction Cloud Issues API — IssueTypes. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: list-issue-types
+      description: List issue types
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: acc-issues-issuetypes.listissuetypes
+      with:
+        containerId: tools.containerId
+      outputParameters:
+      - type: object
+        mapping: $.

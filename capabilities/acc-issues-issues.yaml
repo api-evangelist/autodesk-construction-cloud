@@ -1,0 +1,247 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Autodesk Construction Cloud Issues API — Issues
+  description: 'Autodesk Construction Cloud Issues API — Issues. 4 operations. Lead operation: List issues. Self-contained
+    Naftiko capability covering one Autodesk Construction Cloud business surface.'
+  tags:
+  - Autodesk Construction Cloud
+  - Issues
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AUTODESK_CONSTRUCTION_CLOUD_API_KEY: AUTODESK_CONSTRUCTION_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: acc-issues-issues
+    baseUri: https://developer.api.autodesk.com
+    description: Autodesk Construction Cloud Issues API — Issues business capability. Self-contained, no shared references.
+    resources:
+    - name: issues-v2-containers-containerId-issues
+      path: /issues/v2/containers/{containerId}/issues
+      operations:
+      - name: listissues
+        method: GET
+        description: List issues
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: containerId
+          in: path
+          type: string
+          description: The ACC project container ID
+          required: true
+        - name: filter[status]
+          in: query
+          type: string
+          description: Filter by issue status
+        - name: filter[issueTypeId]
+          in: query
+          type: string
+        - name: filter[assignedToId]
+          in: query
+          type: string
+        - name: filter[dueDate]
+          in: query
+          type: string
+          description: Filter by due date (ISO 8601)
+        - name: limit
+          in: query
+          type: integer
+        - name: offset
+          in: query
+          type: integer
+      - name: createissue
+        method: POST
+        description: Create a new issue
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: containerId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: issues-v2-containers-containerId-issues-issueId
+      path: /issues/v2/containers/{containerId}/issues/{issueId}
+      operations:
+      - name: getissue
+        method: GET
+        description: Get issue by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: containerId
+          in: path
+          type: string
+          required: true
+        - name: issueId
+          in: path
+          type: string
+          required: true
+      - name: updateissue
+        method: PATCH
+        description: Update issue
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: containerId
+          in: path
+          type: string
+          required: true
+        - name: issueId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.AUTODESK_CONSTRUCTION_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: acc-issues-issues-rest
+    port: 8080
+    description: REST adapter for Autodesk Construction Cloud Issues API — Issues. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/issues/v2/containers/{containerid}/issues
+      name: issues-v2-containers-containerid-issues
+      description: REST surface for issues-v2-containers-containerId-issues.
+      operations:
+      - method: GET
+        name: listissues
+        description: List issues
+        call: acc-issues-issues.listissues
+        with:
+          containerId: rest.containerId
+          filter[status]: rest.filter[status]
+          filter[issueTypeId]: rest.filter[issueTypeId]
+          filter[assignedToId]: rest.filter[assignedToId]
+          filter[dueDate]: rest.filter[dueDate]
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createissue
+        description: Create a new issue
+        call: acc-issues-issues.createissue
+        with:
+          containerId: rest.containerId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/issues/v2/containers/{containerid}/issues/{issueid}
+      name: issues-v2-containers-containerid-issues-issueid
+      description: REST surface for issues-v2-containers-containerId-issues-issueId.
+      operations:
+      - method: GET
+        name: getissue
+        description: Get issue by ID
+        call: acc-issues-issues.getissue
+        with:
+          containerId: rest.containerId
+          issueId: rest.issueId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateissue
+        description: Update issue
+        call: acc-issues-issues.updateissue
+        with:
+          containerId: rest.containerId
+          issueId: rest.issueId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: acc-issues-issues-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Autodesk Construction Cloud Issues API — Issues. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: list-issues
+      description: List issues
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: acc-issues-issues.listissues
+      with:
+        containerId: tools.containerId
+        filter[status]: tools.filter[status]
+        filter[issueTypeId]: tools.filter[issueTypeId]
+        filter[assignedToId]: tools.filter[assignedToId]
+        filter[dueDate]: tools.filter[dueDate]
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-issue
+      description: Create a new issue
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: acc-issues-issues.createissue
+      with:
+        containerId: tools.containerId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-issue-id
+      description: Get issue by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: acc-issues-issues.getissue
+      with:
+        containerId: tools.containerId
+        issueId: tools.issueId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-issue
+      description: Update issue
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: acc-issues-issues.updateissue
+      with:
+        containerId: tools.containerId
+        issueId: tools.issueId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

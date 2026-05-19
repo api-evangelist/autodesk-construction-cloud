@@ -1,0 +1,198 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Autodesk Construction Cloud Admin API — Users
+  description: 'Autodesk Construction Cloud Admin API — Users. 3 operations. Lead operation: Get project users. Self-contained
+    Naftiko capability covering one Autodesk Construction Cloud business surface.'
+  tags:
+  - Autodesk Construction Cloud
+  - Users
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AUTODESK_CONSTRUCTION_CLOUD_API_KEY: AUTODESK_CONSTRUCTION_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: acc-admin-users
+    baseUri: https://developer.api.autodesk.com
+    description: Autodesk Construction Cloud Admin API — Users business capability. Self-contained, no shared references.
+    resources:
+    - name: construction-admin-v1-accounts-accountId-projects-projectId-users
+      path: /construction/admin/v1/accounts/{accountId}/projects/{projectId}/users
+      operations:
+      - name: getprojectusers
+        method: GET
+        description: Get project users
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+        - name: projectId
+          in: path
+          type: string
+          required: true
+        - name: limit
+          in: query
+          type: integer
+        - name: offset
+          in: query
+          type: integer
+      - name: addprojectuser
+        method: POST
+        description: Add user to project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+        - name: projectId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: construction-admin-v1-accounts-accountId-users
+      path: /construction/admin/v1/accounts/{accountId}/users
+      operations:
+      - name: getaccountusers
+        method: GET
+        description: Get account users
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+        - name: filter[status]
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+        - name: offset
+          in: query
+          type: integer
+    authentication:
+      type: bearer
+      token: '{{env.AUTODESK_CONSTRUCTION_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: acc-admin-users-rest
+    port: 8080
+    description: REST adapter for Autodesk Construction Cloud Admin API — Users. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/construction/admin/v1/accounts/{accountid}/projects/{projectid}/users
+      name: construction-admin-v1-accounts-accountid-projects-projectid-users
+      description: REST surface for construction-admin-v1-accounts-accountId-projects-projectId-users.
+      operations:
+      - method: GET
+        name: getprojectusers
+        description: Get project users
+        call: acc-admin-users.getprojectusers
+        with:
+          accountId: rest.accountId
+          projectId: rest.projectId
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: addprojectuser
+        description: Add user to project
+        call: acc-admin-users.addprojectuser
+        with:
+          accountId: rest.accountId
+          projectId: rest.projectId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/construction/admin/v1/accounts/{accountid}/users
+      name: construction-admin-v1-accounts-accountid-users
+      description: REST surface for construction-admin-v1-accounts-accountId-users.
+      operations:
+      - method: GET
+        name: getaccountusers
+        description: Get account users
+        call: acc-admin-users.getaccountusers
+        with:
+          accountId: rest.accountId
+          filter[status]: rest.filter[status]
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: acc-admin-users-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Autodesk Construction Cloud Admin API — Users. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get-project-users
+      description: Get project users
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: acc-admin-users.getprojectusers
+      with:
+        accountId: tools.accountId
+        projectId: tools.projectId
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-user-project
+      description: Add user to project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: acc-admin-users.addprojectuser
+      with:
+        accountId: tools.accountId
+        projectId: tools.projectId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-account-users
+      description: Get account users
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: acc-admin-users.getaccountusers
+      with:
+        accountId: tools.accountId
+        filter[status]: tools.filter[status]
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
