@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProjectRequest",
+  "title": "ProjectRequest",
+  "type": "object",
+  "required": [
+    "name",
+    "startDate",
+    "projectType"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "endDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "projectValue": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "number"
+        },
+        "currency": {
+          "type": "string"
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive"
+      ]
+    },
+    "jobNumber": {
+      "type": "string"
+    },
+    "timezone": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    },
+    "constructionType": {
+      "type": "string"
+    },
+    "deliveryMethod": {
+      "type": "string"
+    },
+    "contractType": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProjectUserRequest",
+  "title": "ProjectUserRequest",
+  "type": "object",
+  "required": [
+    "email",
+    "roleIds"
+  ],
+  "properties": {
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "roleIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "companyId": {
+      "type": "string"
+    }
+  }
+}

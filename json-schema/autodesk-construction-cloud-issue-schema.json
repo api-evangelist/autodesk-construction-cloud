@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Issue",
+  "title": "Issue",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "containerId": {
+      "type": "string"
+    },
+    "displayId": {
+      "type": "integer",
+      "description": "Human-readable sequential issue number"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "open",
+        "pending",
+        "in_review",
+        "closed"
+      ]
+    },
+    "issueTypeId": {
+      "type": "string"
+    },
+    "issueSubtypeId": {
+      "type": "string"
+    },
+    "dueDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "locationId": {
+      "type": "string"
+    },
+    "locationDescription": {
+      "type": "string"
+    },
+    "assignedToId": {
+      "type": "string"
+    },
+    "assignedToType": {
+      "type": "string",
+      "enum": [
+        "user",
+        "company"
+      ]
+    },
+    "createdBy": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "closedBy": {
+      "type": "string"
+    },
+    "closedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "linkedDocuments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "urn": {
+            "type": "string"
+          },
+          "details": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "rootCauseId": {
+      "type": "string"
+    },
+    "commentCount": {
+      "type": "integer"
+    },
+    "attachmentCount": {
+      "type": "integer"
+    }
+  }
+}

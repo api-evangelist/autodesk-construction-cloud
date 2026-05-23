@@ -1,0 +1,163 @@
+{
+  "provider": "Autodesk Construction Cloud",
+  "providerId": "autodesk-construction-cloud",
+  "kind": "json-structure",
+  "description": "Structural overview of the Autodesk Construction Cloud API surface; extracted from openapi/.",
+  "schemaCount": 12,
+  "operationCount": 8,
+  "schemas": [
+    {
+      "name": "ProjectsResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ProjectResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Project",
+      "type": "object",
+      "propertyCount": 24,
+      "required": []
+    },
+    {
+      "name": "ProjectRequest",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "name",
+        "startDate",
+        "projectType"
+      ]
+    },
+    {
+      "name": "ProjectUpdateRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "ProjectUser",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "ProjectUserRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "email",
+        "roleIds"
+      ]
+    },
+    {
+      "name": "ProjectUsersResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "AccountUsersResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "CompaniesResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "Pagination",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "Error",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/construction/admin/v1/accounts/{accountId}/projects",
+      "operationId": "getAccountProjects",
+      "summary": "Get account projects",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/construction/admin/v1/accounts/{accountId}/projects",
+      "operationId": "createProject",
+      "summary": "Create a new project",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/construction/admin/v1/accounts/{accountId}/projects/{projectId}",
+      "operationId": "getProject",
+      "summary": "Get project by ID",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/construction/admin/v1/accounts/{accountId}/projects/{projectId}",
+      "operationId": "updateProject",
+      "summary": "Update project",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/construction/admin/v1/accounts/{accountId}/projects/{projectId}/users",
+      "operationId": "getProjectUsers",
+      "summary": "Get project users",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/construction/admin/v1/accounts/{accountId}/projects/{projectId}/users",
+      "operationId": "addProjectUser",
+      "summary": "Add user to project",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/construction/admin/v1/accounts/{accountId}/users",
+      "operationId": "getAccountUsers",
+      "summary": "Get account users",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/construction/admin/v1/accounts/{accountId}/companies",
+      "operationId": "getAccountCompanies",
+      "summary": "Get account companies",
+      "tags": [
+        "Companies"
+      ]
+    }
+  ]
+}

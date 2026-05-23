@@ -1,0 +1,11 @@
+name: Autodesk Construction Cloud Domain Vocabulary
+provider: Autodesk Construction Cloud
+providerId: autodesk-construction-cloud
+description: Tag-derived vocabulary for the Autodesk Construction Cloud API surface; sourced from openapi/ tags.
+terms:
+- term: Companies
+  description: Company/business unit management
+- term: Projects
+  description: ACC project management
+- term: Users
+  description: Project and account user management

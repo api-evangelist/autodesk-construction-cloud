@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IssueRequest",
+  "title": "IssueRequest",
+  "type": "object",
+  "required": [
+    "title",
+    "issueTypeId",
+    "issueSubtypeId"
+  ],
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "issueTypeId": {
+      "type": "string"
+    },
+    "issueSubtypeId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "open"
+      ],
+      "default": "open"
+    },
+    "dueDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "assignedToId": {
+      "type": "string"
+    },
+    "locationId": {
+      "type": "string"
+    },
+    "locationDescription": {
+      "type": "string"
+    }
+  }
+}
