@@ -2,18 +2,27 @@
 
 Autodesk Construction Cloud (ACC) is a unified platform connecting workflows, teams, and data across the construction project lifecycle, integrating preconstruction, design collaboration, project management, and field execution tools. ACC provides REST APIs through the Autodesk Platform Services (APS) for programmatic access to project management, issues, RFIs, submittals, cost management, model coordination, and data export capabilities.
 
-**URL:** [https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/apis.yml)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/apis.yml)
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## Scope
 
-## Tags:
+- **Type:** Index
 
- - Construction, BIM, Project Management, AEC, CAD, Architecture, Engineering, Field Management
+## Tags
+
+- Construction
+- BIM
+- Project Management
+- AEC
+- CAD
+- Architecture
+- Engineering
+- Field Management
 
 ## Timestamps
 
 - **Created:** 2025-01-01
-- **Modified:** 2026-04-19
+- **Modified:** 2026-05-19
 
 ## APIs
 
@@ -21,197 +30,200 @@ Autodesk Construction Cloud (ACC) is a unified platform connecting workflows, te
 
 The Autodesk Construction Cloud Admin API provides programmatic management of ACC accounts, projects, users, and company settings. REST APIs enable automation of project provisioning, user access control, and account-level administration across ACC and BIM 360 deployments.
 
-**Human URL:** [https://aps.autodesk.com/en/docs/acc/v1/overview/](https://aps.autodesk.com/en/docs/acc/v1/overview/)
+- **Human URL:** [https://aps.autodesk.com/en/docs/acc/v1/overview/](https://aps.autodesk.com/en/docs/acc/v1/overview/)
+- **Base URL:** `https://developer.api.autodesk.com`
 
-#### Tags:
+#### Tags
 
- - ACC, Administration, BIM, Construction, Project Management
+- ACC
+- Administration
+- BIM
+- Construction
+- Project Management
 
 #### Properties
 
 - [Documentation](https://aps.autodesk.com/en/docs/acc/v1/overview/)
-- [APIReference](https://aps.autodesk.com/en/docs/acc/v1/reference/http/admin-accounts-accountidprojects-GET/)
-- [GettingStarted](https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started)
-- [OpenAPI](openapi/acc-admin-openapi.yml)
+- [API Reference](https://aps.autodesk.com/en/docs/acc/v1/reference/http/admin-accounts-accountidprojects-GET/)
+- [Getting Started](https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/openapi/acc-admin-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/acc-admin.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/acc-admin.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/acc-issues.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/acc-issues.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Autodesk Construction Cloud Issues API
 
 The ACC Issues API enables creation, retrieval, and management of construction issues, observations, and punch list items. REST APIs integrate with field management workflows for quality control, safety reporting, and project closeout in Autodesk Construction Cloud.
 
-**Human URL:** [https://aps.autodesk.com/en/docs/acc/v1/overview/](https://aps.autodesk.com/en/docs/acc/v1/overview/)
+- **Human URL:** [https://aps.autodesk.com/en/docs/acc/v1/overview/](https://aps.autodesk.com/en/docs/acc/v1/overview/)
+- **Base URL:** `https://developer.api.autodesk.com`
 
-#### Tags:
+#### Tags
 
- - BIM, Construction, Field Management, Issues, Quality
+- BIM
+- Construction
+- Field Management
+- Issues
+- Quality
 
 #### Properties
 
 - [Documentation](https://aps.autodesk.com/en/docs/acc/v1/overview/)
-- [APIReference](https://aps.autodesk.com/en/docs/acc/v1/reference/http/issues-issues-POST/)
-- [GettingStarted](https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started)
-- [OpenAPI](openapi/acc-issues-openapi.yml)
-- [JSONSchema](json-schema/acc-issue-schema.json)
-- [Example](examples/acc-issue-example.json)
+- [API Reference](https://aps.autodesk.com/en/docs/acc/v1/reference/http/issues-issues-POST/)
+- [Getting Started](https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/openapi/acc-issues-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/json-schema/acc-issue-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [Example](https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/examples/acc-issue-example.json)
+- [Postman Collection](collections/acc-admin.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/acc-admin.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/acc-issues.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/acc-issues.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Autodesk Construction Cloud Cost Management API
 
 The ACC Cost Management API provides access to budget codes, contract lifecycle management, and expense tracking in Autodesk Construction Cloud. REST APIs enable ERP integration, change order management, and financial reporting across construction project portfolios.
 
-**Human URL:** [https://aps.autodesk.com/en/docs/acc/v1/overview/](https://aps.autodesk.com/en/docs/acc/v1/overview/)
+- **Human URL:** [https://aps.autodesk.com/en/docs/acc/v1/overview/](https://aps.autodesk.com/en/docs/acc/v1/overview/)
+- **Base URL:** `https://developer.api.autodesk.com`
 
-#### Tags:
+#### Tags
 
- - ACC, Budget, Construction, Contracts, Cost Management
+- ACC
+- Budget
+- Construction
+- Contracts
+- Cost Management
 
 #### Properties
 
 - [Documentation](https://aps.autodesk.com/en/docs/acc/v1/overview/)
-- [APIReference](https://aps.autodesk.com/en/docs/acc/v1/reference/http/cost-actions-POST/)
-- [GettingStarted](https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started)
+- [API Reference](https://aps.autodesk.com/en/docs/acc/v1/reference/http/cost-actions-POST/)
+- [Getting Started](https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started)
+- [Postman Collection](collections/acc-admin.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/acc-admin.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/acc-issues.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/acc-issues.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Autodesk Construction Cloud Model Coordination API
 
 The ACC Model Coordination API enables access to model sets, clash detection results, and coordination issues in Autodesk Construction Cloud. REST APIs support automated BIM coordination workflows, clash review automation, and model aggregation across design disciplines.
 
-**Human URL:** [https://aps.autodesk.com/en/docs/acc/v1/overview/](https://aps.autodesk.com/en/docs/acc/v1/overview/)
+- **Human URL:** [https://aps.autodesk.com/en/docs/acc/v1/overview/](https://aps.autodesk.com/en/docs/acc/v1/overview/)
+- **Base URL:** `https://developer.api.autodesk.com`
 
-#### Tags:
+#### Tags
 
- - BIM, Clash Detection, Construction, IFC, Model Coordination
+- BIM
+- Clash Detection
+- Construction
+- IFC
+- Model Coordination
 
 #### Properties
 
 - [Documentation](https://aps.autodesk.com/en/docs/acc/v1/overview/)
-- [APIReference](https://aps.autodesk.com/en/docs/acc/v1/reference/http/mc-modelset-service-v3-create-model-set-POST/)
-- [GettingStarted](https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started)
+- [API Reference](https://aps.autodesk.com/en/docs/acc/v1/reference/http/mc-modelset-service-v3-create-model-set-POST/)
+- [Getting Started](https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started)
+- [Postman Collection](collections/acc-admin.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/acc-admin.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/acc-issues.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/acc-issues.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Autodesk Construction Cloud RFIs API
 
 The ACC RFIs API enables management of Requests for Information (RFIs) in Autodesk Construction Cloud. REST APIs support RFI creation, tracking, response workflows, and reporting for construction project documentation and decision management.
 
-**Human URL:** [https://aps.autodesk.com/en/docs/acc/v1/overview/](https://aps.autodesk.com/en/docs/acc/v1/overview/)
+- **Human URL:** [https://aps.autodesk.com/en/docs/acc/v1/overview/](https://aps.autodesk.com/en/docs/acc/v1/overview/)
+- **Base URL:** `https://developer.api.autodesk.com`
 
-#### Tags:
+#### Tags
 
- - ACC, Construction, Document Management, RFI
+- ACC
+- Construction
+- Document Management
+- RFI
 
 #### Properties
 
 - [Documentation](https://aps.autodesk.com/en/docs/acc/v1/overview/)
-- [APIReference](https://aps.autodesk.com/en/docs/acc/v1/reference/http/rfis-rfi-search-POST/)
-- [GettingStarted](https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started)
+- [API Reference](https://aps.autodesk.com/en/docs/acc/v1/reference/http/rfis-rfi-search-POST/)
+- [Getting Started](https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started)
+- [Postman Collection](collections/acc-admin.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/acc-admin.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/acc-issues.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/acc-issues.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Autodesk Construction Cloud Submittals API
 
 The ACC Submittals API provides programmatic access to submittal workflows in Autodesk Construction Cloud. REST APIs support submittal item creation, review routing, approval tracking, and specification section management for construction project compliance.
 
-**Human URL:** [https://aps.autodesk.com/en/docs/acc/v1/overview/](https://aps.autodesk.com/en/docs/acc/v1/overview/)
+- **Human URL:** [https://aps.autodesk.com/en/docs/acc/v1/overview/](https://aps.autodesk.com/en/docs/acc/v1/overview/)
+- **Base URL:** `https://developer.api.autodesk.com`
 
-#### Tags:
+#### Tags
 
- - ACC, Construction, Document Management, Submittals
+- ACC
+- Construction
+- Document Management
+- Submittals
 
 #### Properties
 
 - [Documentation](https://aps.autodesk.com/en/docs/acc/v1/overview/)
-- [APIReference](https://aps.autodesk.com/en/docs/acc/v1/reference/http/submittals-items-GET/)
-- [GettingStarted](https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started)
+- [API Reference](https://aps.autodesk.com/en/docs/acc/v1/reference/http/submittals-items-GET/)
+- [Getting Started](https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started)
+- [Postman Collection](collections/acc-admin.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/acc-admin.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/acc-issues.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/acc-issues.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Autodesk Construction Cloud Data Connector API
 
 The ACC Data Connector API enables bulk extraction of project data from Autodesk Construction Cloud for analytics and reporting. REST APIs support scheduled and on-demand data exports across issues, RFIs, submittals, assets, and other project modules for business intelligence integration.
 
-**Human URL:** [https://aps.autodesk.com/en/docs/acc/v1/overview/](https://aps.autodesk.com/en/docs/acc/v1/overview/)
+- **Human URL:** [https://aps.autodesk.com/en/docs/acc/v1/overview/](https://aps.autodesk.com/en/docs/acc/v1/overview/)
+- **Base URL:** `https://developer.api.autodesk.com`
 
-#### Tags:
+#### Tags
 
- - ACC, Analytics, Construction, Data Export
+- ACC
+- Analytics
+- Construction
+- Data Export
 
 #### Properties
 
 - [Documentation](https://aps.autodesk.com/en/docs/acc/v1/overview/)
-- [APIReference](https://aps.autodesk.com/en/docs/acc/v1/reference/http/data-connector-requests-POST/)
-- [GettingStarted](https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started)
+- [API Reference](https://aps.autodesk.com/en/docs/acc/v1/reference/http/data-connector-requests-POST/)
+- [Getting Started](https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started)
+- [Postman Collection](collections/acc-admin.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/acc-admin.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/acc-issues.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/acc-issues.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ## Common Properties
 
+- [LinkedIn](https://www.linkedin.com/company/autodesk-construction-cloud)
 - [Website](https://www.autodesk.com)
 - [Portal](https://aps.autodesk.com/)
 - [Documentation](https://aps.autodesk.com/developer/documentation)
-- [GettingStarted](https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started)
+- [Getting Started](https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started)
 - [Quickstart](https://get-started.aps.autodesk.com/)
-- [TermsOfService](https://www.autodesk.com/company/legal-notices-trademarks/terms-of-service-autodesk360-web-services/forge-platform-web-services-api-terms-of-service)
-- [PrivacyPolicy](https://www.autodesk.com/company/legal-notices-trademarks/privacy-statement)
-- [StatusPage](https://health.autodesk.com/)
+- [Terms of Service](https://www.autodesk.com/company/legal-notices-trademarks/terms-of-service-autodesk360-web-services/forge-platform-web-services-api-terms-of-service)
+- [Privacy Policy](https://www.autodesk.com/company/legal-notices-trademarks/privacy-statement)
+- [Status Page](https://health.autodesk.com/)
 - [Support](https://aps.autodesk.com/contact-support)
-- [ChangeLog](https://aps.autodesk.com/topics/platform-updates)
-- [GitHubOrganization](https://github.com/autodesk-platform-services)
-
-## Features
-
-| Name | Description |
-|------|-------------|
-| Project Administration | Programmatic management of ACC accounts, projects, users, and company settings with automation of project provisioning and user access control. |
-| Issues and Field Management | Creation, tracking, and management of construction issues, observations, punch lists, and quality control items through REST APIs. |
-| Cost Management | Budget tracking, contract lifecycle management, change order processing, and financial reporting for construction project portfolios. |
-| Model Coordination | Automated BIM coordination with clash detection, model set management, and coordination issue tracking across design disciplines. |
-| RFI and Submittal Management | End-to-end management of Requests for Information and submittal review workflows with approval tracking and compliance reporting. |
-| Data Connector | Bulk extraction of project data for analytics and business intelligence, supporting scheduled and on-demand exports across all ACC modules. |
-| Webhooks | Event-driven notifications via webhooks for real-time integration with external systems when project data changes in ACC. |
-
-## Use Cases
-
-| Name | Description |
-|------|-------------|
-| ERP Integration | Connecting ACC cost management and project data with enterprise ERP systems for unified financial reporting and project accounting. |
-| BIM Workflow Automation | Automating BIM coordination workflows including clash detection review, model set updates, and coordination issue resolution across teams. |
-| Construction Project Reporting | Building custom dashboards and reports using the Data Connector API to aggregate project data across issues, RFIs, submittals, and costs. |
-| Field Management Integration | Integrating ACC issues and punch list management with mobile field apps, IoT sensors, and safety management platforms. |
-| Document Control Automation | Automating RFI and submittal routing, review reminders, and approval tracking to reduce administrative burden on project document control teams. |
-
-## Integrations
-
-| Name | Description |
-|------|-------------|
-| Autodesk Platform Services | Full integration with the Autodesk Platform Services (APS) ecosystem including Data Management, Model Derivative, and Authentication APIs. |
-| Procore | Integration possibilities with Procore construction management platform for cross-platform project data synchronization. |
-| Primavera P6 | Schedule data integration with Oracle Primavera P6 for project schedule management and reporting across enterprise construction portfolios. |
-| SAP | Enterprise ERP integration with SAP for financial data synchronization, purchase order management, and project accounting workflows. |
-
-## Artifacts
-
-Machine-readable API specifications organized by format.
-
-### OpenAPI
-
-- [ACC Admin OpenAPI](openapi/acc-admin-openapi.yml)
-- [ACC Issues OpenAPI](openapi/acc-issues-openapi.yml)
-
-### AsyncAPI
-
-- [ACC Webhooks AsyncAPI](asyncapi/acc-webhooks-asyncapi.yml)
-
-### JSON Schema
-
-- [ACC Project Schema](json-schema/acc-project-schema.json)
-- [ACC Issue Schema](json-schema/acc-issue-schema.json)
-
-### JSON Structure
-
-- [ACC Project Structure](json-structure/acc-project-structure.json)
-- [ACC Issue Structure](json-structure/acc-issue-structure.json)
-
-### JSON-LD
-
-- [ACC Context](json-ld/acc-context.jsonld)
-
-### Examples
-
-- [ACC Project Example](examples/acc-project-example.json)
-- [ACC Issue Example](examples/acc-issue-example.json)
+- [Changelog](https://aps.autodesk.com/topics/platform-updates)
+- [GitHub Organization](https://github.com/autodesk-platform-services)
+- [AsyncAPI](https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/asyncapi/acc-webhooks-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
+- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/json-schema/acc-project-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON-LD](https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/json-ld/acc-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+- [Features](undefined)
+- [Use Cases](undefined)
+- [Integrations](undefined)
 
 ## Maintainers
 
 **FN:** Kin Lane
-
 **Email:** kin@apievangelist.com
