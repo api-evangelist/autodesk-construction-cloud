@@ -1,0 +1,1098 @@
+"""
+Autodesk Construction Cloud (ACC) GraphQL Schema
+Derived from Autodesk Platform Services (APS) REST APIs
+covering Admin, Issues, RFIs, Submittals, Cost Management,
+Model Coordination, and Data Connector capabilities.
+"""
+
+# ─────────────────────────────────────────────
+# Scalars
+# ─────────────────────────────────────────────
+
+scalar DateTime
+scalar JSON
+scalar URL
+
+# ─────────────────────────────────────────────
+# Enumerations
+# ─────────────────────────────────────────────
+
+enum ProjectStatus {
+  ACTIVE
+  ARCHIVED
+  SUSPENDED
+  PENDING
+  INACTIVE
+}
+
+enum ProjectType {
+  COMMERCIAL
+  CONVENTION_CENTER
+  DATA_CENTER
+  EDUCATION
+  GOVERNMENT
+  HEALTHCARE
+  HOSPITALITY
+  MANUFACTURING
+  MEDICAL_DENTAL
+  MIXED_USE
+  MULTI_FAMILY_HOUSING
+  OFFICE
+  OTHER
+  PARKING_STRUCTURE
+  PERFORMING_ARTS
+  RELIGIOUS
+  RESIDENTIAL
+  RESTAURANT
+  RETAIL
+  SPORTS_RECREATION
+  TRANSPORTATION
+  UTILITIES_ENERGY
+  WAREHOUSE
+}
+
+enum IssueStatus {
+  DRAFT
+  OPEN
+  ANSWERED
+  CLOSED
+  VOID
+  IN_REVIEW
+  NOT_APPROVED
+  IN_DISPUTE
+  READY_TO_INSPECT
+}
+
+enum RFIStatus {
+  DRAFT
+  OPEN
+  ANSWERED
+  CLOSED
+  VOID
+  IN_REVIEW
+  NOT_APPROVED
+  IN_DISPUTE
+}
+
+enum MemberRole {
+  ACCOUNT_ADMIN
+  PROJECT_ADMIN
+  PROJECT_MEMBER
+  PROJECT_EXECUTIVE
+  VIEWER
+  GUEST
+  EDITOR
+}
+
+enum WebhookEvent {
+  VERSION_ADDED
+  VERSION_UPDATED
+  VERSION_DELETED
+  FOLDER_ADDED
+  FOLDER_UPDATED
+  FOLDER_DELETED
+  ITEM_ADDED
+  ITEM_UPDATED
+  ITEM_DELETED
+  ISSUE_CREATED
+  ISSUE_UPDATED
+  ISSUE_DELETED
+  RFI_CREATED
+  RFI_UPDATED
+  RFI_CLOSED
+  SUBMITTAL_CREATED
+  SUBMITTAL_UPDATED
+  CHECKLIST_CREATED
+  CHECKLIST_UPDATED
+}
+
+enum ReportStatus {
+  PENDING
+  RUNNING
+  COMPLETED
+  FAILED
+}
+
+# ─────────────────────────────────────────────
+# Account & Organization
+# ─────────────────────────────────────────────
+
+"""Top-level ACC account (hub)."""
+type Account {
+  id: ID!
+  name: String!
+  region: String
+  type: String
+  status: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  details: AccountDetails
+  projects(limit: Int, offset: Int): [Project!]
+  members(limit: Int, offset: Int): [Member!]
+  companies(limit: Int, offset: Int): [Company!]
+}
+
+"""Extended metadata for an ACC account."""
+type AccountDetails {
+  accountId: ID!
+  addressLine1: String
+  addressLine2: String
+  city: String
+  stateOrProvince: String
+  postalCode: String
+  country: String
+  phone: String
+  website: URL
+  description: String
+  imageUrl: URL
+}
+
+# ─────────────────────────────────────────────
+# Projects
+# ─────────────────────────────────────────────
+
+"""An ACC construction project."""
+type Project {
+  id: ID!
+  accountId: ID!
+  name: String!
+  status: ProjectStatus!
+  type: ProjectType
+  jobNumber: String
+  startDate: DateTime
+  endDate: DateTime
+  constructionType: String
+  deliveryMethod: String
+  contractType: String
+  currentPhase: String
+  value: Float
+  currency: String
+  timezone: String
+  language: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  details: ProjectDetails
+  folders(limit: Int, offset: Int): [Folder!]
+  members(limit: Int, offset: Int): [Member!]
+  issues(limit: Int, offset: Int): [Issue!]
+  rfis(limit: Int, offset: Int): [RFI!]
+  submittals(limit: Int, offset: Int): [Submittal!]
+  checklists(limit: Int, offset: Int): [Checklist!]
+  dailyLogs(limit: Int, offset: Int): [DailyLog!]
+  assets(limit: Int, offset: Int): [Asset!]
+  models(limit: Int, offset: Int): [Model!]
+  locations: [LocationNode!]
+  webhooks(limit: Int, offset: Int): [Webhook!]
+}
+
+"""Extended project configuration and address details."""
+type ProjectDetails {
+  projectId: ID!
+  addressLine1: String
+  addressLine2: String
+  city: String
+  stateOrProvince: String
+  postalCode: String
+  country: String
+  latitude: Float
+  longitude: Float
+  imageUrl: URL
+  classification: String
+}
+
+# ─────────────────────────────────────────────
+# Folders & Files
+# ─────────────────────────────────────────────
+
+"""A document management folder in ACC."""
+type Folder {
+  id: ID!
+  projectId: ID!
+  parentFolderId: ID
+  name: String!
+  displayName: String
+  objectCount: Int
+  isRoot: Boolean
+  hidden: Boolean
+  createdAt: DateTime
+  updatedAt: DateTime
+  createdBy: String
+  updatedBy: String
+  details: FolderDetails
+  subFolders(limit: Int, offset: Int): [Folder!]
+  items(limit: Int, offset: Int): [Item!]
+}
+
+"""Additional metadata about a folder."""
+type FolderDetails {
+  folderId: ID!
+  path: String
+  permissionModel: String
+  customAttributes: JSON
+}
+
+"""A document item (file placeholder) inside a folder."""
+type Item {
+  id: ID!
+  projectId: ID!
+  folderId: ID!
+  name: String!
+  displayName: String
+  hidden: Boolean
+  reserved: Boolean
+  createdAt: DateTime
+  updatedAt: DateTime
+  createdBy: String
+  updatedBy: String
+  details: ItemDetails
+  versions(limit: Int, offset: Int): [ItemVersion!]
+  latestVersion: ItemVersion
+}
+
+"""Additional metadata for an item."""
+type ItemDetails {
+  itemId: ID!
+  mimeType: String
+  fileType: String
+  storageSize: Int
+  customAttributes: JSON
+}
+
+"""A specific version of a document item."""
+type ItemVersion {
+  id: ID!
+  itemId: ID!
+  versionNumber: Int!
+  name: String
+  mimeType: String
+  fileType: String
+  storageSize: Int
+  storageKey: String
+  md5: String
+  createTime: DateTime
+  createUserId: String
+  lastModifiedTime: DateTime
+  lastModifiedUserId: String
+  processState: String
+  extractionState: String
+  reviewState: String
+  file: File
+  storage: Storage
+}
+
+"""A physical file object associated with an item version."""
+type File {
+  id: ID!
+  name: String!
+  size: Int
+  mimeType: String
+  extension: String
+  details: FileDetails
+}
+
+"""Extended file metadata including download URL."""
+type FileDetails {
+  fileId: ID!
+  downloadUrl: URL
+  signedUrl: URL
+  signedUrlExpiry: DateTime
+  checksum: String
+  checksumAlgorithm: String
+}
+
+"""Object storage location for a file."""
+type Storage {
+  id: ID!
+  storageKey: String!
+  bucketKey: String
+  region: String
+  details: StorageDetails
+}
+
+"""Storage bucket and URL details."""
+type StorageDetails {
+  storageId: ID!
+  uploadUrl: URL
+  signedUploadUrl: URL
+  bucketPolicy: JSON
+}
+
+# ─────────────────────────────────────────────
+# Issues
+# ─────────────────────────────────────────────
+
+"""A construction issue, observation, or punch-list item."""
+type Issue {
+  id: ID!
+  containerId: ID!
+  projectId: ID!
+  title: String!
+  description: String
+  status: IssueStatus!
+  issueType: IssueType
+  issueSubtype: String
+  dueDate: DateTime
+  startDate: DateTime
+  closedAt: DateTime
+  createdAt: DateTime
+  updatedAt: DateTime
+  createdBy: String
+  updatedBy: String
+  assignedTo: String
+  assignedToType: String
+  locationDescription: String
+  rootCauseId: ID
+  details: IssueDetails
+  owner: IssueOwner
+  location: IssueLocation
+  rootCause: IssueRootCause
+  photos: [IssuePhoto!]
+  linkedDocuments: [Item!]
+}
+
+"""Extended issue metadata fields."""
+type IssueDetails {
+  issueId: ID!
+  customAttributes: JSON
+  trades: [String!]
+  lbsLocation: String
+  ownerId: ID
+  coReviewers: [String!]
+  watchers: [String!]
+  snapshotUrn: String
+}
+
+"""Type classification for an issue."""
+type IssueType {
+  id: ID!
+  title: String!
+  isActive: Boolean
+  statusSet: String
+  permittedStatuses: [IssueStatus!]
+  permittedAttributes: [String!]
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""Owner assignment for an issue."""
+type IssueOwner {
+  id: ID!
+  name: String
+  email: String
+  companyId: ID
+  companyName: String
+  role: String
+}
+
+"""Location metadata attached to an issue."""
+type IssueLocation {
+  id: ID!
+  locationId: ID
+  locationName: String
+  locationDescription: String
+  objectId: Int
+  externalId: String
+  urn: String
+}
+
+"""Root cause classification for an issue."""
+type IssueRootCause {
+  id: ID!
+  title: String!
+  isActive: Boolean
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""A photo attachment on an issue."""
+type IssuePhoto {
+  id: ID!
+  issueId: ID!
+  name: String
+  size: Int
+  url: URL
+  signedUrl: URL
+  createdAt: DateTime
+  createdBy: String
+}
+
+"""The container (project scope) for issues."""
+type IssueContainer {
+  id: ID!
+  projectId: ID!
+  issues(status: IssueStatus, limit: Int, offset: Int): [Issue!]
+  issueTypes: [IssueType!]
+  rootCauses: [IssueRootCause!]
+}
+
+# ─────────────────────────────────────────────
+# RFIs
+# ─────────────────────────────────────────────
+
+"""A Request for Information (RFI) in ACC."""
+type RFI {
+  id: ID!
+  projectId: ID!
+  title: String!
+  question: String
+  answer: String
+  status: RFIStatus!
+  number: Int
+  specSection: String
+  specDescription: String
+  drawingNumber: String
+  dueDate: DateTime
+  scheduledImpact: Boolean
+  costImpact: Boolean
+  costImpactAmount: Float
+  costImpactCurrency: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  closedAt: DateTime
+  createdBy: String
+  updatedBy: String
+  assignedTo: String
+  details: RFIDetails
+  linkedDocuments: [Item!]
+}
+
+"""Extended RFI metadata and workflow fields."""
+type RFIDetails {
+  rfiId: ID!
+  drawingVersion: String
+  referenceNumber: String
+  distributionList: [String!]
+  coReviewers: [String!]
+  watchers: [String!]
+  customAttributes: JSON
+  locationId: ID
+  locationName: String
+}
+
+# ─────────────────────────────────────────────
+# Submittals
+# ─────────────────────────────────────────────
+
+"""A submittal item in ACC."""
+type Submittal {
+  id: ID!
+  projectId: ID!
+  title: String!
+  specSection: String
+  specDescription: String
+  submittalNumber: String
+  revision: String
+  status: String
+  dueDate: DateTime
+  sentDate: DateTime
+  returnedDate: DateTime
+  createdAt: DateTime
+  updatedAt: DateTime
+  createdBy: String
+  updatedBy: String
+  submittedBy: String
+  reviewedBy: String
+  details: SubmittalDetails
+  linkedDocuments: [Item!]
+}
+
+"""Extended submittal workflow and routing details."""
+type SubmittalDetails {
+  submittalId: ID!
+  reviewers: [String!]
+  distributionList: [String!]
+  customAttributes: JSON
+  locationId: ID
+  locationName: String
+  urgency: String
+  disposition: String
+  dispositionNote: String
+}
+
+# ─────────────────────────────────────────────
+# Meetings
+# ─────────────────────────────────────────────
+
+"""A project meeting record in ACC."""
+type Meeting {
+  id: ID!
+  projectId: ID!
+  title: String!
+  description: String
+  location: String
+  scheduledAt: DateTime
+  duration: Int
+  status: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  createdBy: String
+  details: MeetingDetails
+  items: [MeetingItem!]
+  attendees: [Member!]
+}
+
+"""Extended meeting configuration and agenda details."""
+type MeetingDetails {
+  meetingId: ID!
+  meetingNumber: Int
+  customAttributes: JSON
+  linkedDocuments: [Item!]
+  timezone: String
+  videoConferenceUrl: URL
+}
+
+"""An agenda item or action item within a meeting."""
+type MeetingItem {
+  id: ID!
+  meetingId: ID!
+  title: String!
+  description: String
+  status: String
+  assignedTo: String
+  dueDate: DateTime
+  type: String
+  position: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+# ─────────────────────────────────────────────
+# Checklists
+# ─────────────────────────────────────────────
+
+"""A quality or safety checklist in ACC."""
+type Checklist {
+  id: ID!
+  projectId: ID!
+  name: String!
+  description: String
+  status: String
+  startDate: DateTime
+  dueDate: DateTime
+  completedAt: DateTime
+  createdAt: DateTime
+  updatedAt: DateTime
+  createdBy: String
+  assignedTo: String
+  details: ChecklistDetails
+  sections: [ChecklistSection!]
+}
+
+"""Extended checklist configuration and scoring."""
+type ChecklistDetails {
+  checklistId: ID!
+  templateId: ID
+  templateName: String
+  score: Float
+  maxScore: Float
+  locationId: ID
+  locationName: String
+  customAttributes: JSON
+}
+
+"""A section grouping within a checklist."""
+type ChecklistSection {
+  id: ID!
+  checklistId: ID!
+  title: String!
+  description: String
+  position: Int
+  items: [ChecklistItem!]
+}
+
+"""An individual question or item within a checklist section."""
+type ChecklistItem {
+  id: ID!
+  sectionId: ID!
+  title: String!
+  description: String
+  type: String
+  response: String
+  responseNote: String
+  status: String
+  required: Boolean
+  position: Int
+  linkedIssueId: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+# ─────────────────────────────────────────────
+# Daily Logs
+# ─────────────────────────────────────────────
+
+"""A daily construction log record."""
+type DailyLog {
+  id: ID!
+  projectId: ID!
+  date: DateTime!
+  status: String
+  weather: String
+  temperature: Float
+  temperatureUnit: String
+  humidity: Float
+  createdAt: DateTime
+  updatedAt: DateTime
+  createdBy: String
+  entries: [LogEntry!]
+}
+
+"""An individual entry within a daily log (labor, equipment, notes)."""
+type LogEntry {
+  id: ID!
+  dailyLogId: ID!
+  type: String!
+  title: String
+  description: String
+  quantity: Float
+  unit: String
+  hours: Float
+  companyId: ID
+  companyName: String
+  locationId: ID
+  locationName: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+# ─────────────────────────────────────────────
+# Assets
+# ─────────────────────────────────────────────
+
+"""A tracked asset or equipment item in ACC."""
+type Asset {
+  id: ID!
+  projectId: ID!
+  name: String!
+  description: String
+  status: String
+  category: String
+  barcode: String
+  serialNumber: String
+  manufacturer: String
+  model: String
+  purchaseDate: DateTime
+  warrantyExpiryDate: DateTime
+  createdAt: DateTime
+  updatedAt: DateTime
+  createdBy: String
+  details: AssetDetails
+  location: Location
+}
+
+"""Extended asset metadata and maintenance details."""
+type AssetDetails {
+  assetId: ID!
+  customAttributes: JSON
+  maintenanceSchedule: String
+  lastMaintenanceDate: DateTime
+  nextMaintenanceDate: DateTime
+  assignedTo: String
+  notes: String
+}
+
+# ─────────────────────────────────────────────
+# Locations
+# ─────────────────────────────────────────────
+
+"""A spatial location reference on a project."""
+type Location {
+  id: ID!
+  projectId: ID!
+  name: String!
+  description: String
+  type: String
+  latitude: Float
+  longitude: Float
+  elevation: Float
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""A hierarchical location breakdown structure (LBS) node."""
+type LocationNode {
+  id: ID!
+  projectId: ID!
+  parentId: ID
+  name: String!
+  description: String
+  order: Int
+  barcode: String
+  type: String
+  children: [LocationNode!]
+}
+
+# ─────────────────────────────────────────────
+# BIM / Model Coordination
+# ─────────────────────────────────────────────
+
+"""A model set in ACC Model Coordination."""
+type Model {
+  id: ID!
+  projectId: ID!
+  name: String!
+  description: String
+  status: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  createdBy: String
+  versions(limit: Int, offset: Int): [ModelVersion!]
+  latestVersion: ModelVersion
+}
+
+"""A version of a coordinated model set."""
+type ModelVersion {
+  id: ID!
+  modelId: ID!
+  versionNumber: Int!
+  status: String
+  seedFileVersion: String
+  createdAt: DateTime
+  createdBy: String
+  viewables: [ModelViewable!]
+}
+
+"""A viewable derivative of a model version."""
+type ModelViewable {
+  id: ID!
+  modelVersionId: ID!
+  name: String!
+  urn: String
+  guid: String
+  role: String
+  mimeType: String
+  status: String
+}
+
+# ─────────────────────────────────────────────
+# Properties
+# ─────────────────────────────────────────────
+
+"""A custom or standard property definition."""
+type Property {
+  id: ID!
+  name: String!
+  dataType: String!
+  description: String
+  isRequired: Boolean
+  defaultValue: String
+  allowedValues: [String!]
+  details: PropertyDetails
+}
+
+"""Extended property configuration metadata."""
+type PropertyDetails {
+  propertyId: ID!
+  context: String
+  category: String
+  unit: String
+  isReadOnly: Boolean
+  isSystem: Boolean
+}
+
+# ─────────────────────────────────────────────
+# Members & Companies
+# ─────────────────────────────────────────────
+
+"""A user member of an account or project."""
+type Member {
+  id: ID!
+  name: String!
+  email: String!
+  status: String
+  role: MemberRole
+  accessLevels: JSON
+  companyId: ID
+  companyName: String
+  imageUrl: URL
+  createdAt: DateTime
+  updatedAt: DateTime
+  details: MemberDetails
+}
+
+"""Extended member profile and contact information."""
+type MemberDetails {
+  memberId: ID!
+  jobTitle: String
+  phone: String
+  addressLine1: String
+  addressLine2: String
+  city: String
+  stateOrProvince: String
+  postalCode: String
+  country: String
+  lastSignIn: DateTime
+}
+
+"""A company associated with an ACC account."""
+type Company {
+  id: ID!
+  accountId: ID!
+  name: String!
+  status: String
+  type: String
+  websiteUrl: URL
+  phoneNumber: String
+  addressLine1: String
+  addressLine2: String
+  city: String
+  stateOrProvince: String
+  postalCode: String
+  country: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  details: CompanyDetails
+  members(limit: Int, offset: Int): [Member!]
+}
+
+"""Extended company profile and trade information."""
+type CompanyDetails {
+  companyId: ID!
+  trade: String
+  imageUrl: URL
+  description: String
+  erp_id: String
+  taxId: String
+}
+
+"""An external partner or integration partner."""
+type Partner {
+  id: ID!
+  name: String!
+  status: String
+  details: PartnerDetails
+}
+
+"""Extended partner integration details."""
+type PartnerDetails {
+  partnerId: ID!
+  appId: String
+  integrationType: String
+  contactEmail: String
+  websiteUrl: URL
+}
+
+# ─────────────────────────────────────────────
+# Webhooks
+# ─────────────────────────────────────────────
+
+"""A webhook subscription for ACC event notifications."""
+type Webhook {
+  id: ID!
+  scope: String!
+  scopeId: ID!
+  event: WebhookEvent!
+  callbackUrl: URL!
+  status: String
+  hookAttribute: JSON
+  hookExpiry: DateTime
+  createdAt: DateTime
+  createdBy: String
+  system: String
+  tenant: String
+}
+
+# ─────────────────────────────────────────────
+# Reports
+# ─────────────────────────────────────────────
+
+"""A data export or analytics report request."""
+type Report {
+  id: ID!
+  projectId: ID
+  accountId: ID
+  status: ReportStatus!
+  type: String!
+  exportedEntities: [String!]
+  dateRangeStart: DateTime
+  dateRangeEnd: DateTime
+  createdAt: DateTime
+  completedAt: DateTime
+  createdBy: String
+  details: ReportDetails
+}
+
+"""Extended report configuration and output location."""
+type ReportDetails {
+  reportId: ID!
+  downloadUrl: URL
+  downloadUrlExpiry: DateTime
+  fileSize: Int
+  rowCount: Int
+  format: String
+  filters: JSON
+}
+
+# ─────────────────────────────────────────────
+# Forms
+# ─────────────────────────────────────────────
+
+"""A dynamic form record in ACC."""
+type Form {
+  id: ID!
+  projectId: ID!
+  templateId: ID
+  title: String!
+  status: String
+  submittedAt: DateTime
+  createdAt: DateTime
+  updatedAt: DateTime
+  createdBy: String
+  details: FormDetails
+}
+
+"""Extended form field values and metadata."""
+type FormDetails {
+  formId: ID!
+  fields: JSON
+  linkedIssueIds: [ID!]
+  locationId: ID
+  locationName: String
+}
+
+# ─────────────────────────────────────────────
+# Auth / API Access
+# ─────────────────────────────────────────────
+
+"""An API key for server-to-server access."""
+type APIKey {
+  id: ID!
+  name: String!
+  clientId: String!
+  status: String
+  scopes: [String!]
+  createdAt: DateTime
+  expiresAt: DateTime
+}
+
+"""An OAuth 2.0 access token."""
+type Token {
+  accessToken: String!
+  tokenType: String!
+  expiresIn: Int!
+  refreshToken: String
+  scope: String
+}
+
+# ─────────────────────────────────────────────
+# Query Root
+# ─────────────────────────────────────────────
+
+type Query {
+  account(id: ID!): Account
+  accounts(limit: Int, offset: Int): [Account!]
+
+  project(id: ID!): Project
+  projects(accountId: ID!, status: ProjectStatus, limit: Int, offset: Int): [Project!]
+
+  folder(projectId: ID!, folderId: ID!): Folder
+  folders(projectId: ID!, parentFolderId: ID, limit: Int, offset: Int): [Folder!]
+
+  item(projectId: ID!, itemId: ID!): Item
+  items(projectId: ID!, folderId: ID!, limit: Int, offset: Int): [Item!]
+
+  issue(projectId: ID!, issueId: ID!): Issue
+  issues(projectId: ID!, status: IssueStatus, limit: Int, offset: Int): [Issue!]
+  issueContainer(projectId: ID!): IssueContainer
+  issueTypes(projectId: ID!): [IssueType!]
+  issueRootCauses(projectId: ID!): [IssueRootCause!]
+
+  rfi(projectId: ID!, rfiId: ID!): RFI
+  rfis(projectId: ID!, status: RFIStatus, limit: Int, offset: Int): [RFI!]
+
+  submittal(projectId: ID!, submittalId: ID!): Submittal
+  submittals(projectId: ID!, limit: Int, offset: Int): [Submittal!]
+
+  checklist(projectId: ID!, checklistId: ID!): Checklist
+  checklists(projectId: ID!, limit: Int, offset: Int): [Checklist!]
+
+  dailyLog(projectId: ID!, dailyLogId: ID!): DailyLog
+  dailyLogs(projectId: ID!, limit: Int, offset: Int): [DailyLog!]
+
+  asset(projectId: ID!, assetId: ID!): Asset
+  assets(projectId: ID!, limit: Int, offset: Int): [Asset!]
+
+  meeting(projectId: ID!, meetingId: ID!): Meeting
+  meetings(projectId: ID!, limit: Int, offset: Int): [Meeting!]
+
+  model(projectId: ID!, modelId: ID!): Model
+  models(projectId: ID!, limit: Int, offset: Int): [Model!]
+
+  member(accountId: ID!, memberId: ID!): Member
+  members(accountId: ID!, limit: Int, offset: Int): [Member!]
+  projectMembers(projectId: ID!, limit: Int, offset: Int): [Member!]
+
+  company(accountId: ID!, companyId: ID!): Company
+  companies(accountId: ID!, limit: Int, offset: Int): [Company!]
+
+  webhook(id: ID!): Webhook
+  webhooks(scopeId: ID!, limit: Int, offset: Int): [Webhook!]
+
+  report(id: ID!): Report
+  reports(accountId: ID, projectId: ID, limit: Int, offset: Int): [Report!]
+
+  form(projectId: ID!, formId: ID!): Form
+  forms(projectId: ID!, limit: Int, offset: Int): [Form!]
+
+  location(projectId: ID!, locationId: ID!): Location
+  locations(projectId: ID!): [LocationNode!]
+
+  property(id: ID!): Property
+  properties(context: String, limit: Int, offset: Int): [Property!]
+
+  partner(id: ID!): Partner
+  partners(limit: Int, offset: Int): [Partner!]
+}
+
+# ─────────────────────────────────────────────
+# Mutation Root
+# ─────────────────────────────────────────────
+
+type Mutation {
+  createProject(accountId: ID!, input: JSON!): Project
+  updateProject(projectId: ID!, input: JSON!): Project
+  archiveProject(projectId: ID!): Project
+
+  createFolder(projectId: ID!, parentFolderId: ID, name: String!): Folder
+  updateFolder(projectId: ID!, folderId: ID!, name: String!): Folder
+
+  createIssue(projectId: ID!, input: JSON!): Issue
+  updateIssue(projectId: ID!, issueId: ID!, input: JSON!): Issue
+  deleteIssue(projectId: ID!, issueId: ID!): Boolean
+
+  createRFI(projectId: ID!, input: JSON!): RFI
+  updateRFI(projectId: ID!, rfiId: ID!, input: JSON!): RFI
+  closeRFI(projectId: ID!, rfiId: ID!): RFI
+
+  createSubmittal(projectId: ID!, input: JSON!): Submittal
+  updateSubmittal(projectId: ID!, submittalId: ID!, input: JSON!): Submittal
+
+  createChecklist(projectId: ID!, input: JSON!): Checklist
+  updateChecklist(projectId: ID!, checklistId: ID!, input: JSON!): Checklist
+
+  createDailyLog(projectId: ID!, input: JSON!): DailyLog
+  addLogEntry(projectId: ID!, dailyLogId: ID!, input: JSON!): LogEntry
+
+  createAsset(projectId: ID!, input: JSON!): Asset
+  updateAsset(projectId: ID!, assetId: ID!, input: JSON!): Asset
+
+  createMeeting(projectId: ID!, input: JSON!): Meeting
+  updateMeeting(projectId: ID!, meetingId: ID!, input: JSON!): Meeting
+
+  addProjectMember(projectId: ID!, userId: ID!, role: MemberRole!): Member
+  updateProjectMember(projectId: ID!, memberId: ID!, role: MemberRole!): Member
+  removeProjectMember(projectId: ID!, memberId: ID!): Boolean
+
+  createCompany(accountId: ID!, input: JSON!): Company
+  updateCompany(accountId: ID!, companyId: ID!, input: JSON!): Company
+
+  createWebhook(scopeId: ID!, event: WebhookEvent!, callbackUrl: URL!): Webhook
+  deleteWebhook(id: ID!): Boolean
+
+  requestReport(accountId: ID, projectId: ID, input: JSON!): Report
+
+  createForm(projectId: ID!, input: JSON!): Form
+  updateForm(projectId: ID!, formId: ID!, input: JSON!): Form
+
+  uploadFile(projectId: ID!, folderId: ID!, input: JSON!): Storage
+}
