@@ -1,0 +1,179 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Autodesk Construction Cloud Issues API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://developer.api.autodesk.com/authentication/v2/authorize",
+      "accessTokenUrl": "https://developer.api.autodesk.com/authentication/v2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Issues",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://developer.api.autodesk.com/issues/v2/containers/:containerId/issues",
+            "params": [
+              {
+                "name": "containerId",
+                "value": "",
+                "type": "path",
+                "description": "The ACC project container ID"
+              },
+              {
+                "name": "filter[status]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by issue status"
+              },
+              {
+                "name": "filter[issueTypeId]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[assignedToId]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[dueDate]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by due date (ISO 8601)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve all issues in the project with optional filtering by status, type, and assignee."
+        },
+        {
+          "info": {
+            "name": "Create a new issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://developer.api.autodesk.com/issues/v2/containers/:containerId/issues",
+            "params": [
+              {
+                "name": "containerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new construction issue, observation, or punch list item."
+        },
+        {
+          "info": {
+            "name": "Get issue by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://developer.api.autodesk.com/issues/v2/containers/:containerId/issues/:issueId",
+            "params": [
+              {
+                "name": "containerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "issueId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve full details for a specific issue including comments and attachments."
+        },
+        {
+          "info": {
+            "name": "Update issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://developer.api.autodesk.com/issues/v2/containers/:containerId/issues/:issueId",
+            "params": [
+              {
+                "name": "containerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "issueId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update issue status, assignment, due date, or other fields."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "IssueTypes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List issue types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://developer.api.autodesk.com/issues/v2/containers/:containerId/issue-types",
+            "params": [
+              {
+                "name": "containerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve all configured issue types and subtypes for the project."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

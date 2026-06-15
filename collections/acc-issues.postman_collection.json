@@ -1,0 +1,992 @@
+{
+  "item": [
+    {
+      "id": "06237468-7f49-437b-9b82-58dcc025f6f2",
+      "name": "Issues",
+      "description": {
+        "content": "Construction issue management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "af4897c4-9309-46fc-95d9-20052d24cd23",
+          "name": "List issues",
+          "request": {
+            "name": "List issues",
+            "description": {
+              "content": "Retrieve all issues in the project with optional filtering by status, type, and assignee.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "issues",
+                "v2",
+                "containers",
+                ":containerId",
+                "issues"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter[status]",
+                  "value": "<string>",
+                  "description": "Filter by issue status"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[issueTypeId]",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[assignedToId]",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[dueDate]",
+                  "value": "<date>",
+                  "description": "Filter by due date (ISO 8601)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "containerId",
+                  "description": "(Required) The ACC project container ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "10e587e4-1528-4bc8-9a0a-9cc0e45bdfde",
+              "name": "List of issues",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    "v2",
+                    "containers",
+                    ":containerId",
+                    "issues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[issueTypeId]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[assignedToId]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[dueDate]",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "containerId",
+                      "description": "(Required) The ACC project container ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"id\": \"string\",\n      \"containerId\": \"string\",\n      \"displayId\": 9179,\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"open\",\n      \"issueTypeId\": \"string\",\n      \"issueSubtypeId\": \"string\",\n      \"dueDate\": \"1968-06-21\",\n      \"startDate\": \"2022-01-10\",\n      \"locationId\": \"string\",\n      \"locationDescription\": \"string\",\n      \"assignedToId\": \"string\",\n      \"assignedToType\": \"user\",\n      \"createdBy\": \"string\",\n      \"createdAt\": \"1962-12-13T19:23:59.378Z\",\n      \"updatedAt\": \"1989-06-14T19:40:41.243Z\",\n      \"closedBy\": \"string\",\n      \"closedAt\": \"1953-04-06T13:29:10.012Z\",\n      \"linkedDocuments\": [\n        {\n          \"urn\": \"string\",\n          \"details\": {}\n        },\n        {\n          \"urn\": \"string\",\n          \"details\": {}\n        }\n      ],\n      \"rootCauseId\": \"string\",\n      \"commentCount\": 1777,\n      \"attachmentCount\": 9437\n    },\n    {\n      \"id\": \"string\",\n      \"containerId\": \"string\",\n      \"displayId\": 2073,\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"closed\",\n      \"issueTypeId\": \"string\",\n      \"issueSubtypeId\": \"string\",\n      \"dueDate\": \"1994-12-10\",\n      \"startDate\": \"1954-05-20\",\n      \"locationId\": \"string\",\n      \"locationDescription\": \"string\",\n      \"assignedToId\": \"string\",\n      \"assignedToType\": \"user\",\n      \"createdBy\": \"string\",\n      \"createdAt\": \"2017-04-07T11:02:09.472Z\",\n      \"updatedAt\": \"2006-09-27T05:59:58.389Z\",\n      \"closedBy\": \"string\",\n      \"closedAt\": \"1963-10-12T20:57:09.176Z\",\n      \"linkedDocuments\": [\n        {\n          \"urn\": \"string\",\n          \"details\": {}\n        },\n        {\n          \"urn\": \"string\",\n          \"details\": {}\n        }\n      ],\n      \"rootCauseId\": \"string\",\n      \"commentCount\": 1250,\n      \"attachmentCount\": 6470\n    }\n  ],\n  \"pagination\": {\n    \"limit\": 5631,\n    \"offset\": 405,\n    \"totalResults\": 8749\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1704a28e-59ae-4cae-a78a-da60a36dc3a0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    "v2",
+                    "containers",
+                    ":containerId",
+                    "issues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[issueTypeId]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[assignedToId]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[dueDate]",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "containerId",
+                      "description": "(Required) The ACC project container ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9bbe1055-1877-4692-8ad3-cd3973d3ea5c",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    "v2",
+                    "containers",
+                    ":containerId",
+                    "issues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[issueTypeId]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[assignedToId]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[dueDate]",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "containerId",
+                      "description": "(Required) The ACC project container ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "762880c3-8301-4e90-8627-f8299c30915a",
+          "name": "Create a new issue",
+          "request": {
+            "name": "Create a new issue",
+            "description": {
+              "content": "Create a new construction issue, observation, or punch list item.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "issues",
+                "v2",
+                "containers",
+                ":containerId",
+                "issues"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "containerId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"issueTypeId\": \"<string>\",\n  \"issueSubtypeId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"open\",\n  \"dueDate\": \"<date>\",\n  \"assignedToId\": \"<string>\",\n  \"locationId\": \"<string>\",\n  \"locationDescription\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "82c7dc83-2850-4844-a6ca-986480047a2d",
+              "name": "Issue created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    "v2",
+                    "containers",
+                    ":containerId",
+                    "issues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "containerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"issueTypeId\": \"<string>\",\n  \"issueSubtypeId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"open\",\n  \"dueDate\": \"<date>\",\n  \"assignedToId\": \"<string>\",\n  \"locationId\": \"<string>\",\n  \"locationDescription\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"containerId\": \"string\",\n  \"displayId\": 1864,\n  \"title\": \"string\",\n  \"description\": \"string\",\n  \"status\": \"in_review\",\n  \"issueTypeId\": \"string\",\n  \"issueSubtypeId\": \"string\",\n  \"dueDate\": \"1962-06-15\",\n  \"startDate\": \"1963-09-30\",\n  \"locationId\": \"string\",\n  \"locationDescription\": \"string\",\n  \"assignedToId\": \"string\",\n  \"assignedToType\": \"user\",\n  \"createdBy\": \"string\",\n  \"createdAt\": \"1981-03-29T11:14:17.860Z\",\n  \"updatedAt\": \"2009-04-06T21:07:05.172Z\",\n  \"closedBy\": \"string\",\n  \"closedAt\": \"1984-09-20T05:14:16.868Z\",\n  \"linkedDocuments\": [\n    {\n      \"urn\": \"string\",\n      \"details\": {}\n    },\n    {\n      \"urn\": \"string\",\n      \"details\": {}\n    }\n  ],\n  \"rootCauseId\": \"string\",\n  \"commentCount\": 5370,\n  \"attachmentCount\": 4538\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2dcf4608-1646-4cbc-b16d-93966bff47c5",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    "v2",
+                    "containers",
+                    ":containerId",
+                    "issues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "containerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"issueTypeId\": \"<string>\",\n  \"issueSubtypeId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"open\",\n  \"dueDate\": \"<date>\",\n  \"assignedToId\": \"<string>\",\n  \"locationId\": \"<string>\",\n  \"locationDescription\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "38cd354e-92eb-4584-a179-163e5cb4ffd4",
+          "name": "Get issue by ID",
+          "request": {
+            "name": "Get issue by ID",
+            "description": {
+              "content": "Retrieve full details for a specific issue including comments and attachments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "issues",
+                "v2",
+                "containers",
+                ":containerId",
+                "issues",
+                ":issueId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "containerId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "issueId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cab7e39d-f39a-4d45-9755-7e07bfd89f65",
+              "name": "Issue details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    "v2",
+                    "containers",
+                    ":containerId",
+                    "issues",
+                    ":issueId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "containerId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issueId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"containerId\": \"string\",\n  \"displayId\": 1864,\n  \"title\": \"string\",\n  \"description\": \"string\",\n  \"status\": \"in_review\",\n  \"issueTypeId\": \"string\",\n  \"issueSubtypeId\": \"string\",\n  \"dueDate\": \"1962-06-15\",\n  \"startDate\": \"1963-09-30\",\n  \"locationId\": \"string\",\n  \"locationDescription\": \"string\",\n  \"assignedToId\": \"string\",\n  \"assignedToType\": \"user\",\n  \"createdBy\": \"string\",\n  \"createdAt\": \"1981-03-29T11:14:17.860Z\",\n  \"updatedAt\": \"2009-04-06T21:07:05.172Z\",\n  \"closedBy\": \"string\",\n  \"closedAt\": \"1984-09-20T05:14:16.868Z\",\n  \"linkedDocuments\": [\n    {\n      \"urn\": \"string\",\n      \"details\": {}\n    },\n    {\n      \"urn\": \"string\",\n      \"details\": {}\n    }\n  ],\n  \"rootCauseId\": \"string\",\n  \"commentCount\": 5370,\n  \"attachmentCount\": 4538\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28f8520e-fada-446a-84de-36720c801df8",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    "v2",
+                    "containers",
+                    ":containerId",
+                    "issues",
+                    ":issueId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "containerId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issueId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "875146a6-ee2b-4f19-b999-0cdf7f38deb0",
+          "name": "Update issue",
+          "request": {
+            "name": "Update issue",
+            "description": {
+              "content": "Update issue status, assignment, due date, or other fields.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "issues",
+                "v2",
+                "containers",
+                ":containerId",
+                "issues",
+                ":issueId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "containerId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "issueId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"<string>\",\n  \"dueDate\": \"<date>\",\n  \"assignedToId\": \"<string>\",\n  \"rootCauseId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "261103da-c424-4681-8a6b-a8c3962b9316",
+              "name": "Issue updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    "v2",
+                    "containers",
+                    ":containerId",
+                    "issues",
+                    ":issueId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "containerId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issueId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"<string>\",\n  \"dueDate\": \"<date>\",\n  \"assignedToId\": \"<string>\",\n  \"rootCauseId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"containerId\": \"string\",\n  \"displayId\": 1864,\n  \"title\": \"string\",\n  \"description\": \"string\",\n  \"status\": \"in_review\",\n  \"issueTypeId\": \"string\",\n  \"issueSubtypeId\": \"string\",\n  \"dueDate\": \"1962-06-15\",\n  \"startDate\": \"1963-09-30\",\n  \"locationId\": \"string\",\n  \"locationDescription\": \"string\",\n  \"assignedToId\": \"string\",\n  \"assignedToType\": \"user\",\n  \"createdBy\": \"string\",\n  \"createdAt\": \"1981-03-29T11:14:17.860Z\",\n  \"updatedAt\": \"2009-04-06T21:07:05.172Z\",\n  \"closedBy\": \"string\",\n  \"closedAt\": \"1984-09-20T05:14:16.868Z\",\n  \"linkedDocuments\": [\n    {\n      \"urn\": \"string\",\n      \"details\": {}\n    },\n    {\n      \"urn\": \"string\",\n      \"details\": {}\n    }\n  ],\n  \"rootCauseId\": \"string\",\n  \"commentCount\": 5370,\n  \"attachmentCount\": 4538\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "3a22ff66-8756-4abd-b7f7-1199bd6de804",
+      "name": "IssueTypes",
+      "description": {
+        "content": "Issue type configuration",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a5949d33-812c-4f9a-88d2-513b46004038",
+          "name": "List issue types",
+          "request": {
+            "name": "List issue types",
+            "description": {
+              "content": "Retrieve all configured issue types and subtypes for the project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "issues",
+                "v2",
+                "containers",
+                ":containerId",
+                "issue-types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "containerId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b237a2ae-6e3a-4f96-b4d7-8bcfba5475e7",
+              "name": "Issue types",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    "v2",
+                    "containers",
+                    ":containerId",
+                    "issue-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "containerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"isActive\": false,\n      \"subtypes\": [\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"isActive\": false\n        },\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"isActive\": false\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"isActive\": false,\n      \"subtypes\": [\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"isActive\": true\n        },\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"isActive\": true\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://developer.api.autodesk.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "data:read data:write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://developer.api.autodesk.com/authentication/v2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://developer.api.autodesk.com/authentication/v2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c462c422-b0c0-485a-99fc-8342ce2ee722",
+    "name": "Autodesk Construction Cloud Issues API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ACC Issues API enables creation, retrieval, and management of construction issues, observations, and punch list items. REST APIs integrate with field management workflows for quality control, safety reporting, and project closeout in Autodesk Construction Cloud.\n\nContact Support:\n Name: Autodesk Platform Services",
+      "type": "text/plain"
+    }
+  }
+}
