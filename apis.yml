@@ -7,7 +7,7 @@ description: Autodesk Construction Cloud (ACC) is a unified platform connecting 
   project management, issues, RFIs, submittals, cost management, model coordination,
   and data export capabilities.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - Construction
 - BIM
