@@ -1,0 +1,50 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/acc-admin-openapi.yml, openapi/acc-issues-openapi.yml
+schemes:
+- name: oauth2ThreeLegged
+  source: openapi/acc-admin-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://developer.api.autodesk.com/authentication/v2/authorize
+    tokenUrl: https://developer.api.autodesk.com/authentication/v2/token
+- name: oauth2TwoLegged
+  source: openapi/acc-admin-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://developer.api.autodesk.com/authentication/v2/token
+- name: oauth2ThreeLegged
+  source: openapi/acc-issues-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://developer.api.autodesk.com/authentication/v2/authorize
+    tokenUrl: https://developer.api.autodesk.com/authentication/v2/token
+scopes:
+- scope: account:read
+  description: Read account data
+  flows:
+  - authorizationCode
+  - clientCredentials
+  sources:
+  - openapi/acc-admin-openapi.yml
+- scope: account:write
+  description: Modify account data
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/acc-admin-openapi.yml
+- scope: data:read
+  description: Read project data
+  flows:
+  - authorizationCode
+  - clientCredentials
+  sources:
+  - openapi/acc-admin-openapi.yml
+  - openapi/acc-issues-openapi.yml
+- scope: data:write
+  description: Write project data
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/acc-admin-openapi.yml
+  - openapi/acc-issues-openapi.yml

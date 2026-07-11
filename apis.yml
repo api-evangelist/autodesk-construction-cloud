@@ -176,6 +176,8 @@ apis:
   - type: GettingStarted
     url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
 common:
+- type: OAuthScopes
+  url: scopes/autodesk-construction-cloud-scopes.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/autodesk-construction-cloud
 - type: Website
