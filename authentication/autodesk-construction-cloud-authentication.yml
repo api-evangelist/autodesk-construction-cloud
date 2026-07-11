@@ -1,0 +1,28 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/acc-admin-openapi.yml, openapi/acc-issues-openapi.yml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+  - clientCredentials
+schemes:
+- name: oauth2ThreeLegged
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://developer.api.autodesk.com/authentication/v2/authorize
+    tokenUrl: https://developer.api.autodesk.com/authentication/v2/token
+    scopes: 4
+  sources:
+  - openapi/acc-admin-openapi.yml
+  - openapi/acc-issues-openapi.yml
+- name: oauth2TwoLegged
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://developer.api.autodesk.com/authentication/v2/token
+    scopes: 2
+  sources:
+  - openapi/acc-admin-openapi.yml
