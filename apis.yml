@@ -176,6 +176,8 @@ apis:
   - type: GettingStarted
     url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
 common:
+- type: AgenticAccess
+  url: agentic-access/autodesk-construction-cloud-agentic-access.yml
 - type: DomainSecurity
   url: security/autodesk-construction-cloud-domain-security.yml
 - type: Authentication
