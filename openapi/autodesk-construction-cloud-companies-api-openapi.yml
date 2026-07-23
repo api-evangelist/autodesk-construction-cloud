@@ -1,0 +1,89 @@
+openapi: 3.1.0
+info:
+  title: Autodesk Construction Cloud Admin Companies API
+  description: The Autodesk Construction Cloud (ACC) Admin API provides programmatic management of ACC accounts, projects, users, and company settings. REST APIs enable automation of project provisioning, user access control, and account-level administration across ACC and BIM 360 deployments.
+  version: 1.0.0
+  contact:
+    name: Autodesk Platform Services
+    url: https://aps.autodesk.com/en/docs/acc/v1/overview/
+servers:
+- url: https://developer.api.autodesk.com
+  description: Autodesk Platform Services API
+security:
+- oauth2ThreeLegged: []
+- oauth2TwoLegged: []
+tags:
+- name: Companies
+  description: Company/business unit management
+paths:
+  /construction/admin/v1/accounts/{accountId}/companies:
+    get:
+      operationId: getAccountCompanies
+      summary: Get account companies
+      description: Retrieve all companies (business units) in the ACC account.
+      tags:
+      - Companies
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Account companies
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompaniesResponse'
+components:
+  schemas:
+    Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        totalResults:
+          type: integer
+        nextUrl:
+          type: string
+    CompaniesResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              status:
+                type: string
+              tradeType:
+                type: string
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+  securitySchemes:
+    oauth2ThreeLegged:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://developer.api.autodesk.com/authentication/v2/authorize
+          tokenUrl: https://developer.api.autodesk.com/authentication/v2/token
+          scopes:
+            account:read: Read account data
+            account:write: Modify account data
+            data:read: Read project data
+            data:write: Write project data
+    oauth2TwoLegged:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://developer.api.autodesk.com/authentication/v2/token
+          scopes:
+            account:read: Read account data
+            data:read: Read project data

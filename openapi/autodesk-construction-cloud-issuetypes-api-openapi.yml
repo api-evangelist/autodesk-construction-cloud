@@ -1,0 +1,87 @@
+openapi: 3.1.0
+info:
+  title: Autodesk Construction Cloud Admin Companies IssueTypes API
+  description: The Autodesk Construction Cloud (ACC) Admin API provides programmatic management of ACC accounts, projects, users, and company settings. REST APIs enable automation of project provisioning, user access control, and account-level administration across ACC and BIM 360 deployments.
+  version: 1.0.0
+  contact:
+    name: Autodesk Platform Services
+    url: https://aps.autodesk.com/en/docs/acc/v1/overview/
+servers:
+- url: https://developer.api.autodesk.com
+  description: Autodesk Platform Services API
+security:
+- oauth2ThreeLegged: []
+- oauth2TwoLegged: []
+tags:
+- name: IssueTypes
+  description: Issue type configuration
+paths:
+  /issues/v2/containers/{containerId}/issue-types:
+    get:
+      operationId: listIssueTypes
+      summary: List issue types
+      description: Retrieve all configured issue types and subtypes for the project.
+      tags:
+      - IssueTypes
+      parameters:
+      - name: containerId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Issue types
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/IssueType'
+components:
+  schemas:
+    IssueType:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        isActive:
+          type: boolean
+        subtypes:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              title:
+                type: string
+              isActive:
+                type: boolean
+  securitySchemes:
+    oauth2ThreeLegged:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://developer.api.autodesk.com/authentication/v2/authorize
+          tokenUrl: https://developer.api.autodesk.com/authentication/v2/token
+          scopes:
+            account:read: Read account data
+            account:write: Modify account data
+            data:read: Read project data
+            data:write: Write project data
+    oauth2TwoLegged:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://developer.api.autodesk.com/authentication/v2/token
+          scopes:
+            account:read: Read account data
+            data:read: Read project data
