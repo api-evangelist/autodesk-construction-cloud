@@ -7,7 +7,20 @@ description: Autodesk Construction Cloud (ACC) is a unified platform connecting 
   project management, issues, RFIs, submittals, cost management, model coordination,
   and data export capabilities.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/autodesk-construction-cloud.png
 tags:
 - Construction
 - BIM
@@ -22,64 +35,12 @@ created: '2025-01-01'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-- aid: autodesk-construction-cloud:acc-admin-api
-  name: Autodesk Construction Cloud Admin API
-  description: The Autodesk Construction Cloud Admin API provides programmatic management
-    of ACC accounts, projects, users, and company settings. REST APIs enable automation
-    of project provisioning, user access control, and account-level administration
-    across ACC and BIM 360 deployments.
-  humanURL: https://aps.autodesk.com/en/docs/acc/v1/overview/
-  baseURL: https://developer.api.autodesk.com
-  tags:
-  - ACC
-  - Administration
-  - BIM
-  - Construction
-  - Project Management
-  properties:
-  - type: Documentation
-    url: https://aps.autodesk.com/en/docs/acc/v1/overview/
-  - type: APIReference
-    url: https://aps.autodesk.com/en/docs/acc/v1/reference/http/admin-accounts-accountidprojects-GET/
-  - type: GettingStarted
-    url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
-  - type: OpenAPI
-    url: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/openapi/acc-admin-openapi.yml
-  - url: graphql/autodesk-construction-cloud-graphql.md
-    type: GraphQL
-- aid: autodesk-construction-cloud:acc-issues-api
-  name: Autodesk Construction Cloud Issues API
-  description: The ACC Issues API enables creation, retrieval, and management of construction
-    issues, observations, and punch list items. REST APIs integrate with field management
-    workflows for quality control, safety reporting, and project closeout in Autodesk
-    Construction Cloud.
-  humanURL: https://aps.autodesk.com/en/docs/acc/v1/overview/
-  baseURL: https://developer.api.autodesk.com
-  tags:
-  - BIM
-  - Construction
-  - Field Management
-  - Issues
-  - Quality
-  properties:
-  - type: Documentation
-    url: https://aps.autodesk.com/en/docs/acc/v1/overview/
-  - type: APIReference
-    url: https://aps.autodesk.com/en/docs/acc/v1/reference/http/issues-issues-POST/
-  - type: GettingStarted
-    url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
-  - type: OpenAPI
-    url: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/openapi/acc-issues-openapi.yml
-  - type: JSONSchema
-    url: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/json-schema/acc-issue-schema.json
-  - type: Examples
-    url: https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/examples/acc-issue-example.json
 - aid: autodesk-construction-cloud:acc-cost-management-api
   name: Autodesk Construction Cloud Cost Management API
-  description: The ACC Cost Management API provides access to budget codes, contract
-    lifecycle management, and expense tracking in Autodesk Construction Cloud. REST
-    APIs enable ERP integration, change order management, and financial reporting
-    across construction project portfolios.
+  description: >-
+    The ACC Cost Management API provides access to budget codes, contract lifecycle management, and expense
+    tracking in Autodesk Construction Cloud. REST APIs enable ERP integration, change order management,
+    and financial reporting across construction project portfolios.
   humanURL: https://aps.autodesk.com/en/docs/acc/v1/overview/
   baseURL: https://developer.api.autodesk.com
   tags:
@@ -97,10 +58,10 @@ apis:
     url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
 - aid: autodesk-construction-cloud:acc-model-coordination-api
   name: Autodesk Construction Cloud Model Coordination API
-  description: The ACC Model Coordination API enables access to model sets, clash
-    detection results, and coordination issues in Autodesk Construction Cloud. REST
-    APIs support automated BIM coordination workflows, clash review automation, and
-    model aggregation across design disciplines.
+  description: >-
+    The ACC Model Coordination API enables access to model sets, clash detection results, and coordination
+    issues in Autodesk Construction Cloud. REST APIs support automated BIM coordination workflows, clash
+    review automation, and model aggregation across design disciplines.
   humanURL: https://aps.autodesk.com/en/docs/acc/v1/overview/
   baseURL: https://developer.api.autodesk.com
   tags:
@@ -113,14 +74,16 @@ apis:
   - type: Documentation
     url: https://aps.autodesk.com/en/docs/acc/v1/overview/
   - type: APIReference
-    url: https://aps.autodesk.com/en/docs/acc/v1/reference/http/mc-modelset-service-v3-create-model-set-POST/
+    url: >-
+      https://aps.autodesk.com/en/docs/acc/v1/reference/http/mc-modelset-service-v3-create-model-set-POST/
   - type: GettingStarted
     url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
 - aid: autodesk-construction-cloud:acc-rfis-api
   name: Autodesk Construction Cloud RFIs API
-  description: The ACC RFIs API enables management of Requests for Information (RFIs)
-    in Autodesk Construction Cloud. REST APIs support RFI creation, tracking, response
-    workflows, and reporting for construction project documentation and decision management.
+  description: >-
+    The ACC RFIs API enables management of Requests for Information (RFIs) in Autodesk Construction Cloud.
+    REST APIs support RFI creation, tracking, response workflows, and reporting for construction project
+    documentation and decision management.
   humanURL: https://aps.autodesk.com/en/docs/acc/v1/overview/
   baseURL: https://developer.api.autodesk.com
   tags:
@@ -137,10 +100,10 @@ apis:
     url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
 - aid: autodesk-construction-cloud:acc-submittals-api
   name: Autodesk Construction Cloud Submittals API
-  description: The ACC Submittals API provides programmatic access to submittal workflows
-    in Autodesk Construction Cloud. REST APIs support submittal item creation, review
-    routing, approval tracking, and specification section management for construction
-    project compliance.
+  description: >-
+    The ACC Submittals API provides programmatic access to submittal workflows in Autodesk Construction
+    Cloud. REST APIs support submittal item creation, review routing, approval tracking, and specification
+    section management for construction project compliance.
   humanURL: https://aps.autodesk.com/en/docs/acc/v1/overview/
   baseURL: https://developer.api.autodesk.com
   tags:
@@ -157,10 +120,10 @@ apis:
     url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
 - aid: autodesk-construction-cloud:acc-data-connector-api
   name: Autodesk Construction Cloud Data Connector API
-  description: The ACC Data Connector API enables bulk extraction of project data
-    from Autodesk Construction Cloud for analytics and reporting. REST APIs support
-    scheduled and on-demand data exports across issues, RFIs, submittals, assets,
-    and other project modules for business intelligence integration.
+  description: >-
+    The ACC Data Connector API enables bulk extraction of project data from Autodesk Construction Cloud
+    for analytics and reporting. REST APIs support scheduled and on-demand data exports across issues,
+    RFIs, submittals, assets, and other project modules for business intelligence integration.
   humanURL: https://aps.autodesk.com/en/docs/acc/v1/overview/
   baseURL: https://developer.api.autodesk.com
   tags:
@@ -175,7 +138,144 @@ apis:
     url: https://aps.autodesk.com/en/docs/acc/v1/reference/http/data-connector-requests-POST/
   - type: GettingStarted
     url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
+- aid: autodesk-construction-cloud:autodesk-construction-cloud-companies-api
+  name: Autodesk Construction Cloud Companies API
+  description: Company/business unit management
+  humanURL: https://aps.autodesk.com/en/docs/acc/v1/overview/
+  baseURL: https://developer.api.autodesk.com
+  tags:
+  - Companies
+  properties:
+  - type: OpenAPI
+    url: openapi/autodesk-construction-cloud-companies-api-openapi.yml
+  - type: Documentation
+    url: https://aps.autodesk.com/en/docs/acc/v1/overview/
+  - type: APIReference
+    url: >-
+      https://aps.autodesk.com/en/docs/acc/v1/reference/http/admin-accounts-accountidprojects-GET/
+  - type: GettingStarted
+    url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
+  - type: GraphQL
+    url: graphql/autodesk-construction-cloud-graphql.md
+  - type: APIReference
+    url: https://aps.autodesk.com/en/docs/acc/v1/reference/http/issues-issues-POST/
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/json-schema/acc-issue-schema.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/examples/acc-issue-example.json
+- aid: autodesk-construction-cloud:autodesk-construction-cloud-issues-api
+  name: Autodesk Construction Cloud Issues API
+  description: Construction issue management
+  humanURL: https://aps.autodesk.com/en/docs/acc/v1/overview/
+  baseURL: https://developer.api.autodesk.com
+  tags:
+  - Issues
+  properties:
+  - type: OpenAPI
+    url: openapi/autodesk-construction-cloud-issues-api-openapi.yml
+  - type: Documentation
+    url: https://aps.autodesk.com/en/docs/acc/v1/overview/
+  - type: APIReference
+    url: >-
+      https://aps.autodesk.com/en/docs/acc/v1/reference/http/admin-accounts-accountidprojects-GET/
+  - type: GettingStarted
+    url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
+  - type: GraphQL
+    url: graphql/autodesk-construction-cloud-graphql.md
+  - type: APIReference
+    url: https://aps.autodesk.com/en/docs/acc/v1/reference/http/issues-issues-POST/
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/json-schema/acc-issue-schema.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/examples/acc-issue-example.json
+- aid: autodesk-construction-cloud:autodesk-construction-cloud-issuetypes-api
+  name: Autodesk Construction Cloud IssueTypes API
+  description: Issue type configuration
+  humanURL: https://aps.autodesk.com/en/docs/acc/v1/overview/
+  baseURL: https://developer.api.autodesk.com
+  tags:
+  - IssueTypes
+  properties:
+  - type: OpenAPI
+    url: openapi/autodesk-construction-cloud-issuetypes-api-openapi.yml
+  - type: Documentation
+    url: https://aps.autodesk.com/en/docs/acc/v1/overview/
+  - type: APIReference
+    url: >-
+      https://aps.autodesk.com/en/docs/acc/v1/reference/http/admin-accounts-accountidprojects-GET/
+  - type: GettingStarted
+    url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
+  - type: GraphQL
+    url: graphql/autodesk-construction-cloud-graphql.md
+  - type: APIReference
+    url: https://aps.autodesk.com/en/docs/acc/v1/reference/http/issues-issues-POST/
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/json-schema/acc-issue-schema.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/examples/acc-issue-example.json
+- aid: autodesk-construction-cloud:autodesk-construction-cloud-projects-api
+  name: Autodesk Construction Cloud Projects API
+  description: ACC project management
+  humanURL: https://aps.autodesk.com/en/docs/acc/v1/overview/
+  baseURL: https://developer.api.autodesk.com
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/autodesk-construction-cloud-projects-api-openapi.yml
+  - type: Documentation
+    url: https://aps.autodesk.com/en/docs/acc/v1/overview/
+  - type: APIReference
+    url: >-
+      https://aps.autodesk.com/en/docs/acc/v1/reference/http/admin-accounts-accountidprojects-GET/
+  - type: GettingStarted
+    url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
+  - type: GraphQL
+    url: graphql/autodesk-construction-cloud-graphql.md
+  - type: APIReference
+    url: https://aps.autodesk.com/en/docs/acc/v1/reference/http/issues-issues-POST/
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/json-schema/acc-issue-schema.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/examples/acc-issue-example.json
+- aid: autodesk-construction-cloud:autodesk-construction-cloud-users-api
+  name: Autodesk Construction Cloud Users API
+  description: Project and account user management
+  humanURL: https://aps.autodesk.com/en/docs/acc/v1/overview/
+  baseURL: https://developer.api.autodesk.com
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/autodesk-construction-cloud-users-api-openapi.yml
+  - type: Documentation
+    url: https://aps.autodesk.com/en/docs/acc/v1/overview/
+  - type: APIReference
+    url: >-
+      https://aps.autodesk.com/en/docs/acc/v1/reference/http/admin-accounts-accountidprojects-GET/
+  - type: GettingStarted
+    url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
+  - type: GraphQL
+    url: graphql/autodesk-construction-cloud-graphql.md
+  - type: APIReference
+    url: https://aps.autodesk.com/en/docs/acc/v1/reference/http/issues-issues-POST/
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/json-schema/acc-issue-schema.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/examples/acc-issue-example.json
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/autodesk-construction-cloud/overview
 - type: AgenticAccess
   url: agentic-access/autodesk-construction-cloud-agentic-access.yml
 - type: DomainSecurity
