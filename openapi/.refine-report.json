@@ -1,0 +1,22 @@
+{
+  "provider": "autodesk-construction-cloud",
+  "sources": [
+    "autodesk-construction-cloud-companies-api-openapi.yml",
+    "autodesk-construction-cloud-issues-api-openapi.yml",
+    "autodesk-construction-cloud-issuetypes-api-openapi.yml",
+    "autodesk-construction-cloud-projects-api-openapi.yml",
+    "autodesk-construction-cloud-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "autodesk-construction-cloud-companies-api-openapi.yml",
+    "autodesk-construction-cloud-issues-api-openapi.yml",
+    "autodesk-construction-cloud-issuetypes-api-openapi.yml",
+    "autodesk-construction-cloud-projects-api-openapi.yml",
+    "autodesk-construction-cloud-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,195 @@
+{
+  "info": {
+    "_postman_id": "9cea1505-15bd-4625-aeb3-b23f38941681",
+    "name": "Autodesk Construction Cloud Admin Companies API",
+    "description": "The Autodesk Construction Cloud (ACC) Admin API provides programmatic management of ACC accounts, projects, users, and company settings. REST APIs enable automation of project provisioning, user access control, and account-level administration across ACC and BIM 360 deployments.\n\nContact Support:\n Name: Autodesk Platform Services",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:06:17.000Z",
+    "updatedAt": "2026-07-28T01:06:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9cea1505-15bd-4625-aeb3-b23f38941681"
+  },
+  "item": [
+    {
+      "name": "construction",
+      "item": [
+        {
+          "name": "admin",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "accounts",
+                  "item": [
+                    {
+                      "name": "{accountId}",
+                      "item": [
+                        {
+                          "name": "companies",
+                          "item": [
+                            {
+                              "name": "Get account companies",
+                              "id": "245e359b-eb47-49f9-999e-a16940c9e13c",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/construction/admin/v1/accounts/:accountId/companies",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "construction",
+                                    "admin",
+                                    "v1",
+                                    "accounts",
+                                    ":accountId",
+                                    "companies"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "7e42d105-2cef-4bca-a414-b18c16282621",
+                                      "key": "accountId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Retrieve all companies (business units) in the ACC account."
+                              },
+                              "response": [
+                                {
+                                  "id": "c16c98aa-ec19-4181-9364-68c854a40f0b",
+                                  "name": "Account companies",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/construction/admin/v1/accounts/:accountId/companies",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "construction",
+                                        "admin",
+                                        "v1",
+                                        "accounts",
+                                        ":accountId",
+                                        "companies"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"tradeType\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"tradeType\": \"<string>\"\n    }\n  ],\n  \"pagination\": {\n    \"limit\": \"<integer>\",\n    \"offset\": \"<integer>\",\n    \"totalResults\": \"<integer>\",\n    \"nextUrl\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T01:06:18.000Z",
+                                  "updatedAt": "2026-07-28T01:06:18.000Z",
+                                  "uid": "35240-c16c98aa-ec19-4181-9364-68c854a40f0b"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:06:17.000Z",
+                              "updatedAt": "2026-07-28T01:06:17.000Z",
+                              "uid": "35240-245e359b-eb47-49f9-999e-a16940c9e13c"
+                            }
+                          ],
+                          "id": "548629b9-c106-45fb-b2db-828fdb432c0a",
+                          "createdAt": "2026-07-28T01:06:17.000Z",
+                          "updatedAt": "2026-07-28T01:06:17.000Z",
+                          "uid": "35240-548629b9-c106-45fb-b2db-828fdb432c0a"
+                        }
+                      ],
+                      "id": "c659181c-f246-428d-b965-2a5e16d9694c",
+                      "createdAt": "2026-07-28T01:06:17.000Z",
+                      "updatedAt": "2026-07-28T01:06:17.000Z",
+                      "uid": "35240-c659181c-f246-428d-b965-2a5e16d9694c"
+                    }
+                  ],
+                  "id": "72378688-f630-4d23-a10a-d9214a1fe1d5",
+                  "createdAt": "2026-07-28T01:06:17.000Z",
+                  "updatedAt": "2026-07-28T01:06:17.000Z",
+                  "uid": "35240-72378688-f630-4d23-a10a-d9214a1fe1d5"
+                }
+              ],
+              "id": "011358dc-e99a-45e4-b3cc-47a79d4c75d1",
+              "createdAt": "2026-07-28T01:06:17.000Z",
+              "updatedAt": "2026-07-28T01:06:17.000Z",
+              "uid": "35240-011358dc-e99a-45e4-b3cc-47a79d4c75d1"
+            }
+          ],
+          "id": "ee0bd2aa-fd2a-4b8c-a1b7-dbc1f8305955",
+          "createdAt": "2026-07-28T01:06:17.000Z",
+          "updatedAt": "2026-07-28T01:06:17.000Z",
+          "uid": "35240-ee0bd2aa-fd2a-4b8c-a1b7-dbc1f8305955"
+        }
+      ],
+      "id": "71551423-7393-4278-a84e-cc5ba495e36c",
+      "createdAt": "2026-07-28T01:06:17.000Z",
+      "updatedAt": "2026-07-28T01:06:17.000Z",
+      "uid": "35240-71551423-7393-4278-a84e-cc5ba495e36c"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "account:read account:write data:read data:write",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://developer.api.autodesk.com/authentication/v2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://developer.api.autodesk.com/authentication/v2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://developer.api.autodesk.com"
+    }
+  ]
+}

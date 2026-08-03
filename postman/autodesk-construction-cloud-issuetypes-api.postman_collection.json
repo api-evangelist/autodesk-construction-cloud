@@ -1,0 +1,184 @@
+{
+  "info": {
+    "_postman_id": "d0d1c384-86e0-4060-abfc-153309f48b09",
+    "name": "Autodesk Construction Cloud Admin Companies IssueTypes API",
+    "description": "The Autodesk Construction Cloud (ACC) Admin API provides programmatic management of ACC accounts, projects, users, and company settings. REST APIs enable automation of project provisioning, user access control, and account-level administration across ACC and BIM 360 deployments.\n\nContact Support:\n Name: Autodesk Platform Services",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:06:21.000Z",
+    "updatedAt": "2026-07-28T01:06:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d0d1c384-86e0-4060-abfc-153309f48b09"
+  },
+  "item": [
+    {
+      "name": "issues",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "containers",
+              "item": [
+                {
+                  "name": "{containerId}",
+                  "item": [
+                    {
+                      "name": "issue-types",
+                      "item": [
+                        {
+                          "name": "List issue types",
+                          "id": "b019a46f-9d17-49b7-ba73-8b58ea4f32ca",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/issues/v2/containers/:containerId/issue-types",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "issues",
+                                "v2",
+                                "containers",
+                                ":containerId",
+                                "issue-types"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "c07a9419-c652-449a-940e-811b2611bb75",
+                                  "key": "containerId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Retrieve all configured issue types and subtypes for the project."
+                          },
+                          "response": [
+                            {
+                              "id": "b548596f-66a9-4a4d-abbb-223195779b6f",
+                              "name": "Issue types",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/issues/v2/containers/:containerId/issue-types",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "issues",
+                                    "v2",
+                                    "containers",
+                                    ":containerId",
+                                    "issue-types"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "containerId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isActive\": \"<boolean>\",\n      \"subtypes\": [\n        {\n          \"id\": \"<string>\",\n          \"title\": \"<string>\",\n          \"isActive\": \"<boolean>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"title\": \"<string>\",\n          \"isActive\": \"<boolean>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isActive\": \"<boolean>\",\n      \"subtypes\": [\n        {\n          \"id\": \"<string>\",\n          \"title\": \"<string>\",\n          \"isActive\": \"<boolean>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"title\": \"<string>\",\n          \"isActive\": \"<boolean>\"\n        }\n      ]\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:06:22.000Z",
+                              "updatedAt": "2026-07-28T01:06:22.000Z",
+                              "uid": "35240-b548596f-66a9-4a4d-abbb-223195779b6f"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:06:22.000Z",
+                          "updatedAt": "2026-07-28T01:06:22.000Z",
+                          "uid": "35240-b019a46f-9d17-49b7-ba73-8b58ea4f32ca"
+                        }
+                      ],
+                      "id": "d4ed6736-4681-466d-ac85-f02ae5a20c8d",
+                      "createdAt": "2026-07-28T01:06:22.000Z",
+                      "updatedAt": "2026-07-28T01:06:22.000Z",
+                      "uid": "35240-d4ed6736-4681-466d-ac85-f02ae5a20c8d"
+                    }
+                  ],
+                  "id": "f2efc4b1-f70a-49ec-9933-2df073a3c483",
+                  "createdAt": "2026-07-28T01:06:22.000Z",
+                  "updatedAt": "2026-07-28T01:06:22.000Z",
+                  "uid": "35240-f2efc4b1-f70a-49ec-9933-2df073a3c483"
+                }
+              ],
+              "id": "6bf53a3c-d3b7-455e-afd2-5660a811a7e0",
+              "createdAt": "2026-07-28T01:06:22.000Z",
+              "updatedAt": "2026-07-28T01:06:22.000Z",
+              "uid": "35240-6bf53a3c-d3b7-455e-afd2-5660a811a7e0"
+            }
+          ],
+          "id": "60ee8124-109c-411b-b135-e3bfcea01381",
+          "createdAt": "2026-07-28T01:06:22.000Z",
+          "updatedAt": "2026-07-28T01:06:22.000Z",
+          "uid": "35240-60ee8124-109c-411b-b135-e3bfcea01381"
+        }
+      ],
+      "id": "42f7ce8a-cc39-41f7-adc2-97a6770f4594",
+      "createdAt": "2026-07-28T01:06:22.000Z",
+      "updatedAt": "2026-07-28T01:06:22.000Z",
+      "uid": "35240-42f7ce8a-cc39-41f7-adc2-97a6770f4594"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "account:read account:write data:read data:write",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://developer.api.autodesk.com/authentication/v2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://developer.api.autodesk.com/authentication/v2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://developer.api.autodesk.com"
+    }
+  ]
+}

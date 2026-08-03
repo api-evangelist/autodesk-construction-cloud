@@ -1,0 +1,896 @@
+{
+  "info": {
+    "_postman_id": "07e4f2cb-5d1a-454b-adad-2c0a234cce4c",
+    "name": "Autodesk Construction Cloud Admin Companies Projects API",
+    "description": "The Autodesk Construction Cloud (ACC) Admin API provides programmatic management of ACC accounts, projects, users, and company settings. REST APIs enable automation of project provisioning, user access control, and account-level administration across ACC and BIM 360 deployments.\n\nContact Support:\n Name: Autodesk Platform Services",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:06:22.000Z",
+    "updatedAt": "2026-07-28T01:06:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-07e4f2cb-5d1a-454b-adad-2c0a234cce4c"
+  },
+  "item": [
+    {
+      "name": "construction",
+      "item": [
+        {
+          "name": "admin",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "accounts",
+                  "item": [
+                    {
+                      "name": "{accountId}",
+                      "item": [
+                        {
+                          "name": "projects",
+                          "item": [
+                            {
+                              "name": "{projectId}",
+                              "item": [
+                                {
+                                  "name": "Get project by ID",
+                                  "id": "6d05087c-f768-4957-a232-233fb871e0c8",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/construction/admin/v1/accounts/:accountId/projects/:projectId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "construction",
+                                        "admin",
+                                        "v1",
+                                        "accounts",
+                                        ":accountId",
+                                        "projects",
+                                        ":projectId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "cb8f3aa2-fbcf-4084-b60b-3b742a142cca",
+                                          "key": "accountId",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "1c5efd3d-d76d-4bab-b9df-a7d8b0bbd0e7",
+                                          "key": "projectId",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Retrieve detailed information about a specific ACC project."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "4d599356-c29f-489e-9cb3-c9867b9ceacd",
+                                      "name": "Project details",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: oauth2",
+                                            "key": "Authorization",
+                                            "value": "<token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/construction/admin/v1/accounts/:accountId/projects/:projectId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "construction",
+                                            "admin",
+                                            "v1",
+                                            "accounts",
+                                            ":accountId",
+                                            "projects",
+                                            ":projectId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "accountId"
+                                            },
+                                            {
+                                              "key": "projectId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"project\": {\n    \"id\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"startDate\": \"<date>\",\n    \"endDate\": \"<date>\",\n    \"projectValue\": {\n      \"value\": \"<number>\",\n      \"currency\": \"<string>\"\n    },\n    \"status\": \"active\",\n    \"jobNumber\": \"<string>\",\n    \"addressLine1\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"stateOrProvince\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"timezone\": \"<string>\",\n    \"language\": \"<string>\",\n    \"constructionType\": \"<string>\",\n    \"deliveryMethod\": \"<string>\",\n    \"contractType\": \"<string>\",\n    \"currentPhase\": \"<string>\",\n    \"businessUnitsId\": \"<string>\",\n    \"imageUrl\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T01:06:23.000Z",
+                                      "updatedAt": "2026-07-28T01:06:23.000Z",
+                                      "uid": "35240-4d599356-c29f-489e-9cb3-c9867b9ceacd"
+                                    },
+                                    {
+                                      "id": "d811b0e3-de0f-40f2-9a32-f1f83497ac88",
+                                      "name": "Not found",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: oauth2",
+                                            "key": "Authorization",
+                                            "value": "<token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/construction/admin/v1/accounts/:accountId/projects/:projectId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "construction",
+                                            "admin",
+                                            "v1",
+                                            "accounts",
+                                            ":accountId",
+                                            "projects",
+                                            ":projectId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "accountId"
+                                            },
+                                            {
+                                              "key": "projectId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T01:06:23.000Z",
+                                      "updatedAt": "2026-07-28T01:06:23.000Z",
+                                      "uid": "35240-d811b0e3-de0f-40f2-9a32-f1f83497ac88"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:06:23.000Z",
+                                  "updatedAt": "2026-07-28T01:06:23.000Z",
+                                  "uid": "35240-6d05087c-f768-4957-a232-233fb871e0c8"
+                                },
+                                {
+                                  "name": "Update project",
+                                  "id": "7a9a6624-6e84-4df4-8715-32e245e8a167",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "PATCH",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"suspended\",\n  \"endDate\": \"<date>\",\n  \"currentPhase\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/construction/admin/v1/accounts/:accountId/projects/:projectId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "construction",
+                                        "admin",
+                                        "v1",
+                                        "accounts",
+                                        ":accountId",
+                                        "projects",
+                                        ":projectId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "1f16aaee-d68f-4d6d-b603-d00ec572957d",
+                                          "key": "accountId",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "8df427a0-82a1-4de0-ab1d-430816e256bc",
+                                          "key": "projectId",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Update project settings, status, or metadata."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "c6ccc7b5-f6db-4610-a12a-e75301ae0b01",
+                                      "name": "Project updated",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: oauth2",
+                                            "key": "Authorization",
+                                            "value": "<token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"suspended\",\n  \"endDate\": \"<date>\",\n  \"currentPhase\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/construction/admin/v1/accounts/:accountId/projects/:projectId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "construction",
+                                            "admin",
+                                            "v1",
+                                            "accounts",
+                                            ":accountId",
+                                            "projects",
+                                            ":projectId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "accountId"
+                                            },
+                                            {
+                                              "key": "projectId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"project\": {\n    \"id\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"startDate\": \"<date>\",\n    \"endDate\": \"<date>\",\n    \"projectValue\": {\n      \"value\": \"<number>\",\n      \"currency\": \"<string>\"\n    },\n    \"status\": \"active\",\n    \"jobNumber\": \"<string>\",\n    \"addressLine1\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"stateOrProvince\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"timezone\": \"<string>\",\n    \"language\": \"<string>\",\n    \"constructionType\": \"<string>\",\n    \"deliveryMethod\": \"<string>\",\n    \"contractType\": \"<string>\",\n    \"currentPhase\": \"<string>\",\n    \"businessUnitsId\": \"<string>\",\n    \"imageUrl\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T01:06:23.000Z",
+                                      "updatedAt": "2026-07-28T01:06:23.000Z",
+                                      "uid": "35240-c6ccc7b5-f6db-4610-a12a-e75301ae0b01"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:06:23.000Z",
+                                  "updatedAt": "2026-07-28T01:06:23.000Z",
+                                  "uid": "35240-7a9a6624-6e84-4df4-8715-32e245e8a167"
+                                }
+                              ],
+                              "id": "4435df6d-12dc-4f12-9726-3c494c65c831",
+                              "createdAt": "2026-07-28T01:06:23.000Z",
+                              "updatedAt": "2026-07-28T01:06:23.000Z",
+                              "uid": "35240-4435df6d-12dc-4f12-9726-3c494c65c831"
+                            },
+                            {
+                              "name": "Get account projects",
+                              "id": "c100ffb7-74f3-4bb4-b053-28b605b7d5ca",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/construction/admin/v1/accounts/:accountId/projects?filter[status]=active&filter[name]=<string>&include=<string>&limit=20&offset=0",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "construction",
+                                    "admin",
+                                    "v1",
+                                    "accounts",
+                                    ":accountId",
+                                    "projects"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter by project status",
+                                      "key": "filter[status]",
+                                      "value": "active"
+                                    },
+                                    {
+                                      "description": "Filter projects by name (partial match)",
+                                      "key": "filter[name]",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Include related resources",
+                                      "key": "include",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "key": "limit",
+                                      "value": "20"
+                                    },
+                                    {
+                                      "key": "offset",
+                                      "value": "0"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "f0cea0a5-1b39-4c37-abbf-a9b33a1e343e",
+                                      "key": "accountId",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier of the ACC account"
+                                    }
+                                  ]
+                                },
+                                "description": "Retrieve all projects associated with the specified ACC account. Supports filtering by project status, project type, and name search."
+                              },
+                              "response": [
+                                {
+                                  "id": "5de1858d-b00b-4ceb-a84d-74621a6a26f2",
+                                  "name": "List of projects",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/construction/admin/v1/accounts/:accountId/projects?filter[status]=active&filter[name]=<string>&include=<string>&limit=20&offset=0",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "construction",
+                                        "admin",
+                                        "v1",
+                                        "accounts",
+                                        ":accountId",
+                                        "projects"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Filter by project status",
+                                          "key": "filter[status]",
+                                          "value": "active"
+                                        },
+                                        {
+                                          "description": "Filter projects by name (partial match)",
+                                          "key": "filter[name]",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Include related resources",
+                                          "key": "include",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "key": "limit",
+                                          "value": "20"
+                                        },
+                                        {
+                                          "key": "offset",
+                                          "value": "0"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"accountId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"startDate\": \"<date>\",\n      \"endDate\": \"<date>\",\n      \"projectValue\": {\n        \"value\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"status\": \"inactive\",\n      \"jobNumber\": \"<string>\",\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"stateOrProvince\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"timezone\": \"<string>\",\n      \"language\": \"<string>\",\n      \"constructionType\": \"<string>\",\n      \"deliveryMethod\": \"<string>\",\n      \"contractType\": \"<string>\",\n      \"currentPhase\": \"<string>\",\n      \"businessUnitsId\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"accountId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"startDate\": \"<date>\",\n      \"endDate\": \"<date>\",\n      \"projectValue\": {\n        \"value\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"status\": \"inactive\",\n      \"jobNumber\": \"<string>\",\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"stateOrProvince\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"timezone\": \"<string>\",\n      \"language\": \"<string>\",\n      \"constructionType\": \"<string>\",\n      \"deliveryMethod\": \"<string>\",\n      \"contractType\": \"<string>\",\n      \"currentPhase\": \"<string>\",\n      \"businessUnitsId\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    }\n  ],\n  \"pagination\": {\n    \"limit\": \"<integer>\",\n    \"offset\": \"<integer>\",\n    \"totalResults\": \"<integer>\",\n    \"nextUrl\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T01:06:23.000Z",
+                                  "updatedAt": "2026-07-28T01:06:23.000Z",
+                                  "uid": "35240-5de1858d-b00b-4ceb-a84d-74621a6a26f2"
+                                },
+                                {
+                                  "id": "c239ccac-8fec-428b-83e5-33120b20eb32",
+                                  "name": "Unauthorized",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/construction/admin/v1/accounts/:accountId/projects?filter[status]=active&filter[name]=<string>&include=<string>&limit=20&offset=0",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "construction",
+                                        "admin",
+                                        "v1",
+                                        "accounts",
+                                        ":accountId",
+                                        "projects"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Filter by project status",
+                                          "key": "filter[status]",
+                                          "value": "active"
+                                        },
+                                        {
+                                          "description": "Filter projects by name (partial match)",
+                                          "key": "filter[name]",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Include related resources",
+                                          "key": "include",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "key": "limit",
+                                          "value": "20"
+                                        },
+                                        {
+                                          "key": "offset",
+                                          "value": "0"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T01:06:23.000Z",
+                                  "updatedAt": "2026-07-28T01:06:23.000Z",
+                                  "uid": "35240-c239ccac-8fec-428b-83e5-33120b20eb32"
+                                },
+                                {
+                                  "id": "e0f47ef4-0dbb-4ee9-8a50-c8d1d1e1533b",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/construction/admin/v1/accounts/:accountId/projects?filter[status]=active&filter[name]=<string>&include=<string>&limit=20&offset=0",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "construction",
+                                        "admin",
+                                        "v1",
+                                        "accounts",
+                                        ":accountId",
+                                        "projects"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Filter by project status",
+                                          "key": "filter[status]",
+                                          "value": "active"
+                                        },
+                                        {
+                                          "description": "Filter projects by name (partial match)",
+                                          "key": "filter[name]",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Include related resources",
+                                          "key": "include",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "key": "limit",
+                                          "value": "20"
+                                        },
+                                        {
+                                          "key": "offset",
+                                          "value": "0"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T01:06:23.000Z",
+                                  "updatedAt": "2026-07-28T01:06:23.000Z",
+                                  "uid": "35240-e0f47ef4-0dbb-4ee9-8a50-c8d1d1e1533b"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:06:23.000Z",
+                              "updatedAt": "2026-07-28T01:06:23.000Z",
+                              "uid": "35240-c100ffb7-74f3-4bb4-b053-28b605b7d5ca"
+                            },
+                            {
+                              "name": "Create a new project",
+                              "id": "a57e6f0d-bfdf-4f9b-a30f-0c5a248f4e5b",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"projectValue\": {\n    \"value\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"status\": \"active\",\n  \"jobNumber\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"language\": \"<string>\",\n  \"constructionType\": \"<string>\",\n  \"deliveryMethod\": \"<string>\",\n  \"contractType\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/construction/admin/v1/accounts/:accountId/projects",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "construction",
+                                    "admin",
+                                    "v1",
+                                    "accounts",
+                                    ":accountId",
+                                    "projects"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "cefdcf50-7ed6-448c-a3c5-0c6cd7196765",
+                                      "key": "accountId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Create a new construction project in the specified ACC account."
+                              },
+                              "response": [
+                                {
+                                  "id": "ede26d2e-5d73-43ff-92e9-e807c3f19c61",
+                                  "name": "Project created",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"name\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"projectValue\": {\n    \"value\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"status\": \"active\",\n  \"jobNumber\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"language\": \"<string>\",\n  \"constructionType\": \"<string>\",\n  \"deliveryMethod\": \"<string>\",\n  \"contractType\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/construction/admin/v1/accounts/:accountId/projects",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "construction",
+                                        "admin",
+                                        "v1",
+                                        "accounts",
+                                        ":accountId",
+                                        "projects"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"project\": {\n    \"id\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"startDate\": \"<date>\",\n    \"endDate\": \"<date>\",\n    \"projectValue\": {\n      \"value\": \"<number>\",\n      \"currency\": \"<string>\"\n    },\n    \"status\": \"active\",\n    \"jobNumber\": \"<string>\",\n    \"addressLine1\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"stateOrProvince\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"timezone\": \"<string>\",\n    \"language\": \"<string>\",\n    \"constructionType\": \"<string>\",\n    \"deliveryMethod\": \"<string>\",\n    \"contractType\": \"<string>\",\n    \"currentPhase\": \"<string>\",\n    \"businessUnitsId\": \"<string>\",\n    \"imageUrl\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T01:06:23.000Z",
+                                  "updatedAt": "2026-07-28T01:06:23.000Z",
+                                  "uid": "35240-ede26d2e-5d73-43ff-92e9-e807c3f19c61"
+                                },
+                                {
+                                  "id": "6ca3551e-b45d-4b43-b634-a9b80ba0f834",
+                                  "name": "Bad request",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"name\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"projectValue\": {\n    \"value\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"status\": \"active\",\n  \"jobNumber\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"language\": \"<string>\",\n  \"constructionType\": \"<string>\",\n  \"deliveryMethod\": \"<string>\",\n  \"contractType\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/construction/admin/v1/accounts/:accountId/projects",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "construction",
+                                        "admin",
+                                        "v1",
+                                        "accounts",
+                                        ":accountId",
+                                        "projects"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T01:06:23.000Z",
+                                  "updatedAt": "2026-07-28T01:06:23.000Z",
+                                  "uid": "35240-6ca3551e-b45d-4b43-b634-a9b80ba0f834"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:06:23.000Z",
+                              "updatedAt": "2026-07-28T01:06:23.000Z",
+                              "uid": "35240-a57e6f0d-bfdf-4f9b-a30f-0c5a248f4e5b"
+                            }
+                          ],
+                          "id": "c79ee5a5-66fd-42a6-8391-14730bd12033",
+                          "createdAt": "2026-07-28T01:06:23.000Z",
+                          "updatedAt": "2026-07-28T01:06:23.000Z",
+                          "uid": "35240-c79ee5a5-66fd-42a6-8391-14730bd12033"
+                        }
+                      ],
+                      "id": "f1d590e5-0fc0-4233-a459-2101177cc951",
+                      "createdAt": "2026-07-28T01:06:23.000Z",
+                      "updatedAt": "2026-07-28T01:06:23.000Z",
+                      "uid": "35240-f1d590e5-0fc0-4233-a459-2101177cc951"
+                    }
+                  ],
+                  "id": "c34fc4bf-ae78-47e9-af7f-0b8c0f5f9136",
+                  "createdAt": "2026-07-28T01:06:23.000Z",
+                  "updatedAt": "2026-07-28T01:06:23.000Z",
+                  "uid": "35240-c34fc4bf-ae78-47e9-af7f-0b8c0f5f9136"
+                }
+              ],
+              "id": "43a76d33-718d-4da6-ac6a-a36c886965d3",
+              "createdAt": "2026-07-28T01:06:23.000Z",
+              "updatedAt": "2026-07-28T01:06:23.000Z",
+              "uid": "35240-43a76d33-718d-4da6-ac6a-a36c886965d3"
+            }
+          ],
+          "id": "2914c946-46a1-4291-bf3d-a8f18d9240a4",
+          "createdAt": "2026-07-28T01:06:23.000Z",
+          "updatedAt": "2026-07-28T01:06:23.000Z",
+          "uid": "35240-2914c946-46a1-4291-bf3d-a8f18d9240a4"
+        }
+      ],
+      "id": "1c02f680-fb22-4803-ba0f-58a6f69ecc40",
+      "createdAt": "2026-07-28T01:06:23.000Z",
+      "updatedAt": "2026-07-28T01:06:23.000Z",
+      "uid": "35240-1c02f680-fb22-4803-ba0f-58a6f69ecc40"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "account:read account:write data:read data:write",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://developer.api.autodesk.com/authentication/v2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://developer.api.autodesk.com/authentication/v2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://developer.api.autodesk.com"
+    }
+  ]
+}
