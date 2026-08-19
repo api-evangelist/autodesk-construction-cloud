@@ -1,0 +1,155 @@
+{
+  "item": [
+    {
+      "id": "3327e207-1ed1-4a46-b991-496c83cf4c7d",
+      "name": "IssueTypes",
+      "description": {
+        "content": "Issue type configuration",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1c1211cd-4f45-430e-b9c8-ccc7a9a59f13",
+          "name": "List issue types",
+          "request": {
+            "name": "List issue types",
+            "description": {
+              "content": "Retrieve all configured issue types and subtypes for the project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "issues",
+                "v2",
+                "containers",
+                ":containerId",
+                "issue-types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "containerId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9b297b62-b06f-476c-8ac1-fdb8eb41c619",
+              "name": "Issue types",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    "v2",
+                    "containers",
+                    ":containerId",
+                    "issue-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "containerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"isActive\": true,\n      \"subtypes\": [\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"isActive\": true\n        },\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"isActive\": false\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"isActive\": true,\n      \"subtypes\": [\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"isActive\": true\n        },\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"isActive\": false\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://developer.api.autodesk.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "account:read account:write data:read data:write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://developer.api.autodesk.com/authentication/v2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://developer.api.autodesk.com/authentication/v2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "16d595d0-7bd1-431b-8e09-ab52ef024ce7",
+    "name": "Autodesk Construction Cloud Admin Companies IssueTypes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Autodesk Construction Cloud (ACC) Admin API provides programmatic management of ACC accounts, projects, users, and company settings. REST APIs enable automation of project provisioning, user access control, and account-level administration across ACC and BIM 360 deployments.\n\nContact Support:\n Name: Autodesk Platform Services",
+      "type": "text/plain"
+    }
+  }
+}
