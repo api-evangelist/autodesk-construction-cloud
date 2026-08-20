@@ -89,6 +89,11 @@ apis:
   tags:
   - ACC
   - Construction
+  - Document-Management
+  - RFI
+  tags_raw:
+  - ACC
+  - Construction
   - Document Management
   - RFI
   properties:
@@ -107,6 +112,11 @@ apis:
   humanURL: https://aps.autodesk.com/en/docs/acc/v1/overview/
   baseURL: https://developer.api.autodesk.com
   tags:
+  - ACC
+  - Construction
+  - Document-Management
+  - Submittals
+  tags_raw:
   - ACC
   - Construction
   - Document Management
@@ -198,6 +208,8 @@ apis:
   humanURL: https://aps.autodesk.com/en/docs/acc/v1/overview/
   baseURL: https://developer.api.autodesk.com
   tags:
+  - Issue Types
+  tags_raw:
   - IssueTypes
   properties:
   - type: OpenAPI
@@ -225,6 +237,8 @@ apis:
   humanURL: https://aps.autodesk.com/en/docs/acc/v1/overview/
   baseURL: https://developer.api.autodesk.com
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
@@ -252,6 +266,8 @@ apis:
   humanURL: https://aps.autodesk.com/en/docs/acc/v1/overview/
   baseURL: https://developer.api.autodesk.com
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
