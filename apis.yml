@@ -302,6 +302,9 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/examples/acc-issue-example.json
 common:
+- type: CapabilityMap
+  url: capabilities/autodesk-construction-cloud-capability-edges.yml
+  name: Autodesk Construction Cloud Business Capability Map
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/autodesk-construction-cloud/overview
 - type: AgenticAccess
