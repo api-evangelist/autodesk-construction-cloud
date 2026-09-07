@@ -17,6 +17,13 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "autodesk-construction-cloud-companies-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "autodesk-construction-cloud-issues-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "autodesk-construction-cloud-issuetypes-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "autodesk-construction-cloud-projects-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "autodesk-construction-cloud-users-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }

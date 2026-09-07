@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Autodesk Construction Cloud Admin Companies Users API
   description: The Autodesk Construction Cloud (ACC) Admin API provides programmatic management of ACC accounts, projects, users, and company settings. REST APIs enable automation of project provisioning, user access control, and account-level administration across ACC and BIM 360 deployments.
@@ -121,21 +121,15 @@ paths:
                 $ref: '#/components/schemas/AccountUsersResponse'
 components:
   schemas:
-    ProjectUserRequest:
+    ProjectUsersResponse:
       type: object
-      required:
-      - email
-      - roleIds
       properties:
-        email:
-          type: string
-          format: email
-        roleIds:
+        results:
           type: array
           items:
-            type: string
-        companyId:
-          type: string
+            $ref: '#/components/schemas/ProjectUser'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     Pagination:
       type: object
       properties:
@@ -147,33 +141,6 @@ components:
           type: integer
         nextUrl:
           type: string
-    ProjectUsersResponse:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProjectUser'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    AccountUsersResponse:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              email:
-                type: string
-              name:
-                type: string
-              status:
-                type: string
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     ProjectUser:
       type: object
       properties:
@@ -204,6 +171,39 @@ components:
         createdAt:
           type: string
           format: date-time
+    AccountUsersResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              email:
+                type: string
+              name:
+                type: string
+              status:
+                type: string
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    ProjectUserRequest:
+      type: object
+      required:
+      - email
+      - roleIds
+      properties:
+        email:
+          type: string
+          format: email
+        roleIds:
+          type: array
+          items:
+            type: string
+        companyId:
+          type: string
   securitySchemes:
     oauth2ThreeLegged:
       type: oauth2
