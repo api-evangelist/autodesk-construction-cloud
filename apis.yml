@@ -214,35 +214,6 @@ apis:
   - type: Examples
     url: >-
       https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/examples/acc-issue-example.json
-- aid: autodesk-construction-cloud:autodesk-construction-cloud-issuetypes-api
-  name: Autodesk Construction Cloud IssueTypes API
-  description: Issue type configuration
-  humanURL: https://aps.autodesk.com/en/docs/acc/v1/overview/
-  baseURL: https://developer.api.autodesk.com
-  tags:
-  - Issue Types
-  tags_raw:
-  - IssueTypes
-  properties:
-  - type: OpenAPI
-    url: openapi/autodesk-construction-cloud-issuetypes-api-openapi.yml
-  - type: Documentation
-    url: https://aps.autodesk.com/en/docs/acc/v1/overview/
-  - type: APIReference
-    url: >-
-      https://aps.autodesk.com/en/docs/acc/v1/reference/http/admin-accounts-accountidprojects-GET/
-  - type: GettingStarted
-    url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
-  - type: GraphQL
-    url: graphql/autodesk-construction-cloud-graphql.md
-  - type: APIReference
-    url: https://aps.autodesk.com/en/docs/acc/v1/reference/http/issues-issues-POST/
-  - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/json-schema/acc-issue-schema.json
-  - type: Examples
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/examples/acc-issue-example.json
 - aid: autodesk-construction-cloud:autodesk-construction-cloud-projects-api
   name: Autodesk Construction Cloud Projects API
   description: ACC project management
@@ -284,6 +255,33 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/autodesk-construction-cloud-users-api-openapi.yml
+  - type: Documentation
+    url: https://aps.autodesk.com/en/docs/acc/v1/overview/
+  - type: APIReference
+    url: >-
+      https://aps.autodesk.com/en/docs/acc/v1/reference/http/admin-accounts-accountidprojects-GET/
+  - type: GettingStarted
+    url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
+  - type: GraphQL
+    url: graphql/autodesk-construction-cloud-graphql.md
+  - type: APIReference
+    url: https://aps.autodesk.com/en/docs/acc/v1/reference/http/issues-issues-POST/
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/json-schema/acc-issue-schema.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/examples/acc-issue-example.json
+- aid: autodesk-construction-cloud:autodesk-construction-cloud-issue-types-api
+  name: Autodesk Construction Cloud Issue Types API
+  description: Issue type configuration
+  humanURL: https://aps.autodesk.com/en/docs/acc/v1/overview/
+  baseURL: https://developer.api.autodesk.com
+  tags:
+  - Issue Types
+  properties:
+  - type: OpenAPI
+    url: openapi/autodesk-construction-cloud-issue-types-api-openapi.yml
   - type: Documentation
     url: https://aps.autodesk.com/en/docs/acc/v1/overview/
   - type: APIReference
