@@ -57,6 +57,12 @@ apis:
   baseURL: https://developer.api.autodesk.com
   tags:
   - ACC
+  - Budgets
+  - Construction
+  - Contracts
+  - Cost Management
+  tags_raw:
+  - ACC
   - Budget
   - Construction
   - Contracts
