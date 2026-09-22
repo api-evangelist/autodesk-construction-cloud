@@ -1,34 +1,32 @@
-# Kin Score artifact — autodesk-construction-cloud — 2026-08-20T191845
+# Kin Score artifact — autodesk-construction-cloud — 2026-09-20T232958
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: autodesk-construction-cloud
-  schema_version: 0.12.0
-  scored_at: '2026-08-20'
-  run_ts: 2026-08-20T191845
-  composite: 50.5
+  schema_version: 0.22.0
+  scored_at: '2026-09-20'
+  run_ts: 2026-09-20T232958
+  composite: 50.2
   band: developing
   facets:
-    discoverability: 74.1
-    contract_quality: 77.4
-    governance: 11.4
+    discoverability: 68.5
+    contract_quality: 77.6
+    contract_governance: 13.6
     operational_transparency: 42.1
-    developer_ergonomics: 47.6
-    commercial_clarity: 36.8
-    contract_governance: 11.4
+    developer_ergonomics: 51.2
     access_clarity: 36.8
   agent_readiness:
-    score: 30.3
+    score: 27.2
     band: agent-aware
     dimensions:
       spec_presence: true
       agentic_access: derived
       reversibility_documented: false
       mcp_server: false
-      auth_clarity: true
+      auth_clarity: negotiable
       idempotency: false
       error_semantics: false
-      openapi_examples: false
+      openapi_examples: documented
       rate_limit_signal: documented
       event_surface_described: derived
       agent_skills: false
@@ -36,6 +34,10 @@ kin_score:
       consent_identity: false
       agent_card: false
       dry_run_mode: false
+      delegated_identity: documented
+      protected_resource_metadata: false
+      dynamic_client_registration: false
+      agentic_commerce: false
   provenance:
     agentic_access: derived
     contracts:
