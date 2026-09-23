@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Autodesk Construction Cloud Admin Companies Projects API
+  title: Autodesk Construction Cloud Admin Projects API
   description: The Autodesk Construction Cloud (ACC) Admin API provides programmatic management of ACC accounts, projects, users, and company settings. REST APIs enable automation of project provisioning, user access control, and account-level administration across ACC and BIM 360 deployments.
   version: 1.0.0
   contact:
@@ -157,17 +157,11 @@ paths:
                 $ref: '#/components/schemas/ProjectResponse'
 components:
   schemas:
-    Pagination:
+    ProjectResponse:
       type: object
       properties:
-        limit:
-          type: integer
-        offset:
-          type: integer
-        totalResults:
-          type: integer
-        nextUrl:
-          type: string
+        project:
+          $ref: '#/components/schemas/Project'
     Project:
       type: object
       properties:
@@ -233,11 +227,15 @@ components:
         updatedAt:
           type: string
           format: date-time
-    ProjectResponse:
+    ProjectsResponse:
       type: object
       properties:
-        project:
-          $ref: '#/components/schemas/Project'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     ProjectRequest:
       type: object
       required:
@@ -277,6 +275,17 @@ components:
           type: string
         contractType:
           type: string
+    Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        totalResults:
+          type: integer
+        nextUrl:
+          type: string
     Error:
       type: object
       properties:
@@ -302,28 +311,7 @@ components:
           format: date
         currentPhase:
           type: string
-    ProjectsResponse:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Project'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
   responses:
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Unauthorized
       content:
@@ -332,6 +320,18 @@ components:
             $ref: '#/components/schemas/Error'
     Forbidden:
       description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request
       content:
         application/json:
           schema:

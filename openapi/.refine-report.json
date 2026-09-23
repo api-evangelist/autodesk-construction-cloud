@@ -1,29 +1,33 @@
 {
   "provider": "autodesk-construction-cloud",
   "sources": [
-    "autodesk-construction-cloud-companies-api-openapi.yml",
-    "autodesk-construction-cloud-issues-api-openapi.yml",
-    "autodesk-construction-cloud-issuetypes-api-openapi.yml",
-    "autodesk-construction-cloud-projects-api-openapi.yml",
-    "autodesk-construction-cloud-users-api-openapi.yml"
+    "_original/acc-admin-openapi.yml",
+    "_original/acc-issues-openapi.yml"
   ],
   "outputs": [
     "autodesk-construction-cloud-companies-api-openapi.yml",
-    "autodesk-construction-cloud-issues-api-openapi.yml",
-    "autodesk-construction-cloud-issuetypes-api-openapi.yml",
     "autodesk-construction-cloud-projects-api-openapi.yml",
-    "autodesk-construction-cloud-users-api-openapi.yml"
+    "autodesk-construction-cloud-users-api-openapi.yml",
+    "autodesk-construction-cloud-issuetypes-api-openapi.yml",
+    "autodesk-construction-cloud-issues-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
-    "autodesk-construction-cloud-companies-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "autodesk-construction-cloud-issues-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "autodesk-construction-cloud-issuetypes-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "autodesk-construction-cloud-projects-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "autodesk-construction-cloud-users-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "apis.yml register: already-registered"
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "acc-admin-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "acc-issues-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: autodesk-construction-cloud-issue-types-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 10 total)"
   ],
-  "skipped": []
+  "skipped": [
+    "autodesk-construction-cloud-companies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "autodesk-construction-cloud-issue-types-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "autodesk-construction-cloud-issues-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "autodesk-construction-cloud-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "autodesk-construction-cloud-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Autodesk Construction Cloud Admin Companies Issue Types API
-  description: The Autodesk Construction Cloud (ACC) Admin API provides programmatic management of ACC accounts, projects, users, and company settings. REST APIs enable automation of project provisioning, user access control, and account-level administration across ACC and BIM 360 deployments.
-  version: 1.0.0
+  title: Autodesk Construction Cloud Issues Issue Types API
+  description: The ACC Issues API enables creation, retrieval, and management of construction issues, observations, and punch list items. REST APIs integrate with field management workflows for quality control, safety reporting, and project closeout in Autodesk Construction Cloud.
+  version: 2.0.0
   contact:
     name: Autodesk Platform Services
     url: https://aps.autodesk.com/en/docs/acc/v1/overview/
@@ -11,9 +11,8 @@ servers:
   description: Autodesk Platform Services API
 security:
 - oauth2ThreeLegged: []
-- oauth2TwoLegged: []
 tags:
-- name: IssueTypes
+- name: Issue Types
   description: Issue type configuration
 paths:
   /issues/v2/containers/{containerId}/issue-types:
@@ -22,7 +21,7 @@ paths:
       summary: List issue types
       description: Retrieve all configured issue types and subtypes for the project.
       tags:
-      - IssueTypes
+      - Issue Types
       parameters:
       - name: containerId
         in: path
@@ -73,15 +72,5 @@ components:
           authorizationUrl: https://developer.api.autodesk.com/authentication/v2/authorize
           tokenUrl: https://developer.api.autodesk.com/authentication/v2/token
           scopes:
-            account:read: Read account data
-            account:write: Modify account data
             data:read: Read project data
             data:write: Write project data
-    oauth2TwoLegged:
-      type: oauth2
-      flows:
-        clientCredentials:
-          tokenUrl: https://developer.api.autodesk.com/authentication/v2/token
-          scopes:
-            account:read: Read account data
-            data:read: Read project data

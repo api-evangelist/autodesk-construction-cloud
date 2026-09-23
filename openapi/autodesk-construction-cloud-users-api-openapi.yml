@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Autodesk Construction Cloud Admin Companies Users API
+  title: Autodesk Construction Cloud Admin Users API
   description: The Autodesk Construction Cloud (ACC) Admin API provides programmatic management of ACC accounts, projects, users, and company settings. REST APIs enable automation of project provisioning, user access control, and account-level administration across ACC and BIM 360 deployments.
   version: 1.0.0
   contact:
@@ -130,47 +130,6 @@ components:
             $ref: '#/components/schemas/ProjectUser'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    Pagination:
-      type: object
-      properties:
-        limit:
-          type: integer
-        offset:
-          type: integer
-        totalResults:
-          type: integer
-        nextUrl:
-          type: string
-    ProjectUser:
-      type: object
-      properties:
-        id:
-          type: string
-        userId:
-          type: string
-        email:
-          type: string
-        name:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        status:
-          type: string
-          enum:
-          - active
-          - inactive
-          - pending
-        roleIds:
-          type: array
-          items:
-            type: string
-        companyId:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
     AccountUsersResponse:
       type: object
       properties:
@@ -203,6 +162,47 @@ components:
           items:
             type: string
         companyId:
+          type: string
+    ProjectUser:
+      type: object
+      properties:
+        id:
+          type: string
+        userId:
+          type: string
+        email:
+          type: string
+        name:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+          - pending
+        roleIds:
+          type: array
+          items:
+            type: string
+        companyId:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+    Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        totalResults:
+          type: integer
+        nextUrl:
           type: string
   securitySchemes:
     oauth2ThreeLegged:
