@@ -107,13 +107,14 @@ apis:
   tags:
   - ACC
   - Construction
-  - Document-Management
+  - Document Management
   - RFI
   tags_raw:
   - ACC
   - Construction
   - Document Management
   - RFI
+  - Document-Management
   properties:
   - type: Documentation
     url: https://aps.autodesk.com/en/docs/acc/v1/overview/
@@ -132,13 +133,14 @@ apis:
   tags:
   - ACC
   - Construction
-  - Document-Management
+  - Document Management
   - Submittals
   tags_raw:
   - ACC
   - Construction
   - Document Management
   - Submittals
+  - Document-Management
   properties:
   - type: Documentation
     url: https://aps.autodesk.com/en/docs/acc/v1/overview/
@@ -183,8 +185,6 @@ apis:
       https://aps.autodesk.com/en/docs/acc/v1/reference/http/admin-accounts-accountidprojects-GET/
   - type: GettingStarted
     url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
-  - type: GraphQL
-    url: graphql/autodesk-construction-cloud-graphql.md
   - type: APIReference
     url: https://aps.autodesk.com/en/docs/acc/v1/reference/http/issues-issues-POST/
   - type: JSONSchema
@@ -210,8 +210,6 @@ apis:
       https://aps.autodesk.com/en/docs/acc/v1/reference/http/admin-accounts-accountidprojects-GET/
   - type: GettingStarted
     url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
-  - type: GraphQL
-    url: graphql/autodesk-construction-cloud-graphql.md
   - type: APIReference
     url: https://aps.autodesk.com/en/docs/acc/v1/reference/http/issues-issues-POST/
   - type: JSONSchema
@@ -239,8 +237,6 @@ apis:
       https://aps.autodesk.com/en/docs/acc/v1/reference/http/admin-accounts-accountidprojects-GET/
   - type: GettingStarted
     url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
-  - type: GraphQL
-    url: graphql/autodesk-construction-cloud-graphql.md
   - type: APIReference
     url: https://aps.autodesk.com/en/docs/acc/v1/reference/http/issues-issues-POST/
   - type: JSONSchema
@@ -268,8 +264,6 @@ apis:
       https://aps.autodesk.com/en/docs/acc/v1/reference/http/admin-accounts-accountidprojects-GET/
   - type: GettingStarted
     url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
-  - type: GraphQL
-    url: graphql/autodesk-construction-cloud-graphql.md
   - type: APIReference
     url: https://aps.autodesk.com/en/docs/acc/v1/reference/http/issues-issues-POST/
   - type: JSONSchema
@@ -295,8 +289,6 @@ apis:
       https://aps.autodesk.com/en/docs/acc/v1/reference/http/admin-accounts-accountidprojects-GET/
   - type: GettingStarted
     url: https://aps.autodesk.com/en/docs/acc/v1/tutorials/getting-started
-  - type: GraphQL
-    url: graphql/autodesk-construction-cloud-graphql.md
   - type: APIReference
     url: https://aps.autodesk.com/en/docs/acc/v1/reference/http/issues-issues-POST/
   - type: JSONSchema
