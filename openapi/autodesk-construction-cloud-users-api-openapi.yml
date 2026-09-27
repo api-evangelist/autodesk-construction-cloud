@@ -121,48 +121,6 @@ paths:
                 $ref: '#/components/schemas/AccountUsersResponse'
 components:
   schemas:
-    ProjectUsersResponse:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProjectUser'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    AccountUsersResponse:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              email:
-                type: string
-              name:
-                type: string
-              status:
-                type: string
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    ProjectUserRequest:
-      type: object
-      required:
-      - email
-      - roleIds
-      properties:
-        email:
-          type: string
-          format: email
-        roleIds:
-          type: array
-          items:
-            type: string
-        companyId:
-          type: string
     ProjectUser:
       type: object
       properties:
@@ -193,6 +151,21 @@ components:
         createdAt:
           type: string
           format: date-time
+    ProjectUserRequest:
+      type: object
+      required:
+      - email
+      - roleIds
+      properties:
+        email:
+          type: string
+          format: email
+        roleIds:
+          type: array
+          items:
+            type: string
+        companyId:
+          type: string
     Pagination:
       type: object
       properties:
@@ -204,6 +177,33 @@ components:
           type: integer
         nextUrl:
           type: string
+    AccountUsersResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              email:
+                type: string
+              name:
+                type: string
+              status:
+                type: string
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    ProjectUsersResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectUser'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
   securitySchemes:
     oauth2ThreeLegged:
       type: oauth2
