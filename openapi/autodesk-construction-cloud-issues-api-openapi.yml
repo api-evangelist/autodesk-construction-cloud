@@ -161,39 +161,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Issue'
 components:
-  responses:
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
     IssuesResponse:
       type: object
       properties:
@@ -210,36 +178,6 @@ components:
               type: integer
             totalResults:
               type: integer
-    IssueRequest:
-      type: object
-      required:
-      - title
-      - issueTypeId
-      - issueSubtypeId
-      properties:
-        title:
-          type: string
-        description:
-          type: string
-        issueTypeId:
-          type: string
-        issueSubtypeId:
-          type: string
-        status:
-          type: string
-          enum:
-          - draft
-          - open
-          default: open
-        dueDate:
-          type: string
-          format: date
-        assignedToId:
-          type: string
-        locationId:
-          type: string
-        locationDescription:
-          type: string
     Issue:
       type: object
       properties:
@@ -311,6 +249,13 @@ components:
           type: integer
         attachmentCount:
           type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
     IssueUpdateRequest:
       type: object
       properties:
@@ -333,6 +278,61 @@ components:
           type: string
         rootCauseId:
           type: string
+    IssueRequest:
+      type: object
+      required:
+      - title
+      - issueTypeId
+      - issueSubtypeId
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        issueTypeId:
+          type: string
+        issueSubtypeId:
+          type: string
+        status:
+          type: string
+          enum:
+          - draft
+          - open
+          default: open
+        dueDate:
+          type: string
+          format: date
+        assignedToId:
+          type: string
+        locationId:
+          type: string
+        locationDescription:
+          type: string
+  responses:
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2ThreeLegged:
       type: oauth2
