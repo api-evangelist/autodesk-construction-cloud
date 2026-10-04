@@ -178,6 +178,65 @@ components:
               type: integer
             totalResults:
               type: integer
+    IssueRequest:
+      type: object
+      required:
+      - title
+      - issueTypeId
+      - issueSubtypeId
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        issueTypeId:
+          type: string
+        issueSubtypeId:
+          type: string
+        status:
+          type: string
+          enum:
+          - draft
+          - open
+          default: open
+        dueDate:
+          type: string
+          format: date
+        assignedToId:
+          type: string
+        locationId:
+          type: string
+        locationDescription:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    IssueUpdateRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - draft
+          - open
+          - pending
+          - in_review
+          - closed
+        dueDate:
+          type: string
+          format: date
+        assignedToId:
+          type: string
+        rootCauseId:
+          type: string
     Issue:
       type: object
       properties:
@@ -249,68 +308,15 @@ components:
           type: integer
         attachmentCount:
           type: integer
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    IssueUpdateRequest:
-      type: object
-      properties:
-        title:
-          type: string
-        description:
-          type: string
-        status:
-          type: string
-          enum:
-          - draft
-          - open
-          - pending
-          - in_review
-          - closed
-        dueDate:
-          type: string
-          format: date
-        assignedToId:
-          type: string
-        rootCauseId:
-          type: string
-    IssueRequest:
-      type: object
-      required:
-      - title
-      - issueTypeId
-      - issueSubtypeId
-      properties:
-        title:
-          type: string
-        description:
-          type: string
-        issueTypeId:
-          type: string
-        issueSubtypeId:
-          type: string
-        status:
-          type: string
-          enum:
-          - draft
-          - open
-          default: open
-        dueDate:
-          type: string
-          format: date
-        assignedToId:
-          type: string
-        locationId:
-          type: string
-        locationDescription:
-          type: string
   responses:
     NotFound:
       description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request
       content:
         application/json:
           schema:
@@ -323,12 +329,6 @@ components:
             $ref: '#/components/schemas/Error'
     Forbidden:
       description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request
       content:
         application/json:
           schema:
