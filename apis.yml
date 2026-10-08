@@ -299,6 +299,12 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/autodesk-construction-cloud/refs/heads/main/examples/acc-issue-example.json
 common:
+- type: Plans
+  url: plans/autodesk-construction-cloud-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/autodesk-construction-cloud-rate-limits.yml
+- type: FinOps
+  url: finops/autodesk-construction-cloud-finops.yml
 - type: CapabilityMap
   url: capabilities/autodesk-construction-cloud-capability-edges.yml
   name: Autodesk Construction Cloud Business Capability Map
