@@ -136,3 +136,37 @@ plans:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - metered
+  - subscription
+  units:
+  - request
+  - seat
+  plans:
+  - name: Autodesk Construction Cloud Bundles
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - seat
+    periods:
+    - month
+  - name: ACC Standalone Products
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - seat
+    periods:
+    - month
+  - name: ACC APIs (via APS)
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - request
+    periods:
+    - per-use
