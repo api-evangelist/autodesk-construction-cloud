@@ -1,0 +1,14 @@
+generated: '2026-10-14'
+method: searched
+checked:
+- https://www.autodesk.com/integrations
+marketplace_apps:
+- marketplace: own
+  channel: partner-built
+  app: autodesk-construction-cloud
+  url: https://www.autodesk.com/integrations
+  app_count: null
+  adapter: sweep-construction.py:unreadable
+  listed: 0
+  status: not-machine-readable (HTTP 403; integrations directory returns HTTP 403 to non-browser clients)
+edges: []
