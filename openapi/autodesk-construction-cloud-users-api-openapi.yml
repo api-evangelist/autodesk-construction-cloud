@@ -121,15 +121,17 @@ paths:
                 $ref: '#/components/schemas/AccountUsersResponse'
 components:
   schemas:
-    ProjectUsersResponse:
+    Pagination:
       type: object
       properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProjectUser'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+        limit:
+          type: integer
+        offset:
+          type: integer
+        totalResults:
+          type: integer
+        nextUrl:
+          type: string
     AccountUsersResponse:
       type: object
       properties:
@@ -148,6 +150,15 @@ components:
                 type: string
         pagination:
           $ref: '#/components/schemas/Pagination'
+    ProjectUsersResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectUser'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     ProjectUserRequest:
       type: object
       required:
@@ -162,17 +173,6 @@ components:
           items:
             type: string
         companyId:
-          type: string
-    Pagination:
-      type: object
-      properties:
-        limit:
-          type: integer
-        offset:
-          type: integer
-        totalResults:
-          type: integer
-        nextUrl:
           type: string
     ProjectUser:
       type: object

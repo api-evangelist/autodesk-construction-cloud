@@ -156,7 +156,48 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProjectResponse'
 components:
+  responses:
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        totalResults:
+          type: integer
+        nextUrl:
+          type: string
+    ProjectResponse:
+      type: object
+      properties:
+        project:
+          $ref: '#/components/schemas/Project'
     Project:
       type: object
       properties:
@@ -222,20 +263,6 @@ components:
         updatedAt:
           type: string
           format: date-time
-    ProjectResponse:
-      type: object
-      properties:
-        project:
-          $ref: '#/components/schemas/Project'
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        detail:
-          type: string
     ProjectUpdateRequest:
       type: object
       properties:
@@ -261,16 +288,14 @@ components:
             $ref: '#/components/schemas/Project'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    Pagination:
+    Error:
       type: object
       properties:
-        limit:
-          type: integer
-        offset:
-          type: integer
-        totalResults:
-          type: integer
-        nextUrl:
+        code:
+          type: string
+        message:
+          type: string
+        detail:
           type: string
     ProjectRequest:
       type: object
@@ -311,31 +336,6 @@ components:
           type: string
         contractType:
           type: string
-  responses:
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2ThreeLegged:
       type: oauth2
