@@ -27,5 +27,5 @@
     - connectors/applications/autodesk-bim-360
     vendor_link: https://www.autodesk.com/bim-360/
     builder: Fivetran
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
